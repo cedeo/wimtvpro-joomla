@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset>
+
+		<field name="titlefile" type="text" label="COM_WIMTVPRO_UPLOAD_TITLE_FIELD_TITLE" size="40" class="inputbox" />
+		<field name="descriptionfile" type="textarea" label="COM_WIMTVPRO_UPLOAD_TITLE_FIELD_DESCRIPTION" size="40" class="inputbox" rows="5"   cols="150"/>
+		<field name="videofile" type="file" label="COM_WIMTVPRO_UPLOAD_TITLE_FIELD_UPLOAD" id="videoFileWimtv" class="inputbox" rows="5"   cols="150"/>
+		<field name="videocategory" multiple ="true" type="categoryapi" label="COM_WIMTVPRO_UPLOAD_TITLE_FIELD_CATEGORY" class="inputbox" />
+		<field name="wimtvpro_upload" type="hidden" value="Y" />
+
+	</fieldset>
+</form>
+
+

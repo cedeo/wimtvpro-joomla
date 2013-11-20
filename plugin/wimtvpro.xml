@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1.5" type="plugin" group="editors-xtd">
+    <name>Button - WimtvPro</name>
+    <author>WimLabs</author>
+    <creationDate>2013-06-05</creationDate>
+    <copyright>Copyright (C) 2013. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+   <authorEmail>riccardo@cedeo.net</authorEmail>
+	<authorUrl>http://www.wimtvpro.tv</authorUrl>
+    <version>1.0.0</version>
+    <description>Creates a Button with Insert Video into Articles</description>
+    <files>
+        <filename plugin="wimtvpro">wimtvpro.php</filename>
+        <filename>index.html</filename>
+    </files>
+</extension>

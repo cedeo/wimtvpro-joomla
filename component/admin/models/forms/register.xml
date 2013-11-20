@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fields name="main">
+		<fieldset name="personalInfo">
+			<legend>Personal Information</legend>
+			<field name="reg_name" type="text" label="Name" size="100" class="inputbox" required="true" value_field="reg_name"/>
+			<field name="reg_surname" type="text" label="Surname" size="100" class="inputbox"  required="true"/>
+			<field name="reg_email" type="email" label="Email" size="100" class="inputbox"  required="true" validate="email"/>
+			<field name="reg_sex" type="list" default="" label="Gender" description="">
+			  <option value="M">M</option>
+			  <option value="F">F</option>
+			</field>
+			
+			
+			
+		</fieldset>
+		
+		
+		<fieldset name="loginCredential">
+			<legend>Login Credentials</legend>
+			<field name="reg_Username" type="text" label="Username" size="100" class="inputbox" required="true" />
+			<field name="reg_Password" type="password" label="Password" size="100" class="validate-password" required="true"  />
+			<field name="reg_RepeatPassword" type="password" label="Repeat Password" size="100" class="validate-password" required="true" />
+			<field name="reg_acceptEula" type="checkbox" label="Terms of Use" description="I have read and agree to the wim.tv" value="true" default="false" class="validate-checkbox"  required="true"/>
+		</fieldset>
+	</fields>
+</form>
