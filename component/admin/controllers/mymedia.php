@@ -6,7 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 // import Joomla controllerform library
 jimport('joomla.application.component.controllerform');
-
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 /**
  * WIMTVPRO MEDIA Controller
 */
@@ -27,13 +27,6 @@ class WimtvproControllermymedia extends JControllerForm
 	
 	public function save()
 	{
-		$app = &JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_wimtvpro');
-		$basePathWimtv = $params->get('wimtv_basepath');
-		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		$credential = $username . ":" . $password;
-
 		$directory  = JPATH_COMPONENT . DS . "uploads" . DS;
 		$error = 0;
 		
@@ -63,28 +56,7 @@ class WimtvproControllermymedia extends JControllerForm
 			}else{
 				JError::raiseWarning( 100, "Video isn't copy" );
 			}
-		
-			$table_name = '#__wimtvpro_video';
-		
-			//UPLOAD VIDEO INTO WIMTV
-			set_time_limit(0);
-			//connect at API for upload video to wimtv
-			$ch = curl_init();
-			$url_upload = $basePathWimtv . 'videos';
-		
-			curl_setopt($ch, CURLOPT_URL, $url_upload);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: multipart/form-data"));
-			curl_setopt($ch, CURLOPT_VERBOSE, 0);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-			curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-			curl_setopt($ch, CURLOPT_USERPWD, $credential);
-			curl_setopt($ch, CURLOPT_POST, TRUE);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-			//add category/ies (if exist)
-			$category_tmp = array();
-			$subcategory_tmp = array();
-				
-			$post= array("file" => "@" . $unique_temp_filename,"title" => $titlefile,"description" => $descriptionfile);
+			$post= array("file" => $unique_temp_filename,"title" => $titlefile,"description" => $descriptionfile);
 			if (isset($video_category)) {
 				$id=0;
 				foreach ($video_category as $cat) {
@@ -94,11 +66,9 @@ class WimtvproControllermymedia extends JControllerForm
 					$id++;
 				}
 			}
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			$response = curl_exec($ch);
-			curl_close($ch);
+			$response = apiUpload($post);
 			$arrayjsonst = json_decode($response);
-			//var_dump ($arrayjsonst);
+
 			if (isset($arrayjsonst->contentIdentifier)) {
 
 				//JFactory::getApplication()->enqueueMessage('Upload successfully');
@@ -123,7 +93,7 @@ class WimtvproControllermymedia extends JControllerForm
 		
 				try {
 					// Insert the object into the user profile table.
-					$result = JFactory::getDbo()->insertObject('#__wimtvpro_videos', $insert_video);
+					JFactory::getDbo()->insertObject('#__wimtvpro_videos', $insert_video);
 					
 					//Redirect MyMedia
 					$link = JRoute::_("index.php?option=com_wimtvpro&view=mymedias");

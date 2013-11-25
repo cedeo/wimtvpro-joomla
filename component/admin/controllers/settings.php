@@ -6,6 +6,8 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controllerform');
 jimport( 'joomla.application.component.controller' );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
+
 /**
  * WIMTVPRO setting Controller
 */
@@ -43,12 +45,7 @@ class wimtvproControllersettings extends JControllerAdmin
 	}
 	
 	function save(){
-		$app = &JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_wimtvpro');
-		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		$basePath = $params->get('wimtv_basepath');
-		$credential = $username . ":" . $password;
 		//SAVE SKIN AND JWPLAYER
 		
 		if (!isset($_GET["credential"]) AND !isset($_GET["update"]) AND !isset($_GET["pack"])) {
@@ -66,6 +63,7 @@ class wimtvproControllersettings extends JControllerAdmin
 			$tmpfile =  $_FILES["uploadSkin"]['tmp_name'];
 	
 			$arrayFile = explode(".", $file);
+            $error = 0;
 			if (!empty($file)) {
 				if ($arrayFile[1] != "zip") {
 					JError::raiseWarning( 100,"This file isn't format correct for jwplayer's skin");
@@ -164,21 +162,8 @@ class wimtvproControllersettings extends JControllerAdmin
 				$dati["dateOfBirth"]  = str_replace ("-","/",$dati["dateOfBirth"] );
 				unset($dati['task']);
 				unset($dati['token']);
-				$jsonValue = json_encode($dati);
-				$urlUpdate = $basePath . "profile";
-				$ch = curl_init();
-				//form_set_error("eee",var_dump($dati));
-				curl_setopt($ch, CURLOPT_URL, $urlUpdate);
-				curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: application/json","Accept: application/json","Accept-Language:" . $_SERVER['HTTP_ACCEPT_LANGUAGE']));
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-				curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-				curl_setopt($ch, CURLOPT_USERPWD, $credential);
-				curl_setopt($ch, CURLOPT_POST, TRUE);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonValue);
-				$response = curl_exec($ch);
+				$response = apiEditProfile($dati);
 				$arrayjsonst = json_decode($response);
-				curl_close($ch);
 				if (isset($arrayjsonst->result) && ($arrayjsonst->result!="SUCCESS")) {
 					$testoErrore = "";
 					foreach ($arrayjsonst->messages as $message){

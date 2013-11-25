@@ -6,6 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 // import Joomla controllerform library
 jimport('joomla.application.component.controllerform');
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
 /**
  * WIMTVPRO MEDIA Controller
@@ -90,14 +91,7 @@ class WimtvproControllerwimlive extends JControllerForm
 			if ($payperview=="0")
 				$typemode = "FREEOFCHARGE";
 			else {
-				 
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $basePathWimtv . "uuid");
-		
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-				$paymentCode= curl_exec($ch);
-				curl_close($ch);
-				 
+				$paymentCode = apiGetUUID();
 				$typemode = "PAYPERVIEW&pricePerView=" . $payperview . "&ccy=EUR&paymentCode=" . $paymentCode;
 			}
 
@@ -138,7 +132,7 @@ class WimtvproControllerwimlive extends JControllerForm
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-			$response = curl_exec($ch);
+			$response = curl_exec($ch); //apiAddLive(); //
 			curl_close($ch);
 			if ($response!=""){
 				$message = json_decode($response);

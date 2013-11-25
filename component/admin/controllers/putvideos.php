@@ -6,6 +6,8 @@ defined('_JEXEC') or die('Restricted access');
 
 // import Joomla controllerform library
 jimport('joomla.application.component.controllerform');
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
+
 
 /**
  * WIMTVPRO MEDIA Controller
@@ -76,40 +78,24 @@ class WimtvproControllerputvideos extends JControllerForm
 		$basePath = $params->get('wimtv_basepath');
 		$credential = $username . ":" . $password;
 
-		$license_type = "";
+        $post = array();
 		if ($licenseType!="")
-			$license_type = "licenseType=" . $licenseType;
-		$payment_mode = "";
+			$post["licenseType"] = $licenseType;
 		if ($paymentMode!="")
-			$payment_mode = "&paymentMode=" . $paymentMode;
-		$cc_type = "";
+			$post["paymentMode"] = $paymentMode;
 		if ($ccType!="")
-			$cc_type= "&ccType=" . $ccType;
-		$price_per_view  = "";
+			$post["ccType"] = $ccType;
 		if ($pricePerView!="")
-			$price_per_view  = "&pricePerView=" . $pricePerView;
-		$price_per_view_currency = "";
+			$post["pricePerView"]  = $pricePerView;
 		if ($pricePerViewCurrency!="")
-			$price_per_view_currency = "&pricePerViewCurrency=" . $pricePerViewCurrency;
-		$post_field = $license_type . $payment_mode . $cc_type . $price_per_view . $price_per_view_currency;
-		
+			$post["pricePerViewCurrency"] = $pricePerViewCurrency;
 
-		//Richiamo API  http://www.wim.tv/wimtv-webapp/rest/videos/{contentIdentifier}/showtime
-		//curl -u {username}:{password} -d "license_type=TEMPLATE_LICENSE&paymentMode=PAYPERVIEW&pricePerView=50.00&pricePerViewCurrency=EUR" http://www.wim.tv/wimtv-webapp/rest/videos/{contentIdentifier}/showtime
-		
-		$url_post_public_wimtv = $basePath . "videos/" . $coid  . "/showtime";
-
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url_post_public_wimtv);
-		curl_setopt($ch, CURLOPT_VERBOSE, 0);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_setopt($ch, CURLOPT_USERPWD, $credential);
-		curl_setopt($ch, CURLOPT_POST, TRUE);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept-Language:' . $_SERVER['HTTP_ACCEPT_LANGUAGE']));
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_field);
-		$response = curl_exec($ch);
+        $post = array("licenseType" => $licenseType,
+                      "paymentMode" => $paymentMode,
+                      "ccType" => $ccType,
+                      "pricePerView" => $pricePerView,
+                      "pricePerViewCurrency" => $pricePerViewCurrency);
+		$response = apiPublishOnShowtime($coid, $post);
 
 		
 	      $state = "showtime";
@@ -139,11 +125,6 @@ class WimtvproControllerputvideos extends JControllerForm
 				$this->setRedirect('index.php?option=com_wimtvpro&view=putVideos&layout=edit&coid=' . $coid  . '&put=' . $type, false);
 					
 			}
-
-			
-			
-	    curl_close($ch);
-
 		
 	}
 	

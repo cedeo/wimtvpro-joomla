@@ -8,6 +8,8 @@ jimport( 'joomla.application.component.controller' );
 jimport('joomla.application.component.helper');
 
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
+
 /**
  * WIMTVPRO MEDIA Controller
 */
@@ -33,7 +35,6 @@ class WimtvproControllermymedias extends JControllerAdmin
 	
 	public function sync()
 	{
-		$app = &JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_wimtvpro');
 		$username = $params->get('wimtv_username');
 		$password = $params->get('wimtv_password');
@@ -47,35 +48,11 @@ class WimtvproControllermymedias extends JControllerAdmin
 	
 	public function delete()
 	{
-		$app = &JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_wimtvpro');
-		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		$basePath = $params->get('wimtv_basepath');		
-		$credential = $username . ":" . $password;
 		$input = JFactory::getApplication()->input;
-		//var_dump ($input);
 		$pks = $input->post->get('cid', array(), 'array');
 		
 		foreach ($pks as $id) {
-		
-			$ch = curl_init();
-			$url_delete = $basePath . 'videos';
-			$url_delete .= "/" . $id;
-				
-				
-			curl_setopt($ch, CURLOPT_URL, $url_delete);
-			curl_setopt($ch, CURLOPT_VERBOSE, 0);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-			curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-			curl_setopt($ch, CURLOPT_USERPWD, $credential);
-			
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept-Language:' . $_SERVER['HTTP_ACCEPT_LANGUAGE']));
-				
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-			$response = curl_exec($ch);
-			curl_close($ch);
+			$response = apiDeleteVideo($id);
 			$arrayjsonst = json_decode($response);
 			if ($arrayjsonst->result=="SUCCESS"){
 					
@@ -93,12 +70,9 @@ class WimtvproControllermymedias extends JControllerAdmin
 				$db->setQuery($query);
 					
 				try {
-					$result = $db->query(); // $db->execute(); for Joomla 3.0.
-						
+					$db->query(); // $db->execute(); for Joomla 3.0.
 					//JError::raiseWarning( 100, $response);
 					$message = $arrayjsonst->message;
-		
-		
 				} catch (Exception $e) {
 					// catch the error.
 					JError::raiseWarning( 100, "Error connection." );
@@ -110,7 +84,6 @@ class WimtvproControllermymedias extends JControllerAdmin
 		}
 		
 		if ($errorRemove==0){
-		
 			//JFactory::getApplication()->enqueueMessage($message);
 			$link = JURI::base() . "index.php?option=com_wimtvpro&view=mymedias";
 			JFactory::getApplication()->redirect($link , $message, 'Redirect' );
@@ -129,9 +102,6 @@ class WimtvproControllermymedias extends JControllerAdmin
 	}
 	
 	function removeShowtime(){
-		
-		$state="";
-
 		$id = $_GET["id"];
 		$coid = $_GET["coid"];
 		$fields = array("position='0'","state=''","showtimeIdentifier=''");
@@ -145,43 +115,13 @@ class WimtvproControllermymedias extends JControllerAdmin
 		$db->setQuery($query);
 		
 		try {
-			$result = $db->query(); // Use $db->execute() for Joomla 3.0.
+			$db->query(); // Use $db->execute() for Joomla 3.0.
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
-		
-		$app = &JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_wimtvpro');
-		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		$basePath = $params->get('wimtv_basepath');
-		$credential = $username . ":" . $password;
-		
-		//Richiamo API
-		//https://www.wim.tv/wimtv-webapp/rest/videos/{contentIdentifier}/showtime/{showtimeIdentifier}
-		//curl -u {username}:{password} -X DELETE https://www.wim.tv/wimtv-webapp/rest/videos/{contentIdentifier}/showtime/{showtimeIdentifier}
-		$url_remove_public_wimtv = $basePath . "videos/" . $coid . "/showtime/" . $id;
-		echo $url_remove_public_wimtv;
-		//This API allows posting an ACQUIRED video on the Web my streaming for public streaming.
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url_remove_public_wimtv);
-		curl_setopt($ch, CURLOPT_VERBOSE, 0);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_setopt($ch, CURLOPT_USERPWD, $credential);
-		curl_setopt($ch, CURLOPT_POST, TRUE);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept-Language:' . $_SERVER['HTTP_ACCEPT_LANGUAGE']));
-		
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-		$response = curl_exec($ch);
 
-
-		$message = json_encode($response);
-		
+		$response = apiDeleteFromShowtime($coid, $id);
 		JError::raiseWarning( 100, $response->message );
-
-		
 	}
 	
 }
