@@ -11,18 +11,7 @@ $basePath = $_POST['basePath'];
 $credential = $username . ":" . $password;
 $userpeer = $username;
 
-
-  $url_live_select = $basePath  . "liveStream/" . $userpeer . "/" . $userpeer . "/hosts?timezone=" . $timezone;
-  if ($onlyActive)  $url_live_select .= "&active=true";
-
-  $ch_select = curl_init();
-  curl_setopt($ch_select, CURLOPT_URL, $url_live_select);
-  curl_setopt($ch_select, CURLOPT_VERBOSE, 0);
-  curl_setopt($ch_select, CURLOPT_RETURNTRANSFER, TRUE);
-  curl_setopt($ch_select, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-  curl_setopt($ch_select, CURLOPT_USERPWD, $credential);
-  curl_setopt($ch_select, CURLOPT_SSL_VERIFYPEER, FALSE);
-  $json  =curl_exec($ch_select);
+  $json = apiGetLiveEvents($timezone, $onlyActive);
   $arrayjson_live = json_decode($json);
   
   $output = "";
@@ -58,31 +47,8 @@ $userpeer = $username;
 		 $durata =  $value->duration . " " . $value -> durationUnit;	
     
     $identifier = $value -> identifier;
-    $url_live_embedded = $basePath . "liveStream/" . $userpeer . "/" . $userpeer . "/hosts/" . $identifier . "/embed?timezone=" . $timezone;
-    $ch_embedded = curl_init();
-
-    //read iframe
-    $header[] = "Accept: text/xml,application/xml,application/xhtml+xml,";
-    curl_setopt($ch_embedded, CURLOPT_URL, $url_live_embedded);
-    curl_setopt($ch_embedded, CURLOPT_VERBOSE, 0);
-    curl_setopt($ch_embedded, CURLOPT_HTTPHEADER, $header);
-    curl_setopt($ch_embedded, CURLOPT_RETURNTRANSFER, TRUE);
-    curl_setopt($ch_embedded, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    curl_setopt($ch_embedded, CURLOPT_USERPWD, $credential);
-    curl_setopt($ch_embedded, CURLOPT_SSL_VERIFYPEER, FALSE);
-    $embedded_iframe = curl_exec($ch_embedded);
-    
-    $ch_details= curl_init();
-
-    //read iframe
-
-    curl_setopt($ch_details, CURLOPT_URL, $url_live_embedded);
-    curl_setopt($ch_details, CURLOPT_VERBOSE, 0);
-    curl_setopt($ch_details, CURLOPT_RETURNTRANSFER, TRUE);
-    curl_setopt($ch_details, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    curl_setopt($ch_details, CURLOPT_USERPWD, $credential);
-    curl_setopt($ch_details, CURLOPT_SSL_VERIFYPEER, FALSE);
-    $details_live = curl_exec($ch_details);
+    $embedded_iframe = apiGetLiveIframe($identifier, $timezone);
+    $details_live = apiEmbeddedLive($identifier);
     $livedate = json_decode($details_live);
 	$data = $livedate->eventDate;
 	if (intval($livedate->eventMinute)<10) $livedate->eventMinute = "0" .  $livedate->eventMinute;

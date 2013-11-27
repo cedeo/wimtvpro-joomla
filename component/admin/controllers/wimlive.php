@@ -105,35 +105,24 @@ class WimtvproControllerwimlive extends JControllerForm
 				$duration = ($separe_duration[0] * 60) + $separe_duration[1];
 			}
 			else $duration = 0;
+		
+            $post = array("name"    => $name,
+                          "url"     => $url,
+                          "eventDate" => $giorno,
+                          "paymentMode" => $typemode,
+                          "eventHour" => $ora[0],
+                          "eventMinute" => $ora[1],
+                          "duration" => $duration,
+                          "durationUnit" => "Minute",
+                          "publicEvent" => $public,
+                          "timezone" => $timelive,
+                          "recordEvent" => $record);
 
-			$userpeer = $username;
-			$fields_string = "name=" . $name . "&url=" . $url . "&eventDate=" . $giorno . "&paymentMode=" . $typemode;
-			$fields_string .= "&eventHour=" . $ora[0] . "&eventMinute=" . $ora[1] . "&duration=" . $duration . "&durationUnit=Minute&publicEvent=" . $public;
-		
-			$fields_string .= "&timezone=" . $timelive ;
-		
-			$fields_string .= "&recordEvent=" . $record;
-		
-
-			$url_live =  $basePathWimtv . "liveStream/" . $userpeer . "/" . $userpeer . "/hosts";
 			if ($_GET["cid"]!="")  
-				$url_live .= "/" . $_GET['cid'];
-			
-			$url_live .= "?timezone=" . $timelive ;
-			
-			echo $url_live;
-			echo $credential;
-			echo $fields_string;
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url_live);
-	
-			curl_setopt($ch, CURLOPT_USERPWD, $credential);
-			curl_setopt($ch, CURLOPT_POST, TRUE);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-			$response = curl_exec($ch); //apiAddLive(); //
-			curl_close($ch);
+				$response = apiModifyLive($_GET['cid'], $post);
+            else
+			    $response = apiAddLive($post); //
+
 			if ($response!=""){
 				$message = json_decode($response);
 			
@@ -171,33 +160,14 @@ class WimtvproControllerwimlive extends JControllerForm
 	
 	public function delete()
 	{
-		$app = &JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_wimtvpro');
-		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		$basePath = $params->get('wimtv_basepath');
-		$credential = $username . ":" . $password;
 		$input = JFactory::getApplication()->input;
 		//var_dump ($input);
 		$pks = $input->post->get('cid', array(), 'array');
-		$url_live =  $basePath . "liveStream/" . $username . "/" . $username . "/hosts";
 		foreach ($pks as $id) {
-	
-			$url_live .= "/" .  $id;
-	      $ch = curl_init();
-	      curl_setopt($ch, CURLOPT_URL, $url_live);
-	      curl_setopt($ch, CURLOPT_VERBOSE, 0);
-	      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-	      curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	      curl_setopt($ch, CURLOPT_USERPWD, $credential);
-	      curl_setopt($ch, CURLOPT_POST, TRUE);
-	      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-	      $response = curl_exec($ch);
+	      $response = apiDeleteLive($id);
 	      $message = $response;
-	      curl_close($ch); 
-	
 		}
+        //TODO: che cos'è $errorRemove??
 	
 		if ($errorRemove==0){
 	

@@ -17,15 +17,15 @@ $urlThumbsWimtv = $params->get('wimtv_urlThumbsWimtv');
 $credential = $username . ":" . $password;
 
 //Select Showtime
-$param_st = $basePath . "users/" . $username . "/showtime?details=true";
+/*$param_st = $basePath . "users/" . $username . "/showtime?details=true";
 $ch_st = curl_init();
 curl_setopt($ch_st, CURLOPT_URL, $param_st);
 curl_setopt($ch_st, CURLOPT_VERBOSE, 0);
 curl_setopt($ch_st, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch_st, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($ch_st, CURLOPT_USERPWD, $credential);
-curl_setopt($ch_st, CURLOPT_SSL_VERIFYPEER, FALSE);
-$details_st  =curl_exec($ch_st);
+curl_setopt($ch_st, CURLOPT_SSL_VERIFYPEER, FALSE);*/
+$details_st = apiGetShowtimes(); //curl_exec($ch_st);
 $arrayjSonST = json_decode( $details_st);
 
 $stLicense = array();
@@ -38,15 +38,15 @@ foreach ($this->items as &$row)
 {
 	$checked = JHTML::_('grid.id', $i++, $row->id );
 	
-	$param_thumb = $basePath . str_replace($replaceContentWimtv, $row->contentidentifier, $urlThumbsWimtv);
+	/*$param_thumb = $basePath . str_replace($replaceContentWimtv, $row->contentidentifier, $urlThumbsWimtv);
 	$ch_thumb = curl_init();
 	curl_setopt($ch_thumb, CURLOPT_URL, $param_thumb);
 	curl_setopt($ch_thumb, CURLOPT_VERBOSE, 0);
 	curl_setopt($ch_thumb, CURLOPT_RETURNTRANSFER, TRUE);
 	curl_setopt($ch_thumb, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 	curl_setopt($ch_thumb, CURLOPT_USERPWD, $credential);
-	curl_setopt($ch_thumb, CURLOPT_SSL_VERIFYPEER, FALSE);
-	$replace_video  =curl_exec($ch_thumb);
+	curl_setopt($ch_thumb, CURLOPT_SSL_VERIFYPEER, FALSE);*/
+	$replace_video = apiGetThumbsVideo($row->contentidentifier); //curl_exec($ch_thumb);
 	
 	$isfound = false;
 	if (!strstr($replace_video, 'Not Found'))

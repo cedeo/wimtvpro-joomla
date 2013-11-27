@@ -37,13 +37,7 @@ class WimtvproControllermymedias extends JControllerAdmin
 	{
 		$params = JComponentHelper::getParams('com_wimtvpro');
 		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		$basePath = $params->get('wimtv_basepath');
-		$urlVideosDetailWimtv = trim($params->get('wimtv_urlVideosDetailWimtv'));
-		$url_video = $basePath . $urlVideosDetailWimtv;
-		$credential = $username . ":" . $password;
-		syncWimtvpro($username,$credential,$url_video,"mymedias");
-		
+		syncWimtvpro($username,"mymedias");
 	}
 	
 	public function delete()

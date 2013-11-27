@@ -13,7 +13,7 @@ $credential = $username . ":" . $password;
 $userpeer = $username;
 $id =  $_GET['id'];
 
-$url_live_embedded = $basePathWimtv . "liveStream/" . $userpeer . "/" . $userpeer . "/hosts/" . $id;
+/*$url_live_embedded = $basePathWimtv . "liveStream/" . $userpeer . "/" . $userpeer . "/hosts/" . $id;
 
 $ch_embedded= curl_init();
 
@@ -23,8 +23,8 @@ curl_setopt($ch_embedded, CURLOPT_VERBOSE, 0);
 curl_setopt($ch_embedded, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch_embedded, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($ch_embedded, CURLOPT_USERPWD, $credential);
-curl_setopt($ch_embedded, CURLOPT_SSL_VERIFYPEER, FALSE);
-$embedded= curl_exec($ch_embedded);
+curl_setopt($ch_embedded, CURLOPT_SSL_VERIFYPEER, FALSE);*/
+$embedded = apiEmbeddedLive($id);// curl_exec($ch_embedded);
 $arrayjson_live = json_decode($embedded);
 $url =  $arrayjson_live->url;
 $title = $arrayjson_live->name;

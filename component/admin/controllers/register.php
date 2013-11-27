@@ -32,9 +32,6 @@ class WimtvproControllerRegister extends JControllerForm
 		$task           = $this->getTask();
 		$context        = "$this->_option.edit.$this->_context";
 		$params = JComponentHelper::getParams('com_wimtvpro');
-		//$username = $params->get('wimtv_username');
-		//$password = $params->get('wimtv_password');
-		$basePath = $params->get('wimtv_basepath');
 
 		jimport('joomla.filesystem.file');
 		$jform = JRequest::getVar('jform');
@@ -48,31 +45,22 @@ class WimtvproControllerRegister extends JControllerForm
 		$username = $jform['main']['reg_Username'];
 		$sex = $jform['main']['reg_sex'];
 
+        $post = array("acceptEula"  => $acceptEula,
+                      "name"        => $name,
+                      "surname"     => $surname,
+                      "email"       => $email,
+                      "username"    => $username,
+                      "password"    => $password,
+                      "role"        => "webtv",
+                      "sex"         => $sex,
+                      "dateOfBirth" => "01/01/1900");
 
-		
-		$ch = curl_init();
-		$url_reg = $basePath . 'register';
-		curl_setopt($ch, CURLOPT_URL, $url_reg);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: application/json","Accept: application/json","Accept-Language:" . $_SERVER['HTTP_ACCEPT_LANGUAGE']));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($ch, CURLOPT_POST, TRUE);
-		 
-		$post = '{"acceptEula":"' . $acceptEula . '","name":"' . $name . '","surname":"' . $surname . '","email":"' . $email . '"';
-		$post .= ',"username":"' . $username . '","password":"' . $password . '"';
-		$post .= ',"role":"webtv","sex":"' . $sex . '","dateOfBirth":"01/01/1900"}';
-
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-		$response = curl_exec($ch);
-
-		curl_close($ch);
-		
+		$response = apiRegistration($post);
 		$arrayjsonst = json_decode($response);
 
 		$context        = "com_wimtvpro.edit.register";
 		
-		$return == parent::save();
+		$return = parent::save();
 	
 		if ($arrayjsonst){
 			if ($arrayjsonst->result=="SUCCESS") {

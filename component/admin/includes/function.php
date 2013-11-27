@@ -2,21 +2,12 @@
 
 
 
-function syncWimtvpro ($username,$credential,$url_video,$page) {
+function syncWimtvpro ($username, $page) {
 	$table_name = '#__wimtvpro_videos';
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL,  $url_video);
-	curl_setopt($ch, CURLOPT_VERBOSE, 0);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	curl_setopt($ch, CURLOPT_USERPWD, $credential);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 	
-	$response = curl_exec($ch);
+	$response = apiGetVideos();
 	$array_json_videos = json_decode($response);
-	//var_dump ($array_json_videos);
-	curl_close($ch);
-	
+
 	if ($array_json_videos==NULL) {
 	
 		JError::raiseWarning( 100, "COM_WITVPRO_ERROR_WIMTVPRO" );
@@ -133,10 +124,10 @@ function syncWimtvpro ($username,$credential,$url_video,$page) {
 							$insert_video->viewVideoModule=$pos_wimtv;		
 							$insert_video->status = $status;
 							$insert_video->acquiredIdentifier = $acquired_identifier;
-							$insert_video->urlThumbs = mysql_escape_string($url_thumbs);
+							$insert_video->urlThumbs = mysql_real_escape_string($url_thumbs);
 							$insert_video->category =  $categories;
-							$insert_video->urlPlay =  mysql_escape_string($urlVideo);
-							$insert_video->title =  mysql_escape_string($title);
+							$insert_video->urlPlay =  mysql_real_escape_string($urlVideo);
+							$insert_video->title =  mysql_real_escape_string($title);
 							$insert_video->duration = $duration;
 							$insert_video->showtimeidentifier = $showtime_identifier;
 								
@@ -158,9 +149,9 @@ function syncWimtvpro ($username,$credential,$url_video,$page) {
 							$fields = array(
 									"state = '" . $pos_wimtv . "'",
 									" status = '" . $status . "'",
-									" title = '" . mysql_escape_string($title) . "'",
-									" urlThumbs = '" . mysql_escape_string($url_thumbs) . "'",
-									" urlPlay = '" . mysql_escape_string($urlVideo) . "'",
+									" title = '" . mysql_real_escape_string($title) . "'",
+									" urlThumbs = '" . mysql_real_escape_string($url_thumbs) . "'",
+									" urlPlay = '" . mysql_real_escape_string($urlVideo) . "'",
 									" duration = '" . $duration . "'",
 									" showtimeidentifier = '" . $showtime_identifier . "'",
 									" category = '" . $categories . "'"
@@ -246,22 +237,8 @@ function wimtvpro_detail_showtime($single, $st_id) {
 		//$url_detail = str_replace($replaceshowtimeIdentifier, $showtime_item , $url_embedded);
 		//$url_detail = str_replace($replaceUserWimtv, $username, $url_detail);
 		//https://www.wim.tv/wimtv-webapp/rest/users/{username}/showtime/{showimteIdentifier}/details
-		
-		$url_detail = $basePath . "users/" .  $username . "/showtime/" .  $st_id .  "/details";
-
 	}
-
-	$st = curl_init();
-
-
-	curl_setopt($st, CURLOPT_URL, $url_detail);
-	curl_setopt($st, CURLOPT_VERBOSE, 0);
-	curl_setopt($st, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($st, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	curl_setopt($st, CURLOPT_SSL_VERIFYPEER, FALSE);
-	$array_detail = curl_exec($st);
-	curl_close($st);
-
+	$array_detail = apiGetDetailsShowtime($st_id);
 	return $array_detail;
 }
 
@@ -323,19 +300,7 @@ function wimtvpro_viever_jwplayer($userAgent,$contentId,$video,$dirJwPlayer){
 	if ($isiPad  || $isiPhone) {
 		$urlPlayIPadIphone = "";
 		$contentId = $video[0]->contentidentifier;
-
-		$url_video = $basePath . "videos/" . $contentId . "?details=true";
-		
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL,  $url_video);
-		curl_setopt($ch, CURLOPT_USERAGENT,$userAgent);
-		curl_setopt($ch, CURLOPT_VERBOSE, 0);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_setopt($ch, CURLOPT_USERPWD, $credential);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-
-		$response = curl_exec($ch);
+		$response = apiGetDetailsVideo($contentId);
 		$arrayjson   = json_decode($response);
 
 		$urlPlayIPadIphone = $arrayjson->streamingUrl->streamer;
@@ -368,7 +333,7 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 		$output = "Never Videos";
 	
 	} else {
-		$videoList .= " AND ( 1=2";
+		$videoList = " AND ( 1=2";
 		foreach ($arrayVideo as $value){
 	
 			$videoList .= " OR showtimeIdentifier='" . $value . "'";
@@ -387,7 +352,7 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 		foreach ($array_videos_new_wp as &$row)
 		{
 	
-			$param_thumb = $basePath . str_replace($replaceContentWimtv, $row->contentidentifier, $urlThumbsWimtv);
+			/*$param_thumb = $basePath . str_replace($replaceContentWimtv, $row->contentidentifier, $urlThumbsWimtv);
 	
 			$ch_thumb = curl_init();
 			curl_setopt($ch_thumb, CURLOPT_URL, $param_thumb);
@@ -395,8 +360,8 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 			curl_setopt($ch_thumb, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch_thumb, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 			curl_setopt($ch_thumb, CURLOPT_USERPWD, $credential);
-			curl_setopt($ch_thumb, CURLOPT_SSL_VERIFYPEER, FALSE);
-			$replace_video  =curl_exec($ch_thumb);
+			curl_setopt($ch_thumb, CURLOPT_SSL_VERIFYPEER, FALSE);*/
+			$replace_video = apiGetThumbsVideo($row->contentidentifier); //curl_exec($ch_thumb);
 	
 			$query2 = $db->getQuery(true);
 			$query2->select('*');
@@ -407,10 +372,10 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 	
 	
 			$configFile  = wimtvpro_viever_jwplayer($_SERVER['HTTP_USER_AGENT'], $row->contentidentifier,$video,FALSE);
-			$playlist .= "{" . $configFile . " 'image':'" . $replace_video  . "','title':'" . $row->title . "'},";
+			$playlist = "{" . $configFile . " 'image':'" . $replace_video  . "','title':'" . $row->title . "'},";
 	
 		}
-		$output .= "<div id='container_playlist" .  $row->id  . "'></div>";
+		$output = "<div id='container_playlist" .  $row->id  . "'></div>";
 		$playlistSize = "30%";
 		$dimensions = "width: '100%',height:'" . $height . "px',";
 	

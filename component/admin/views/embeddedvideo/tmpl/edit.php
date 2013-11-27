@@ -88,26 +88,13 @@ if ($arrayPlay[0]->showtimeIdentifier==""){
 	$arrayST["thumbnailUrl"] = $arrayjSonST->{"thumbnailUrl"};
 	$arrayST["contentId"] = $arrayjSonST->{"contentId"};
 	$arrayST["url"] = $arrayjSonST->{"url"};
-
-	$ch = curl_init();
-	
 	
 	if ($skinName!="") {
 		$directory  = JURI::base() . "components/com_wimtvpro/uploads/skin";
 		$skin = "&skin=" . $directory  . "/" . $skinName . ".zip";
 	}
-
-	$url = $basePath . "videos/" . $coid . '/embeddedPlayers';
-	$url .= "?get=1&width=" . $width . "px&height=" . $height . "px" .  $skin;
-
-	curl_setopt($ch, CURLOPT_URL,  $url);
-	curl_setopt($ch, CURLOPT_VERBOSE, 0);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept-Language:' . $_SERVER['HTTP_ACCEPT_LANGUAGE']));
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	curl_setopt($ch, CURLOPT_USERPWD, $credential);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-	$response = curl_exec($ch);
+	$params = "?get=1&width=" . $width . "px&height=" . $height . "px" .  $skin;
+	$response = apiGetPlayerShowtime($coid, $params);
 
 	$videos .= $response;
 	
