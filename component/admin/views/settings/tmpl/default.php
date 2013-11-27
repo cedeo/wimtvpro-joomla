@@ -2,6 +2,8 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
+
 // load tooltip behavior
 JHtml::_('behavior.tooltip');
 

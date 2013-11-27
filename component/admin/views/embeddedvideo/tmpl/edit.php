@@ -3,6 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 JHtml::_('behavior.tooltip');
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
 $app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');

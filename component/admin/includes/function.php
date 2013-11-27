@@ -1,6 +1,6 @@
 <?php
 
-
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
 function syncWimtvpro ($username, $page) {
 	$table_name = '#__wimtvpro_videos';
@@ -59,8 +59,8 @@ function syncWimtvpro ($username, $page) {
 			}
 			
 			/* Information detail videos into Showtime */
-			$json_st   = wimtvpro_detail_showtime(FALSE, 0);
-			$arrayjson_st   = json_decode($json_st);
+			$json_st  = wimtvpro_detail_showtime(FALSE, 0);
+			$arrayjson_st = json_decode($json_st);
 			$values_st = $arrayjson_st->items;
 			
 			

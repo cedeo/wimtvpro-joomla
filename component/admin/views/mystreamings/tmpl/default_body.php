@@ -6,8 +6,8 @@ jimport( 'joomla.html.pagination' );
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.multiselect');
-?>
-<?php
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
+
 $k = 0;
 $i = 0;
 

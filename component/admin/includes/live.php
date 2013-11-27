@@ -1,5 +1,6 @@
 <?php
 
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
 $timezone = $_POST['timezone'];
 $type = $_POST['type'];

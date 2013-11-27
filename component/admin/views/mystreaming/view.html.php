@@ -2,6 +2,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die();
 jimport( 'joomla.application.component.view' );
+
 class wimtvproViewmystreamingsinsert extends JView
 {
 	function display($tpl = null)

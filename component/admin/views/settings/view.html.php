@@ -4,6 +4,8 @@ defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.application.component.view' );
 jimport( 'joomla.html.pagination' );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
+
+
 class wimtvproViewsettings extends JView
 {
 	function display($tpl = null)
