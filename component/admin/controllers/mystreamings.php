@@ -136,6 +136,13 @@ class wimtvproControllermystreamings extends JControllerAdmin
 		}
 		
 	}
+
+    public function sync()
+    {
+        $params = JComponentHelper::getParams('com_wimtvpro');
+        $username = $params->get('wimtv_username');
+        syncWimtvpro($username,"mystreamings");
+    }
 	
 	
 	

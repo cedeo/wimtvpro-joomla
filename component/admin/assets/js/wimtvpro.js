@@ -420,6 +420,7 @@ jQuery(document).ready(function(){
 	
 	//Request new URL for create a wimlive Url
 	jQuery(".createUrl").click(function(){
+	  console.log("Click");
 	  jQuery.ajax({
 			context: this,
 			url:  url_pathPlugin + "scripts.php", 

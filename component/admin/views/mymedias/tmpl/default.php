@@ -20,12 +20,12 @@ if ($view_page){
 		<thead>
 			<?php echo $this->loadTemplate('head');?>
 		</thead>
+        <tbody>
+            <?php echo $this->loadTemplate('body');?>
+        </tbody>
 		<tfoot>
 			<?php echo $this->loadTemplate('foot');?>
 		</tfoot>
-		<tbody>
-			<?php echo $this->loadTemplate('body');?>
-		</tbody>
 	</table>
 	<div>
 		<input type="hidden" name="task" value="" /> <input type="hidden"

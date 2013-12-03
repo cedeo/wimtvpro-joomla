@@ -1,6 +1,7 @@
 <?php
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
 // import Joomla modelform library
 jimport('joomla.application.component.modeladmin');

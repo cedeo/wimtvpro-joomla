@@ -37,8 +37,12 @@ curl_setopt($ch_embedded, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch_embedded, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($ch_embedded, CURLOPT_USERPWD, $credential);
 curl_setopt($ch_embedded, CURLOPT_SSL_VERIFYPEER, FALSE);*/
-$embedded = apiEmbeddedLive($id); //curl_exec($ch_embedded);
-$arrayjson_live = json_decode($embedded);
+if ($id) {
+    $embedded = apiEmbeddedLive($id); //curl_exec($ch_embedded);
+    $arrayjson_live = json_decode($embedded);
+} else {
+    $arrayjson_live = array();
+}
 
 
 ?>

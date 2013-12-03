@@ -1,5 +1,8 @@
 <?php
-require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
+
+error_reporting(0);
+
+require_once ( "api/wimtv_api.php" );
 
   $function = "";
   $id="";

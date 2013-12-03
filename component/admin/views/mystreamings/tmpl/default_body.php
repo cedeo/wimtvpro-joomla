@@ -27,15 +27,8 @@ $skinName = $params->get('wimtv_nameSkin');
 
 
 //Select Showtime
-$param_st = $basePath . "users/" . $username . "/showtime?details=true";
-$ch_st = curl_init();
-curl_setopt($ch_st, CURLOPT_URL, $param_st);
-curl_setopt($ch_st, CURLOPT_VERBOSE, 0);
-curl_setopt($ch_st, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($ch_st, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-curl_setopt($ch_st, CURLOPT_USERPWD, $credential);
-curl_setopt($ch_st, CURLOPT_SSL_VERIFYPEER, FALSE);
-$details_st  =curl_exec($ch_st);
+
+$details_st = apiGetShowtimes();
 $arrayjSonST = json_decode( $details_st);
 
 $stLicense = array();

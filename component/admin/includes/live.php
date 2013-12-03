@@ -1,6 +1,8 @@
 <?php
 
-require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
+error_reporting(0);
+
+require_once ( "api/wimtv_api.php" );
 
 $timezone = $_POST['timezone'];
 $type = $_POST['type'];
@@ -12,18 +14,18 @@ $basePath = $_POST['basePath'];
 $credential = $username . ":" . $password;
 $userpeer = $username;
 
-  $json = apiGetLiveEvents($timezone, $onlyActive);
-  $arrayjson_live = json_decode($json);
-  
-  $output = "";
-  
+$json = apiGetLiveEvents($timezone, $onlyActive);
+$arrayjson_live = json_decode($json);
 
-  //$arrayST["showtimeIdentifier"] = $arrayjson_live->{"showtimeIdentifier"};
-  $count = -1;
-  
-  if ($arrayjson_live ){
-   foreach ($arrayjson_live->{"hosts"} as $key => $value) {
-    $count ++;  
+$output = "";
+
+
+//$arrayST["showtimeIdentifier"] = $arrayjson_live->{"showtimeIdentifier"};
+$count = -1;
+
+if ($arrayjson_live ){
+  foreach ($arrayjson_live->{"hosts"} as $key => $value) {
+    $count ++;
     $name = $value -> name;
     if (isset($value -> url))
       $url =  $value -> url;
@@ -45,8 +47,8 @@ $userpeer = $username;
 		$durata .= $minuti . " min";
 	}
 	else
-		 $durata =  $value->duration . " " . $value -> durationUnit;	
-    
+		 $durata =  $value->duration . " " . $value -> durationUnit;
+
     $identifier = $value -> identifier;
     $embedded_iframe = apiGetLiveIframe($identifier, $timezone);
     $details_live = apiEmbeddedLive($identifier);
@@ -60,25 +62,25 @@ $userpeer = $username;
    // $urlPeer = "http://peer.wim.tv:8080/wimtv-webapp/rest";
     //$embedded_code = htmlentities(curl_exec($ch_embedded));
     //$embedded_iframe = '<iframe id="com-wimlabs-player" name="com-wimlabs-player" src="' . $urlPeer . '/liveStreamEmbed/' . $identifier . '/player?width=692&height=440" style="min-width: 692px; min-height: 440px;"></iframe>';
-    
-    $embedded_code = '<textarea readonly="readonly" onclick="this.focus(); this.select();">' . $embedded_iframe . '</textarea>'; 
+
+    $embedded_code = '<textarea readonly="readonly" onclick="this.focus(); this.select();">' . $embedded_iframe . '</textarea>';
     if ($type=="table") {
-      
+
       //Check Live is now
-      $dataNow = date("d/m/Y"); 
+      $dataNow = date("d/m/Y");
       $arrayData = explode ("/",$data);
 	  $arrayOra = explode (":",$oraMin);
-     
+
       $timeStampInizio =  mktime($livedate->eventHour,$livedate->eventMinute,0,$arrayData[1],$arrayData[0],$arrayData[2]);
-      
+
       $secondiDurata = 60 * $durata;
       $ora= date("H:i:s", $secondiDurata);
       $arrayDurata = explode (":",$ora);
-    
+
       $timeStampFine =  mktime($arrayOra[0]+$arrayDurata[0],$arrayOra[1]+$arrayDurata[1],$arrayOra[2]+$arrayDurata[2],$arrayData[1],$arrayData[0],$arrayData[2]);
 
       $timeStampNow =  mktime(date("H"),date("i"),date("s"));
-		
+
       $liveIsNow = false;
       if ($dataNow == $data){
       	//if (($timeStampNow>=$timeStampInizio) && ($timeStampNow<$timeStampFine )) {
@@ -86,17 +88,17 @@ $userpeer = $username;
 		//}
       }
 
-      
+
       $checked = '<input type="checkbox" id="cb1" name="cid[]" value="' .  $identifier . '" onclick="Joomla.isChecked(this.checked);" title="">';
-      
-      
+
+
       $output .="<tr>
       		<td>" . $checked . "</td>
       <td>" . $name . "</td>";
        if ($liveIsNow)  $output .=" <td><a target='newTab' href='index.php?option=com_wimtvpro&view=wimlive_embedded&tmpl=component&id=" . $identifier . "' class='clickWebProducer' id='" . $identifier . "'><img src='components/com_wimtvpro/assets/images/webcam.png'></a></td>";
-      
+
       else $output .="<td></td>";
-      
+
       $output .=  "<td>" . $payment_mode . "</td>
       <td>" . $url . "</td>
       <td>"  . $data . " " . $oraMin . "<br/>" . $durata . "</td>

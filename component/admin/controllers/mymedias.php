@@ -38,7 +38,7 @@ class WimtvproControllermymedias extends JControllerAdmin
 		$params = JComponentHelper::getParams('com_wimtvpro');
 		$username = $params->get('wimtv_username');
 		syncWimtvpro($username,"mymedias");
-	}
+    }
 	
 	public function delete()
 	{
@@ -89,8 +89,6 @@ class WimtvproControllermymedias extends JControllerAdmin
 	}
 
 	function cancel(){
-
-		
 		$link = JURI::base() . "option=com_wimtvpro&view=mymedias";
 		JFactory::getApplication()->redirect($link);
 	}

@@ -73,7 +73,8 @@ class Api {
         $request->expects($expectedMimeType);
         $request->addHeader('Accept-Language', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
         $request->_curlPrep();
-        return $request->send();
+        $result = $request->send();
+	return $result;
     }
 
 }

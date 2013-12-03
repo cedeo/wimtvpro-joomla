@@ -1,11 +1,12 @@
 <?php
 
-require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
+require_once ( "api/wimtv_api.php" );
 
 function syncWimtvpro ($username, $page) {
 	$table_name = '#__wimtvpro_videos';
-	
-	$response = apiGetVideos();
+
+    $response = apiGetVideos();
+    //JFactory::getApplication()->enqueueMessage($response);
 	$array_json_videos = json_decode($response);
 
 	if ($array_json_videos==NULL) {
@@ -59,15 +60,15 @@ function syncWimtvpro ($username, $page) {
 			}
 			
 			/* Information detail videos into Showtime */
-			$json_st  = wimtvpro_detail_showtime(FALSE, 0);
-			$arrayjson_st = json_decode($json_st);
+
+            $json_st  = wimtvpro_detail_showtime(FALSE, 0);
+            $arrayjson_st = json_decode($json_st);
 			$values_st = $arrayjson_st->items;
-			
-			
+
+
 			foreach ($values_st as $key => $value) {
 				$array_st[$value -> {"contentId"}]["showtimeIdentifier"] = $value-> {"showtimeIdentifier"};
 			}
-		
 			if ($array_all_videos) {
 				foreach ($array_all_videos as $video) {
 					$url_video = $video["actionUrl"];
@@ -88,7 +89,8 @@ function syncWimtvpro ($username, $page) {
 						}
 						$categories .= "<br/>";
 					}
-					array_push($elenco_video_wimtv, $content_item);
+
+                    array_push($elenco_video_wimtv, $content_item);
 					if (trim($content_item)!="") {
 						//controllo se il video esiste
 						$trovato = FALSE;
@@ -106,15 +108,15 @@ function syncWimtvpro ($username, $page) {
 						if (isset($array_st[$content_item])) {
 							$pos_wimtv="showtime";
 							$showtime_identifier = $array_st[$content_item]["showtimeIdentifier"];
-						}
+                        }
 						else {
 							$pos_wimtv="";
-						}
+                        }
 	
 						if (!$trovato) {
-							
-							
-							// Create and populate an object.
+
+
+                            // Create and populate an object.
 							$insert_video = new stdClass();
 							$insert_video->uid = $username;
 							$insert_video->contentidentifier=$content_item;
@@ -130,19 +132,20 @@ function syncWimtvpro ($username, $page) {
 							$insert_video->title =  mysql_real_escape_string($title);
 							$insert_video->duration = $duration;
 							$insert_video->showtimeidentifier = $showtime_identifier;
-								
-							
-							try {
+
+
+
+                            try {
 								// Insert the object into the user profile table.
 								$result = JFactory::getDbo()->insertObject('#__wimtvpro_videos', $insert_video);
 							} catch (Exception $e) {
 								throw new Exception($e);
 							}
-							
-							
-							
 
-						}
+
+
+
+                        }
 						else {
 	
 							// Fields to update.
@@ -156,8 +159,8 @@ function syncWimtvpro ($username, $page) {
 									" showtimeidentifier = '" . $showtime_identifier . "'",
 									" category = '" . $categories . "'"
 							);
-	
-							// Conditions for which records should be updated.
+
+                            // Conditions for which records should be updated.
 							$conditions = array(
 									"  contentidentifier = '"  . $content_item . "' ");
 							$db3 = JFactory::getDbo();
@@ -165,14 +168,15 @@ function syncWimtvpro ($username, $page) {
 							$query3->update($db3->quoteName($table_name))->set($fields)->where($conditions);
 	
 							$db3->setQuery($query3);
-	
-							try {
+
+                            try {
 								$result = $db3->query(); // Use $db->execute() for Joomla 3.0.
 							} catch (Exception $e) {
 								throw new Exception($e);
 							}
-	
-						}
+
+
+                        }
 					}
 				}
 			} else {
@@ -181,16 +185,18 @@ function syncWimtvpro ($username, $page) {
 	
 			//var_dump(array_diff($elenco_video_wp ,$elenco_video_wimtv ));
 			$delete_into_wp = array_diff($elenco_video_wp, $elenco_video_wimtv);
-			foreach ($delete_into_wp as  $value) {
+
+            foreach ($delete_into_wp as  $value) {
 			
 				
 				$db = JFactory::getDBO();
-				$query->delete($table_name);
+
+                $query->delete($table_name);
 				$query->where(array('contentidentifier'=> $value));
 				$db->setQuery($query);
-				
-					
-				try {
+
+
+                try {
 					$result = $db->query(); // $db->execute(); for Joomla 3.0.
 				} catch (Exception $e) {
 					throw new Exception($e);
@@ -198,48 +204,30 @@ function syncWimtvpro ($username, $page) {
 					
 			}
 			if (isset($_GET['sync'])) {
-				echo wimtvpro_getThumbs($_GET['showtime'], TRUE);
-			}
+                echo wimtvpro_getThumbs($_GET['showtime'], TRUE);
+
+            }
 
 		}
 		else {
 			JError::raiseWarning( 100, 'Never elements' );
 		}
-	
 	}
-	
-	$link = JRoute::_("index.php?option=com_wimtvpro&view=" . $page);
-	JFactory::getApplication()->redirect($link , $error, 'Redirect' );
+
+    $link = 'index.php?option=com_wimtvpro&view=' . $page;
+    JFactory::getApplication()->redirect($link);
 }
 
 //MY STREAMING: This API allows to list videos in my streaming public area. Even details may be returned
 function wimtvpro_detail_showtime($single, $st_id) {
-	
-	$app = &JFactory::getApplication();
-	$params = JComponentHelper::getParams('com_wimtvpro');
-	$username = $params->get('wimtv_username');
-	$password = $params->get('wimtv_password');
-	$basePath = $params->get('wimtv_basepath');
-	$urlShowTimeWimtv = $params->get('wimtv_urlShowTimeWimtv');
-	$urlVideosDetailWimtv = trim($params->get('wimtv_urlVideosDetailWimtv'));
-	$replaceContentWimtv = trim($params->get('wimtv_replaceContentWimtv'));
-	$replaceUserWimtv = trim($params->get('wimtv_replaceUserWimtv'));
-	$replaceshowtimeIdentifier = trim($params->get('wimtv_replaceshowtimeIdentifier'));
-	$credential = $username . ":" . $password;
-	
+
 	if (!$single) {
-		$url_detail =  $basePath . str_replace($replaceUserWimtv, $username, $urlShowTimeWimtv ) . "?details=true";
+        $response = apiGetShowtimes();
+        $array_detail = $response->body;
+    } else {
+        $array_detail = apiGetDetailsShowtime($st_id);
 	}
-	else {
-		$showtime_item = $st_id;
-		$url_embedded =  $urlShowTimeWimtv . "/" . $replaceUserWimtv . "/details";
-		$replace_content = $replaceContentWimtv;
-		//$url_detail = str_replace($replaceshowtimeIdentifier, $showtime_item , $url_embedded);
-		//$url_detail = str_replace($replaceUserWimtv, $username, $url_detail);
-		//https://www.wim.tv/wimtv-webapp/rest/users/{username}/showtime/{showimteIdentifier}/details
-	}
-	$array_detail = apiGetDetailsShowtime($st_id);
-	return $array_detail;
+    return $array_detail;
 }
 
 
