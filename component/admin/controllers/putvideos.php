@@ -29,13 +29,6 @@ class WimtvproControllerputvideos extends JControllerForm
 	
 	public function save()
 	{
-		$app = &JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_wimtvpro');
-		$basePathWimtv = $params->get('wimtv_basepath');
-		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		$credential = $username . ":" . $password;
-		
 		//Retrieve file details from uploaded file, sent from upload form
 		$file = JRequest::getVar('jform', null, 'files', 'array');	
 		//Import filesystem libraries. Perhaps not necessary, but does not hurt
@@ -57,7 +50,7 @@ class WimtvproControllerputvideos extends JControllerForm
 		
 				$licenseType ="TEMPLATE_LICENSE";
 				$paymentMode ="PAYPERVIEW";
-				$pricePerView = $_POST["amount"] + "." + $_POST['amount_cent'];
+				$pricePerView = $_POST["amount"] . "." . $_POST['amount_cent'];
 				$pricePerViewCurrency = $_POST["currency"];
 		
 			break;
@@ -70,13 +63,6 @@ class WimtvproControllerputvideos extends JControllerForm
 			break;
 		
 		}
-	
-		$app = &JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_wimtvpro');
-		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		$basePath = $params->get('wimtv_basepath');
-		$credential = $username . ":" . $password;
 
         $post = array();
 		if ($licenseType!="")
@@ -98,33 +84,19 @@ class WimtvproControllerputvideos extends JControllerForm
 		$response = apiPublishOnShowtime($coid, $post);
 
 		
-	      $state = "showtime";
-	      $array_response = json_decode($response);
+        $state = "showtime";
+        $array_response = json_decode($response);
 
-	      if ($array_response->result=="SUCCESS"){
-	      
-		     require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
-		     $urlVideosDetailWimtv = trim($params->get('wimtv_urlVideosDetailWimtv'));
-		     $url_video = $basePath . $urlVideosDetailWimtv;
-		     syncWimtvpro ($username,$credential,$url_video,"mymedias");
-		     
-		     //JFactory::getApplication()->redirect($link , $error, 'Redirect' );
-		     $this->setRedirect('index.php?option=com_wimtvpro&view=mymedias', false);
-		     	
-		      
-		 
-			} else {
-				$error = "";
-				foreach ($array_response->messages as $message) {
-					
-					$error .= $message->field . ":" . $message->message . "<br/>";
-					
-				}
-				
-				JError::raiseWarning( 100, $error  );
-				$this->setRedirect('index.php?option=com_wimtvpro&view=putVideos&layout=edit&coid=' . $coid  . '&put=' . $type, false);
-					
-			}
+        if ($array_response->result=="SUCCESS") {
+            $this->setRedirect('index.php?option=com_wimtvpro&view=mymedias&sync=true', false);
+        } else {
+            $error = "";
+            foreach ($array_response->messages as $message) {
+                $error .= $message->field . ":" . $message->message . "<br/>";
+            }
+            JError::raiseWarning( 100, $error  );
+            $this->setRedirect('index.php?option=com_wimtvpro&view=putVideos&layout=edit&coid=' . $coid  . '&put=' . $type, false);
+        }
 		
 	}
 	

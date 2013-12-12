@@ -203,10 +203,6 @@ function syncWimtvpro ($username, $page) {
 				}
 					
 			}
-			if (isset($_GET['sync'])) {
-                echo wimtvpro_getThumbs($_GET['showtime'], TRUE);
-
-            }
 
 		}
 		else {

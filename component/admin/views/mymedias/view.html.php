@@ -13,18 +13,18 @@ class wimtvproViewmymedias extends JView
 		// Get data from the model
 		$items = $this->get('Items');
 		$pagination = $this->get('Pagination');
-		$state            = $this->get('State');
+		$state = $this->get('State');
 		$this->sortDirection = $state->get('list.direction');
 		$this->sortColumn = $state->get('list.ordering');
-		$this->searchterms      = $state->get('filter.search');
+		$this->searchterms = $state->get('filter.search');
 		
 		$extension = 'com_wimtvpro';
 		$lang = JFactory::getLanguage();
 		$source = JPATH_ADMINISTRATOR . '/components/' . $extension;
 		$lang->load("$extension.sys", JPATH_ADMINISTRATOR, null, false, false)
-		||    $lang->load("$extension.sys", $source, null, false, false)
-		||    $lang->load("$extension.sys", JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
-		||    $lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
+		|| $lang->load("$extension.sys", $source, null, false, false)
+		|| $lang->load("$extension.sys", JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
+		|| $lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
 		
 		$document = JFactory::getDocument();
 		$document->addStyleSheet(JURI::base() . "components/com_wimtvpro/assets/css/wimtvpro.css");
@@ -52,6 +52,10 @@ class wimtvproViewmymedias extends JView
 
 		// Set the document
 		$this->setDocument();
+        if (isset($_GET['sync'])) {
+            $model = $this->getModel();
+            $model->sync();
+        }
 	}
 
 
@@ -59,7 +63,6 @@ class wimtvproViewmymedias extends JView
 	 */
 	protected function addToolBar()
 	{
-		
 		// Toolbar
 		$app = &JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_wimtvpro');
@@ -68,7 +71,7 @@ class wimtvproViewmymedias extends JView
 		
 		JToolBarHelper::title( JText::_('WimTVPro') . ": " .  JText::_( "COM_WIMTVPRO_TITLE_MEDIA" ), 'wimtv' );
 		
-		if (($username!="username" && $password!="password") && ($username!="" && $password!="")){
+		if (($username!="username" && $password!="password") && ($username!="" && $password!="")) {
 			
 			JToolBarHelper::custom('mymedias.sync', 'sync', 'assets/images/sync.png', JText::_("COM_WIMTVPRO_SYNC"), false);
 			
@@ -79,8 +82,9 @@ class wimtvproViewmymedias extends JView
 			JToolBarHelper::custom('mymedias.delete', 'delete', 'delete', JText::_("MYMEDIA_CONFIRM_DELETE"), true);
 			JToolBarHelper::divider();
 		
-		}else
+		} else {
 			JToolBarHelper::preferences('com_wimtvpro');
+        }
 	}
 	/**
 	 * Method to set up the document properties

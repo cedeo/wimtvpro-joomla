@@ -25,7 +25,7 @@ class WimtvproControllermymedias extends JControllerAdmin
 	 * Proxy for getModel.
 	 * @since	1.6
 	 */
-	public function getModel($name = 'mymedia', $prefix = 'wimtvproModel')
+	public function getModel($name = 'mymedias', $prefix = 'wimtvproModel')
 	{
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;
@@ -35,9 +35,8 @@ class WimtvproControllermymedias extends JControllerAdmin
 	
 	public function sync()
 	{
-		$params = JComponentHelper::getParams('com_wimtvpro');
-		$username = $params->get('wimtv_username');
-		syncWimtvpro($username,"mymedias");
+        $model = $this->getModel();
+        $model->sync();
     }
 	
 	public function delete()

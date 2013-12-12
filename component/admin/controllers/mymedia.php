@@ -99,7 +99,6 @@ class WimtvproControllermymedia extends JControllerForm
 					$link = JRoute::_("index.php?option=com_wimtvpro&view=mymedias");
 					JFactory::getApplication()->redirect($link , 'Upload successfully', 'Redirect' );
 
-					
 				} catch (Exception $e) {
 					throw new Exception($e);
 				}

@@ -2,6 +2,8 @@
 <?php
 defined('_JEXEC') or die();
 jimport( 'joomla.application.component.modellist' );
+require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
+
 class WimtvproModelmymedias extends JModelList
 {
 	public function __construct($config = array())
@@ -14,7 +16,14 @@ class WimtvproModelmymedias extends JModelList
 		
 		
 	}
-function getListQuery()
+
+    function sync() {
+        $params = JComponentHelper::getParams('com_wimtvpro');
+        $username = $params->get('wimtv_username');
+        syncWimtvpro($username,"mymedias");
+    }
+
+    function getListQuery()
 	{
 		$app = &JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_wimtvpro');
