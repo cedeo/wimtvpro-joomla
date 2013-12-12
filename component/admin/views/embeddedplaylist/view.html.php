@@ -42,7 +42,7 @@ class wimtvproViewembeddedplaylist extends JView
 	{
 		JRequest::setVar('hidemainmenu', true);
 		$page = "mystreamings.cancel";
-		JToolBarHelper::title(JText::_('VIDEOS'));
+		JToolBarHelper::title(JText::_('Playlist'));
 		//JToolBarHelper::save('putVideos.save');
 		JToolBarHelper::cancel( $page, $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
 	}

@@ -300,28 +300,20 @@ function wimtvpro_viever_jwplayer($userAgent,$contentId,$video,$dirJwPlayer){
 
 
 function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
+
 	
 	$app = &JFactory::getApplication();
 	$params = JComponentHelper::getParams('com_wimtvpro');
 	$username = $params->get('wimtv_username');
-	$password = $params->get('wimtv_password');
-	$basePath = $params->get('wimtv_basepath');
-	$urlThumbsWimtv = $params->get('wimtv_urlThumbsWimtv');
-	$replaceContentWimtv = $params->get('wimtv_replaceContentWimtv');
 	$height = $params->get('wimtv_heightPreview');
 	$width = $params->get('wimtv_widthPreview');
-	$skinName = $params->get('wimtv_nameSkin');
-	$credential = $username . ":" . $password;
-	if (count($arrayVideo)==0){
-	
-		$output = "Never Videos";
-	
+
+	if (!count($arrayVideo)){
+		$output = "No Videos";
 	} else {
 		$videoList = " AND ( 1=2";
 		foreach ($arrayVideo as $value){
-	
 			$videoList .= " OR showtimeIdentifier='" . $value . "'";
-	
 		}
 		$videoList .= " ) ";
 		$db = JFactory::getDBO();
@@ -335,17 +327,7 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 	
 		foreach ($array_videos_new_wp as &$row)
 		{
-	
-			/*$param_thumb = $basePath . str_replace($replaceContentWimtv, $row->contentidentifier, $urlThumbsWimtv);
-	
-			$ch_thumb = curl_init();
-			curl_setopt($ch_thumb, CURLOPT_URL, $param_thumb);
-			curl_setopt($ch_thumb, CURLOPT_VERBOSE, 0);
-			curl_setopt($ch_thumb, CURLOPT_RETURNTRANSFER, TRUE);
-			curl_setopt($ch_thumb, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-			curl_setopt($ch_thumb, CURLOPT_USERPWD, $credential);
-			curl_setopt($ch_thumb, CURLOPT_SSL_VERIFYPEER, FALSE);*/
-			$replace_video = apiGetThumbsVideo($row->contentidentifier); //curl_exec($ch_thumb);
+			$replace_video = apiGetThumbsVideo($row->contentidentifier);
 	
 			$query2 = $db->getQuery(true);
 			$query2->select('*');
@@ -361,7 +343,7 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 		}
 		$output = "<div id='container_playlist" .  $row->id  . "'></div>";
 		$playlistSize = "30%";
-		$dimensions = "width: '100%',height:'" . $height . "px',";
+		$dimensions = "width: '" . $width . "',height:'" . $height . "px',";
 	
 		$output .= "<script type='text/javascript'>jwplayer('container_playlist" .  $row->id  . "').setup({";
 	
