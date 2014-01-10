@@ -94,7 +94,7 @@ if ($arrayPlay[0]->showtimeIdentifier==""){
 		$directory  = JURI::base() . "components/com_wimtvpro/uploads/skin";
 		$skin = "&skin=" . $directory  . "/" . $skinName . ".zip";
 	}
-	$params = "?get=1&width=" . $width . "px&height=" . $height . "px" .  $skin;
+	$params = "get=1&width=" . $width . "px&height=" . $height . "px" .  $skin;
 	$response = apiGetPlayerShowtime($coid, $params);
 
 	$videos .= $response;
@@ -113,10 +113,7 @@ if ($arrayPlay[0]->showtimeIdentifier==""){
 			$videos .= "<br/>";
 		}
 		$videos .= "</p>";
-	
 	}
-
-
 }
 
 $videos .= "</div>";
@@ -132,11 +129,10 @@ $videos .= "</div>";
 		</legend>
 
 		<?php echo $videos;?>
-
 	</fieldset>
 
-	<input type="hidden" name="task" value="<?php echo $page; ?>.edit" /> <input
-		type="hidden" name="coid" value="<?php echo $coid; ?>">
+	<input type="hidden" name="task" value="<?php echo $page; ?>.edit" />
+    <input type="hidden" name="coid" value="<?php echo $coid; ?>">
 	<?php echo JHtml::_('form.token'); ?>
 
 </form>

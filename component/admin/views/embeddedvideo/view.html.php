@@ -22,9 +22,6 @@ class wimtvproViewembeddedvideo extends JView
 	 */
 	public function display($tpl = null)
 	{
-		
-		
-
 		// Set the toolbar
 		$this->addToolBar();
 
@@ -42,7 +39,7 @@ class wimtvproViewembeddedvideo extends JView
 	{
 		JRequest::setVar('hidemainmenu', true);
 		$page = $_GET["page"] . ".cancel";
-		JToolBarHelper::title(JText::_('VIDEOS'));
+		JToolBarHelper::title(JText::_('Video'));
 		//JToolBarHelper::save('putVideos.save');
 		JToolBarHelper::cancel( $page, $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
 	}

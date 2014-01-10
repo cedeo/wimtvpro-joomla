@@ -3,19 +3,16 @@
 	<name>com_wimtvpro</name>
 	<creationDate>2013-06-05</creationDate>
 	<copyright>Copyright (C) 2013. All rights reserved.</copyright>
-	<license>GNU General Public License version 2 or later; see LICENSE.txt
-	</license>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<author>WimLabs</author>
 	<authorEmail>riccardo@cedeo.net</authorEmail>
 	<authorUrl>http://www.wimtvpro.tv</authorUrl>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<description>WimTVPro is the video plugin that adds several features to
 		manage and publish video on demand, video playlists and stream live
 		events on your website.</description>
 
-
 	<files folder="site">
-		<filename>index.html</filename>
 		<filename>wimtvpro.php</filename>
 		<filename>controller.php</filename>
 		  <folder>views</folder>
@@ -38,14 +35,13 @@
 		</schemas>
 	</update>
 	
-	 <files folder="site">
-                <filename>index.html</filename>
-                <filename>wimtvpro.php</filename>
-                <filename>controller.php</filename>
-                <folder>views</folder>
-                <folder>assets</folder>
-                 <folder>models</folder>
-     </files>
+	<files folder="site">
+        <filename>wimtvpro.php</filename>
+        <filename>controller.php</filename>
+        <folder>views</folder>
+        <folder>assets</folder>
+        <folder>models</folder>
+    </files>
 
 	<administration>
 
@@ -57,8 +53,6 @@
 			<menu link="option=com_wimtvpro&amp;view=report" view="report" img="components/com_wimtvpro/assets/images/s_myplaylists.png" alt="Wimtvpro/Report">COM_WIMTVPRO_TITLE_REPORT</menu>
 			<menu link="option=com_wimtvpro&amp;view=wimlives" view="wimlives" img="components/com_wimtvpro/assets/images/s_mymedias.png" alt="Wimtvpro/WimLive">COM_WIMTVPRO_TITLE_WIMLIVE</menu>
 		</submenu>
-
-
 
 		<files folder="admin">
 			<filename>index.html</filename>
