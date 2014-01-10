@@ -54,7 +54,7 @@ foreach ($this->items as $i => $row)
 	curl_setopt($ch_thumb, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 	curl_setopt($ch_thumb, CURLOPT_USERPWD, $credential);
 	curl_setopt($ch_thumb, CURLOPT_SSL_VERIFYPEER, FALSE);
-	$replace_video  =curl_exec($ch_thumb);
+	$replace_video = curl_exec($ch_thumb);
 	if ( $row->showtimeIdentifier!=""){
 		$licenseType = $stLicense[$row->showtimeIdentifier];
 		

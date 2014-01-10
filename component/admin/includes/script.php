@@ -39,7 +39,7 @@ require_once ( "api/wimtv_api.php" );
     	if ($directorySkin!="") {
 			$skin = "&skin=" . $directorySkin;
 		}
-		$params .= "?get=1&width=" . $_GET["width"] . "px&height=" . $_GET["height"] . "px". $skin;
+		$params = "get=1&width=" . $_GET["width"] . "px&height=" . $_GET["height"] . "px". $skin;
 		$iframeInsert = apiGetPlayerShowtime($id, $params);
     	echo $iframeInsert;
     break;
