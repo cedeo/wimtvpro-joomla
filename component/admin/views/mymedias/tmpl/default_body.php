@@ -25,7 +25,7 @@ foreach ($arrayjSonST->items as $st){
 	$stLicense[$st->showtimeIdentifier] = $st->licenseType;
 }
 
-foreach ($this->items as &$row)
+foreach ($this->items as $row)
 {
 	$checked = JHTML::_('grid.id', $i++, $row->id );
 	
