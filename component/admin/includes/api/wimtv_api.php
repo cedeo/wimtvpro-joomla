@@ -35,7 +35,7 @@ function apiEmbeddedLive($hostId) {
     $apiAccessor = getApi();
     $request = $apiAccessor->getRequest('liveStream/' . $apiAccessor->username . '/' . $apiAccessor->username . '/hosts/' . $hostId);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, Mime::JSON);
+    return $apiAccessor->execute($request, Mime::JSON, 'it-it');
 }
 
 function apiGetProfile() {
@@ -115,7 +115,7 @@ function apiGetLiveEvents($timezone, $activeOnly) {
     }
     $request = $apiAccessor->getRequest($url);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, 'application/json');
+    return $apiAccessor->execute($request, 'application/json', 'it-it');
 }
 
 function apiGetLive($host_id, $timezone="") {
@@ -125,7 +125,7 @@ function apiGetLive($host_id, $timezone="") {
         $url .= '?timezone=' . $timezone;
     $request = $apiAccessor->getRequest($url);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, 'application/json', false);
+    return $apiAccessor->execute($request, 'application/json', 'it-it');
 }
 
 function apiGetLiveIframe($host_id, $timezone="") {
@@ -143,7 +143,7 @@ function apiAddLive($parameters) {
     $request = $apiAccessor->postRequest($apiAccessor->liveHostsUrl);
     $request->body($parameters);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, 'text/html, application/json', false);
+    return $apiAccessor->execute($request, 'text/html, application/json', 'it-it');
 }
 
 function apiModifyLive($host_id, $parameters) {
@@ -151,7 +151,7 @@ function apiModifyLive($host_id, $parameters) {
     $request = $apiAccessor->postRequest($apiAccessor->liveHostsUrl . '/' . $host_id);
     $request->body($parameters);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request);
+    return $apiAccessor->execute($request, 'text/html, application/json', 'it-it');
 }
 
 function apiPublishOnShowtime($id, $parameters) {
