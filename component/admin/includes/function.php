@@ -324,7 +324,9 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 		$query->where("uid='" . $username . "' " . $videoList);
 		$db->setQuery($query);
 		$array_videos_new_wp = $db->loadObjectList();
-	
+
+        $playlist = "";
+
 		foreach ($array_videos_new_wp as &$row)
 		{
 			$replace_video = apiGetThumbsVideo($row->contentidentifier);
@@ -338,7 +340,7 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 	
 	
 			$configFile  = wimtvpro_viever_jwplayer($_SERVER['HTTP_USER_AGENT'], $row->contentidentifier,$video,FALSE);
-			$playlist = "{" . $configFile . " 'image':'" . $replace_video  . "','title':'" . $row->title . "'},";
+			$playlist .= "{" . $configFile . " 'image':'" . $replace_video  . "','title':'" . $row->title . "'},";
 	
 		}
 		$output = "<div id='container_playlist" .  $row->id  . "'></div>";
@@ -375,7 +377,7 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 			$output .= "'skin':'" . $directory  . "/" . $skinName . ".zip',";
 		}
 	
-		$output .= $dimensions . "'playlist': [" .  $playlist . "],'playlist.position': 'right',	'playlist.size': '" . $playlistSize  . "'});</script>&nbsp;";
+		$output .= $dimensions . "'playlist': [" .  $playlist . "],'playlist.position': 'right',	'playlist.size': '" . $playlistSize  . "'});</script>";
 	
 	
 	}
