@@ -125,7 +125,7 @@ function apiGetLive($host_id, $timezone="") {
         $url .= '?timezone=' . $timezone;
     $request = $apiAccessor->getRequest($url);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, 'application/json');
+    return $apiAccessor->execute($request, 'application/json', false);
 }
 
 function apiGetLiveIframe($host_id, $timezone="") {
@@ -143,7 +143,7 @@ function apiAddLive($parameters) {
     $request = $apiAccessor->postRequest($apiAccessor->liveHostsUrl);
     $request->body($parameters);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request);
+    return $apiAccessor->execute($request, 'text/html, application/json', false);
 }
 
 function apiModifyLive($host_id, $parameters) {
