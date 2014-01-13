@@ -51,7 +51,7 @@ function apiEditProfile($params) {
     $request->sends(Mime::JSON);
     $request->body($params);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, 'application/json');
+    return $apiAccessor->execute($request, Mime::JSON);
 }
 
 function apiChangePassword($password) {

@@ -159,7 +159,8 @@ class wimtvproControllersettings extends JControllerAdmin
 					$dati[$key] = $value;
 					
 				}
-				$dati["dateOfBirth"]  = str_replace ("-","/",$dati["dateOfBirth"] );
+                if (isset($dati["dateOfBirth"]))
+				    $dati["dateOfBirth"]  = str_replace ("-","/", $dati["dateOfBirth"]);
 				unset($dati['task']);
 				unset($dati['token']);
 				$response = apiEditProfile($dati);
