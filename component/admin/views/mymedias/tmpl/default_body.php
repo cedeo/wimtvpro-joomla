@@ -18,12 +18,6 @@ $replaceContentWimtv = $params->get('wimtv_replaceContentWimtv');
 $urlThumbsWimtv = $params->get('wimtv_urlThumbsWimtv');
 $credential = $username . ":" . $password;
 
-//Select Showtime
-$arrayjSonST = json_decode( $details_st);
-$stLicense = array();
-foreach ($arrayjSonST->items as $st){
-	$stLicense[$st->showtimeIdentifier] = $st->licenseType;
-}
 
 foreach ($this->items as $row)
 {
