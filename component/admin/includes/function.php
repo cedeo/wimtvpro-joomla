@@ -191,8 +191,9 @@ function syncWimtvpro ($username, $page) {
 				
 				$db = JFactory::getDBO();
 
+                $query =  $db->getQuery(true);
                 $query->delete($table_name);
-				$query->where(array('contentidentifier'=> $value));
+				$query->where(array("contentidentifier = '". $value . "'"));
 				$db->setQuery($query);
 
 
