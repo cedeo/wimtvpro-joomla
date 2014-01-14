@@ -42,14 +42,14 @@ class JFormFieldtexturl extends JFormField
         	
         	$html = '<input type="text" name="'. $this->name.'" value="'. $this->value .'" size="100" maxlength="800" id="edit-url">';
         	
-        	$html .= '<div class="description" style="clear:both">' .  JText::_("COM_WIMTVPRO_FIELD_URL");
+        	$html .= '<div class="description" style="clear:both">URL through which the streaming can be done. ';
 
         	$html .= '
 		       <b class="createUrl" style="';
 		    
         	if ($this->value=="") $html .= 'display: inline;';
 		    else $html .= 'display: none;';
-		    $html .= '">' .  JText::_("COM_WIMTVPRO_FIELD_URL_OBTAIN") . '</b>
+		    $html .= '">CREATE YOUR URL</b>
 		       <b class="removeUrl"';
 		    
         	if ($this->value=="") $html .= 'display: none;';

@@ -125,11 +125,11 @@ function syncWimtvpro ($username, $page) {
 							$insert_video->state='';
 							$insert_video->viewVideoModule=$pos_wimtv;		
 							$insert_video->status = $status;
-							$insert_video->acquiredIdentifier = $acquired_identifier;
-							$insert_video->urlThumbs = mysql_real_escape_string($url_thumbs);
+							//$insert_video->acquiredIdentifier = $acquired_identifier;
+							$insert_video->urlThumbs = $url_thumbs;//mysql_real_escape_string($url_thumbs);
 							$insert_video->category =  $categories;
-							$insert_video->urlPlay =  mysql_real_escape_string($urlVideo);
-							$insert_video->title =  mysql_real_escape_string($title);
+							$insert_video->urlPlay =  $urlVideo;//mysql_real_escape_string($urlVideo);
+							$insert_video->title =  $title;//mysql_real_escape_string($title);
 							$insert_video->duration = $duration;
 							$insert_video->showtimeidentifier = $showtime_identifier;
 
