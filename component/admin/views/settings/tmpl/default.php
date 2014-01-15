@@ -574,7 +574,7 @@ if ($view_page){
 			echo "</thead>";
 			echo "<tbody>";
 			echo "<tr class='alternate'>";
-			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_BAND') .  "</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_BAND') .  "</td>";
 			foreach ($packet_json -> items as $a) {
 				echo "<td class='center'>" . $a->band . " GB</td>";
 			}
@@ -582,7 +582,7 @@ if ($view_page){
 			echo "</tr>";
 			
 			echo "<tr>";
-			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_STORAGE') .  "</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_STORAGE') .  "</td>";
 			foreach ($packet_json -> items as $a) {
 				echo "<td class='center'>" . $a->storage . " GB</td>";
 			}
@@ -590,7 +590,7 @@ if ($view_page){
 			echo "</tr>";
 			
 			echo "<tr class='alternate'>";
-			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_SUPPORT') .  "</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_SUPPORT') .  "</td>";
 			foreach ($packet_json -> items as $a) {
 				echo "<td class='center'>" . $a->support . "</td>";
 			}
@@ -598,7 +598,7 @@ if ($view_page){
 			echo "</tr>";
 			
 			echo "<tr>";
-			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_HOUR') .  "</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_HOUR') .  "</td>";
 			foreach ($packet_json -> items as $a) {
 
 				echo "<td class='center'>" . $a->streamingAmount . "</td>";
@@ -607,7 +607,7 @@ if ($view_page){
 			echo "</tr>";
 			
 			echo "<tr>";
-			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_PRICE') .  "</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_PRICE') .  "</td>";
 			foreach ($packet_json -> items as $a) {
 				echo "<td class='center'>" . number_format($a->price,2) . " &euro; / m</td>";
 			}
@@ -623,12 +623,12 @@ if ($view_page){
 					
 					echo "<img  src='" . JURI::base() . "components/com_wimtvpro/assets/images/check.png'><br/>";
 					if ($a->name != "Free")
-						echo $count_date . " " . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DAY');
+						echo $count_date . " " . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DAY');
 				}
 				else {
 					echo "<a href='index.php?option=com_wimtvpro&view=settings&pack=1";
 					echo "&upgrade=" . $a->name;
-					echo "'><img class='icon_upgrade' src='" . JURI::base() . "components/com_wimtvpro/assets/images/uncheck.png' title='" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_UPDATE') . "'>";
+					echo "'><img class='icon_upgrade' src='" . JURI::base() . "components/com_wimtvpro/assets/images/uncheck.png' title='" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_UPDATE') . "'>";
 					echo "</a>";
 				}
 				echo "</td>";
@@ -641,16 +641,16 @@ if ($view_page){
 			echo "</tbody>";
 			echo "</table>";
 			
-			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC1') . "</h3>";
-			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC2') . "</h3>";
-			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC3') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DESC1') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DESC2') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DESC3') . "</h3>";
 			echo "<ol>";
-			echo "<li>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC3_OL1') . "</li>";
-			echo "<li>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC3_OL2') . "</li>";
+			echo "<li>" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DESC3_OL1') . "</li>";
+			echo "<li>" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DESC3_OL2') . "</li>";
 			echo "</ol>";
-			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC4') . "</h3>";
-			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC5') . "</h3>";
-			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC6') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DESC4') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DESC5') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_PAYMENT_DESC6') . "</h3>";
 			
 			
 		}
