@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
-	<fieldset>
+        <fieldset>
 
-		<field name="name" type="text" label="COM_WIMTVPRO_FIELD_TITLE" size="40" class="inputbox" />
-		<field name="payperview" type="text" label="COM_WIMTVPRO_FIELD_PPV" default="0" description="COM_WIMTVPRO_FIELD_PPV_DESC" size="40" class="inputbox" />
-		
-		<field name="Url" type="texturl" label="Url" default=""  size="40" class="inputbox" />
+                <field name="name" type="text" label="COM_WIMTVPRO_FIELD_TITLE" size="40" class="inputbox" />
+                <field name="payperview" type="text" label="COM_WIMTVPRO_FIELD_PPV" default="0" description="COM_WIMTVPRO_FIELD_PPV_DESC" size="40" class="inputbox" />
+                
+                <field name="Url" type="texturl" label="Url" default=""  size="40" class="inputbox" />
 
-		
-		<field name="Public" type="radio" default="true" label="COM_WIMTVPRO_FIELD_TYPE" description="COM_WIMTVPRO_FIELD_TYPE_DESC">
-		  <option value="true">COM_WIMTVPRO_FIELD_TYPE_PUBLIC</option>
-		  <option value="false">COM_WIMTVPRO_FIELD_TYPE_PRIVATE</option>
-		</field>
+                
+                <field name="Public" type="radio" default="true" label="COM_WIMTVPRO_FIELD_TYPE" description="COM_WIMTVPRO_FIELD_TYPE_DESC">
+                  <option value="true">COM_WIMTVPRO_FIELD_TYPE_PUBLIC</option>
+                  <option value="false">COM_WIMTVPRO_FIELD_TYPE_PRIVATE</option>
+                </field>
 
-				
-		
-		<field name="Record" type="radio" default="true" label="COM_WIMTVPRO_FIELD_RECORD">
-		  <option value="true">COM_WIMTVPRO_FIELD_RECORD_TRUE</option>
-		  <option value="false">COM_WIMTVPRO_FIELD_RECORD_FALSE</option>
-		</field>
-		
-				
-		<field name="Giorno" type="calendar" default="" label="COM_WIMTVPRO_FIELD_DATE"   format="%d/%m/%Y" />
-	
-		<field name="Ora" type="text" default="00:00"  label="COM_WIMTVPRO_FIELD_HOUR"  />
-		<field name="Duration" type="text" default="00:00" label="COM_WIMTVPRO_FIELD_DURATION"  />
-		
-		<field name="timelivejs" class="timelivejs" type="hidden" default=""  />
-		
+                <field name="Record" type="radio" default="true" label="COM_WIMTVPRO_FIELD_RECORD" description="COM_WIMTVPRO_FIELD_TYPE_DESC">
+                  <option value="true">COM_WIMTVPRO_FIELD_RECORD_TRUE</option>
+                  <option value="false">COM_WIMTVPRO_FIELD_RECORD_FALSE</option>
+                </field>
+                                
+                <field name="Giorno" type="calendar" default="" label="COM_WIMTVPRO_FIELD_DATE"   format="%d/%m/%Y" />
+        
+                <field name="Ora" type="text" default="00:00"  label="COM_WIMTVPRO_FIELD_HOUR"  />
+                <field name="Duration" type="text" default="00:00" label="COM_WIMTVPRO_FIELD_DURATION"  />
+                
+                <field name="timelivejs" class="timelivejs" type="hidden" default=""  />
+                
 
-	</fieldset>
+        </fieldset>
 </form>
