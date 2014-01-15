@@ -49,25 +49,25 @@ $submenu = "<div id='submenu-box'><div class='m'><ul id='submenu'>";
 if ($view_page){
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings' class='";
 	if (!isset($_GET["credential"]) AND !isset($_GET["update"]) AND !isset($_GET["pack"])) $submenu .= "active";
-	$submenu .= " config'>Skin</a>";
+	$submenu .= " config'>" . JText::_("COM_WIMTVPRO_CONFIG_SKIN") . "</a>";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&pack=1' class='";
 	if ($_GET["pack"]=="1") $submenu .= "active";
-	$submenu .= " pricing'>Pricing</a>";
+	$submenu .= " pricing'>" . JText::_("COM_WIMTVPRO_CONFIG_PRICING") . "</a>";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=1' class='";
 	if ($_GET["update"]=="1") $submenu .= "active";
-	$submenu .= " payment'>Payment</a>";
+	$submenu .= " payment'>" . JText::_("COM_WIMTVPRO_CONFIG_PAYMENT") . "</a>";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=2' class='";
 	if ($_GET["update"]=="2") $submenu .= "active";
-	$submenu .= " live'>WimLive Configuration</a>";
+	$submenu .= " live'>" . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE") . "</a>";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=3' class='";
 	if ($_GET["update"]=="3") $submenu .= "active";
-	$submenu .= " user'>Update Personal Info</a>";
+	$submenu .= " user'>" . JText::_("COM_WIMTVPRO_CONFIG_USER") . "</a>";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=4' class='";
 	if ($_GET["update"]=="4") $submenu .= "active";
-	$submenu .= " other'>Features</a> ";
+	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_FEATURES") . "</a> ";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&credential=1' class='";
 	if ($_GET["credential"]=="1") $submenu .= "active";
-	$submenu .= " other'>Credential</a> ";
+	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_CREDENTIALTAB") . "</a> ";
 }
 $submenu .= "</ul><div class='clr'></div></div></div>";
 echo $submenu;
@@ -82,32 +82,32 @@ if ($view_page){
 			method="post" name="adminForm" enctype="multipart/form-data">
 			
 			<fieldset class="adminform">
-				<legend>Upload and/or choose your skin player into <a target='new' href='http://www.longtailvideo.com/addons/skins'>page Jwplayer</a> for your videos</legend>
+				<legend><?php echo JText::_("COM_WIMTVPRO_CONFIG_SKIN_TITLE");?></legend>
 				
 				<ul class="adminformlist">
-					<li><label>Name Skin</label>
+					<li><label><?php echo JText::_("COM_WIMTVPRO_CONFIG_SKIN_NAME");?></label>
 					<select id="edit-nameskin" name="nameSkin" class="form-select"><?php echo $createSelect; ?></select>
 					</li>
 					
 					<li>
-					<label for="edit-uploadskin"> or upload new<br/>skin player </label>
+					<label for="edit-uploadskin"><?php echo JText::_("COM_WIMTVPRO_CONFIG_SKIN_UPLOAD");?></label>
 					<input type="file" id="edit-uploadskin" name="uploadSkin" size="100" class="form-file" />
 							
-					<div class="empty"></div>Only zip. Save into a public URL <br/>
-						For running the skin selected, copy the file <a href='http://plugins.longtailvideo.com/crossdomain.xml' target='_new'>crossdomain.xml</a> to the root directory (e.g. http://www.mysite.it). You can do it all from your FTP program (e.g. FileZila, Classic FTP, etc).
-						So open up your FTP client program. First, identify your root directory. This is the folder titled or beginning with www -- and this is where you ultimately need to move that pesky crossdomain.xml. Now all you have to do is find it.
+					<div class="empty"></div>
+					<?php echo JText::_("COM_WIMTVPRO_CONFIG_SKIN_DESC1");?><br/>
+                    <?php echo JText::_("COM_WIMTVPRO_CONFIG_SKIN_DESC2");?> <a href='http://plugins.longtailvideo.com/crossdomain.xml' target='_new'>crossdomain.xml</a> <?php echo JText::_("COM_WIMTVPRO_CONFIG_SKIN_DESC3");?> <a href="http://www.adobe.com/devnet/adobe-media-server/articles/cross-domain-xml-for-streaming.html"><?php echo JText::_("COM_WIMTVPRO_CONFIG_SKIN_INFO");?></a>
 				</li>
 				</ul>	
 			</fieldset>
 			
 			<fieldset class="adminform">
-				<legend>Dimensions of player for your videos </legend>
+				<legend><?php echo JText::_("COM_WIMTVPRO_CONFIG_PLAYER_TITLE");?></legend>
 				
 				<ul class="adminformlist">
-					<li><label for="edit-heightpreview">Height (default: 280) </label>
+					<li><label for="edit-heightpreview"><?php echo JText::_("COM_WIMTVPRO_CONFIG_PLAYER_HEIGHT");?></label>
 					<input type="text" id="edit-heightpreview" name="heightPreview" value="<?php echo $height;?>" size="20" maxlength="200" class="form-text" />
 					</li>
-					<li><label for="edit-widthpreview">Width (default: 500) </label>
+					<li><label for="edit-widthpreview"><?php echo JText::_("COM_WIMTVPRO_CONFIG_PLAYER_WIDTH");?></label>
 					<input type="text" id="edit-widthpreview" name="widthPreview" value="<?php echo $width;?>" size="20" maxlength="200" class="form-text" />
 					</li>
 					
@@ -141,46 +141,46 @@ if ($view_page){
 	
 			
 			echo '<div class="clear"></div>
-				  <p>If you wish to make financial transactions on Wim.tv (buy video, sell video content or watch on pay per view), you must complete the following fields. You can choose to store your information now or do it later by clicking the settings button from your personal page.</p>';
+				  <p>'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_DESC") . '</p>';
 			echo '
 				
 				  <form action="index.php?option=com_wimtvpro&view=settings&update=1" method="post" name="adminForm" enctype="multipart/form-data">
 					 <fieldset class="adminform">
 							<legend>PayPal</legend>
 							<ul class="adminformlist">
-								<li><label for="paypalEmail">Paypal Email</label>
+								<li><label for="paypalEmail">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_PAYPAL") . '</label>
 									<input type="text" id="edit-paypalEmail" name="paypalEmail" value="' . $dati['paypalEmail'] . '" size="100" maxlength="100"/>
 								</li>
 							</ul>
 					</fieldset>
 				
 					 <fieldset class="adminform">
-							<legend>Tax Info</legend>
+							<legend>'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_TAX_TITLE") . '</legend>
 							<ul class="adminformlist">
-								<li><label for="taxCode">Tax Code</label>
+								<li><label for="taxCode">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_TAX_TAXCODE") . '</label>
 								<input type="text" id="edit-taxCode" name="taxCode" value="' . $dati['taxCode'] . '" size="80" maxlength="20"/>
 								</li>
-								<li><label for="vatCode">or Vat Code</label>
+								<li><label for="vatCode">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_TAX_VATCODE") . '</label>
 								<input type="text" id="edit-vatCode" name="vatCode" value="' . $dati['vatCode'] . '" size="80" maxlength="20"/>
 								</li>
 						</ul>
 					</fieldset>
 	
 					 <fieldset class="adminform">
-							<legend>Billing Address</legend>
+							<legend>'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_ADDRESS") . '</legend>
 							<ul class="adminformlist">
-								<li><label for="billingAddress[street]">Street</label>
+								<li><label for="billingAddress[street]">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_ADDRESS_STREET") . '</label>
 								<input type="text" id="edit-billingAddressStreet" name="billingAddress[street]" value="' . $dati['billingAddress']['street'] . '" size="100" maxlength="100"/>
 								</li>
-								<li><label for="billingAddress[city]">City</label>
+								<li><label for="billingAddress[city]">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_ADDRESS_CITY") . '</label>
 								<input type="text" id="edit-billingAddressCity" name="billingAddress[city]" value="' . $dati['billingAddress']['city'] . '" size="100" maxlength="100"/>
 								</li>
 	
-								<li><label for="billingAddress[state]">State</label>
+								<li><label for="billingAddress[state]">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_ADDRESS_STATE") . '</label>
 								<input type="text" id="edit-billingAddressCity" name="billingAddress[state]" value="' . $dati['billingAddress']['state'] . '" size="100" maxlength="100"/>
 								</li>
 					
-								<li><label for="billingAddress[zipCode]">Zip Code</label>
+								<li><label for="billingAddress[zipCode]">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_ADDRESS_ZIPCODE") . '</label>
 								<input type="text" id="edit-billingAddressCity" name="billingAddress[zipCode]" value="' . $dati['billingAddress']['zipCode'] . '" size="100" maxlength="100"/>
 								</li>
 						</ul>
@@ -202,7 +202,7 @@ if ($view_page){
 			if ($dati['liveStreamPwd']=="null") $dati['liveStreamPwd']= "";
 	
 			echo '<div class="clear"></div>
-				  <p>In this section you can enable the more functional live streaming settings for your needs. Choose between "Live streaming" to stream your own events, or use the features reserved for event Resellers and event Organizers to sell and organize live events.</p>';
+				  <p>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_DESC") . '</p>';
 			echo '
 				
 				  <script>
@@ -234,39 +234,33 @@ if ($view_page){
 				
 				  <form action="index.php?option=com_wimtvpro&view=settings&update=2" method="post" name="adminForm" enctype="multipart/form-data">
 					 <fieldset class="adminform">
-								<legend>WimLive</legend>
+								<legend>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE") . '</legend>
 						<ul class="adminformlist">
-								<li><label for="liveStreamEnabled">Live streaming</label>
+								<li><label for="liveStreamEnabled">' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_STREAMING") . '</label>
 									<input type="checkbox" id="edit-liveStreamEnabled" name="liveStreamEnabled" value="true"';
 									if (strtoupper($dati['liveStreamEnabled'])=="TRUE") echo ' checked="checked"';
 									echo  '/>
-									  <div class="empty"></div>Enables the feature that allows you to broadcast your live streaming events with WimTV. 
-								</li>
-								<li><label for="liveStreamPwd">Password</label></th>
+									  <div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_STREAMING_DESC")  . '</li>
+								<li><label for="liveStreamPwd">' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_PASSWORD")  . '</label></th>
 									<input type="password" id="edit-liveStreamPwd" name="liveStreamPwd" value="' . $dati['liveStreamPwd'] .  '"/>
-									<div class="empty"></div>This password is required for the live streaming 
-									
-								</li>
+									<div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_PASSWORD_DESC")  . '</li>
 	
-								<li><label for="eventResellerEnabled">Live stream events resale</label></li>
+								<li><label for="eventResellerEnabled">' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_RESALE")  . '</label></li>
 									
 									  <input type="checkbox" id="edit-eventResellerEnabled" name="eventResellerEnabled" value="true"
 									  ';
 									if (strtoupper($dati['eventResellerEnabled'])=="TRUE") echo ' checked="checked"';
 									echo '
-									  /><div class="empty"></div> Enables you to resell the streaming of live events organized bu other Web TVs. 
-									
-								</li>
+									  /><div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_RESALE_DESC")  . '</li>
 					
-								<li><label for="eventOrganizerEnabled">Live stream<br/>events organizing</label></th>
+								<li><label for="eventOrganizerEnabled">' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_ORGANIZ")  . '</label></th>
 									
 									  <input type="checkbox" id="edit-eventOrganizerEnabled" name="eventOrganizerEnabled" value="true"
 									  ';
 										if (strtoupper($dati['eventOrganizerEnabled'])=="TRUE") echo ' checked="checked"';
 										echo '
 									  />
-									  <div class="empty"></div> Enables the feature that allows you to organize live streaming events. 
-								</li>
+									  <div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_ORGANIZ_DESC")  . '</li>
 							</ul>
 						</fieldset>';
 	
@@ -286,22 +280,18 @@ if ($view_page){
 			
 				
 			 echo '<form action="index.php?option=com_wimtvpro&view=settings&update=3" method="post" name="adminForm" enctype="multipart/form-data">
-					 <fieldset class="adminform"><legend>Personal Information</legend>';
-
-				
-			echo '
-				  
-					<ul class="adminformlist">
+					 <fieldset class="adminform"><legend>' . JText::_("COM_WIMTVPRO_CONFIG_USER")  . '</legend			
+					 <ul class="adminformlist">
 								<li>
-								<label for="edit-name">Name<span class="form-required" title="">*</span></label>
+								<label for="edit-name">' . JText::_("COM_WIMTVPRO_CONFIG_USER_NAME")  . '<span class="form-required" title="">*</span></label>
 								<input type="text" id="edit-name" name="name" value="' . $dati['name'] . '" size="40" maxlength="200"/>
 						    	</li>
-								<li><label for="edit-Surname">Surname<span class="form-required" title="">*</span></label>
+								<li><label for="edit-Surname">' . JText::_("COM_WIMTVPRO_CONFIG_USER_LAST")  . '<span class="form-required" title="">*</span></label>
 									<input type="text" id="edit-Surname" name="surname" value="' . $dati['surname'] . '" size="40" maxlength="200"/></li>
-								<li><label for="edit-Email">Email<span class="form-required" title="">*</span></label>
+								<li><label for="edit-Email">' . JText::_("COM_WIMTVPRO_CONFIG_USER_EMAIL")  . '<span class="form-required" title="">*</span></label>
 								<input type="text" id="edit-email" name="email" value="' . $dati['email'] . '" size="80" maxlength="200"/></li>
 						
-								<li><label for="sex">Gender<span class="form-required" title="">*</span></label>';
+								<li><label for="sex">' . JText::_("COM_WIMTVPRO_CONFIG_USER_GENDER")  . '<span class="form-required" title="">*</span></label>';
 							
 										$arr = array(
 												JHTML::_('select.option', 'M', JText::_('M') ),
@@ -312,7 +302,7 @@ if ($view_page){
 
 								echo '</li>
 	
-								<li><label for="dateOfBirth">Date Of Birth</label>';
+								<li><label for="dateOfBirth">' . JText::_("COM_WIMTVPRO_CONFIG_USER_BIRTH")  . '</label>';
 								//convert date		
 								list($d, $m, $y) = explode('/',$dati["dateOfBirth"]);
 								if ($y>date("y")) $y= "19" . $y;
@@ -322,25 +312,16 @@ if ($view_page){
 								echo '</li>
 	
 	
-				
-					</fieldset>';
-									
-	
-			echo '
-				<fieldset class="adminform">
-					<legend>Your social networks</legend>
-				
-					<ul class="adminformlist">
 								<li>
-								<label for="facebookUri">Facebook Url</label>
+								<label for="facebookUri">' . JText::_("COM_WIMTVPRO_CONFIG_USER_FB")  . '</label>
 								<input  type="text"  id="edit-facebookURI" name="facebookUri" value="' . $dati['facebookURI'] . '" size="100" maxlength="100">
 								</li>
-							<li><label for="twitterUri">Twitter Url</label></th>
+							<li><label for="twitterUri">' . JText::_("COM_WIMTVPRO_CONFIG_USER_TW")  . '</label></th>
 								<input  type="text"  id="edit-twitterURI" name="twitterUri" value="' . $dati['twitterURI'] . '" size="100" maxlength="100">
 								</li>
 	
 	
-							<li><label for="linkedInUri">LinkedIn Url</label>
+							<li><label for="linkedInUri">' . JText::_("COM_WIMTVPRO_CONFIG_USER_LI")  . '</label>
 								<input  type="text"  id="edit-LinkedInUri" name="linkedInUri" value="' . $dati['linkedInURI'] . '" size="100" maxlength="100">
 								</li>
 					</ul>
@@ -379,12 +360,12 @@ if ($view_page){
 				 <form action="index.php?option=com_wimtvpro&view=settings&update=4" method="post" name="adminForm" enctype="multipart/form-data">
 				<fieldset>
 									  		<ul class="adminformlist">
-						<li><label for="edit-name">Index and show public videos into WimTv\'s site</label>
+						<li><label for="edit-name">' . JText::_('COM_WIMTVPRO_CONFIG_FEATURES_INDEX') . ' (<a href="http://www.wim.tv/">www.wim.tv</a>)</label>
 							';
 						
 						$arr = array(
-								JHTML::_('select.option', 'false', JText::_('Yes') ),
-								JHTML::_('select.option', 'true', JText::_('No') ),
+								JHTML::_('select.option', 'false', JText::_('JYes') ),
+								JHTML::_('select.option', 'true', JText::_('JNo') ),
 						
 						);
 						echo JHTML::_('select.genericlist', $arr, 'hidePublicShowtimeVideos', null, 'value', 'text', $dati['hidePublicShowtimeVideos']);
@@ -398,15 +379,15 @@ if ($view_page){
 				
 			if ( $dati['hidePublicShowtimeVideos']=="true") echo ' style="display:none; "';
 				
-			echo ' >	<ul class="adminformlist">
+			echo ' >	
 				
-						<legend>Page into WimTv</legend>
+						<legend>' . JText::_('COM_WIMTVPRO_CONFIG_FEATURES_PAGE_TITLE') . '</legend>
 	
 								<ul class="adminformlist">
-								<li><label for="pageName">Page Name</label>
+								<li><label for="pageName">' . JText::_('COM_WIMTVPRO_CONFIG_FEATURES_PAGE') . '</label>
 									<input  type="text"  id="edit-pageName" name="pageName" value="' . $dati['pageName'] . '" size="100" maxlength="100">
 								</li>
-							<li><label for="pageDescription">Page<br/>Description</label>
+							<li><label for="pageDescription">' . JText::_('COM_WIMTVPRO_CONFIG_FEATURES_DESC') . '</label>
 								
 									<textarea  type="text" style="width:260px; height:90px;" id="edit-pageDescription" name="pageDescription">' . $dati['pageDescription'] . '</textarea>
 								</li>
@@ -432,13 +413,13 @@ if ($view_page){
 		
 		if (isset($_GET["credential"])){
 			echo '<form action="index.php?option=com_wimtvpro&view=settings&credential=1" method="post" name="adminForm" enctype="multipart/form-data">
-			<fieldset><legend>Insert your credential</legend>
+			<fieldset><legend>' . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL') . '</legend>
 					
 			<ul class="adminformlist">
 			<li>
-			<label class="" for="jform_wimtv_username" id="jform_wimtv_username-lbl">Username WimTV</label>								<input type="text" value="' . $username . '" id="jform_wimtv_username" name="wimtv_username">				</li>
+			<label class="" for="jform_wimtv_username" id="jform_wimtv_username-lbl">' . JText::_('COM_WIMTVPRO_CONFIG_USERNAME') . '</label>								<input type="text" value="' . $username . '" id="jform_wimtv_username" name="wimtv_username">				</li>
 			<li>
-			<label class="" for="jform_wimtv_password" id="jform_wimtv_password-lbl">Password WimTV</label>								<input type="password" value="' . $password . '" id="jform_wimtv_password" name="wimtv_password">				</li>
+			<label class="" for="jform_wimtv_password" id="jform_wimtv_password-lbl">' . JText::_('COM_WIMTVPRO_CONFIG_PASSWORD') . '</label>								<input type="password" value="' . $password . '" id="jform_wimtv_password" name="wimtv_password">				</li>
 			
 			</ul>
 			
@@ -582,63 +563,72 @@ if ($view_page){
 			 
 			//var_dump ($response2);
 			
-			echo "<table class='wp-list-table widefat fixed pages'>";
+			echo "<table class='adminlist'>";
 			echo "<thead><tr><th></th>";
 			foreach ($packet_json -> items as $a) {
 			
-				echo "<th><b>" . $a->name . "</b></th>";
+				echo "<th ><b>" . $a->name . "</b></th>";
 				 
 			}
 			
 			echo "</thead>";
 			echo "<tbody>";
 			echo "<tr class='alternate'>";
-			echo "<td>Band</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_BAND') .  "</td>";
 			foreach ($packet_json -> items as $a) {
-				echo "<td>" . $a->band . " GB</td>";
+				echo "<td class='center'>" . $a->band . " GB</td>";
 			}
 			
 			echo "</tr>";
 			
 			echo "<tr>";
-			echo "<td>Storage</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_STORAGE') .  "</td>";
 			foreach ($packet_json -> items as $a) {
-				echo "<td>" . $a->storage . " GB</td>";
+				echo "<td class='center'>" . $a->storage . " GB</td>";
 			}
 			
 			echo "</tr>";
 			
 			echo "<tr class='alternate'>";
-			echo "<td>Support</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_SUPPORT') .  "</td>";
 			foreach ($packet_json -> items as $a) {
-				echo "<td>" . $a->support . "</td>";
+				echo "<td class='center'>" . $a->support . "</td>";
 			}
 			
 			echo "</tr>";
-			
 			
 			echo "<tr>";
-			echo "<td>Price</td>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_HOUR') .  "</td>";
 			foreach ($packet_json -> items as $a) {
-				echo "<td>" . number_format($a->price,2) . " &euro; / month</td>";
+
+				echo "<td class='center'>" . $a->streamingAmount . "</td>";
+			}
+			
+			echo "</tr>";
+			
+			echo "<tr>";
+			echo "<td>". JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_PRICE') .  "</td>";
+			foreach ($packet_json -> items as $a) {
+				echo "<td class='center'>" . number_format($a->price,2) . " &euro; / m</td>";
 			}
 			
 			echo "</tr>";
 			
 			echo "<tr class='alternate'>";
-			echo "<td></td>";
+			echo "<td class='center'></td>";
 			foreach ($packet_json -> items as $a) {
 				//echo "<td>" . $a->dayDuration . " - " . $a->id . "</td>";
-				echo "<td>";
+				echo "<td class='center'>";
 				if ($id_packet_user==$a->id) {
-					 
-					echo "<img  src='" . JURI::base() . "components/com_wimtvpro/assets/images/check.png' title='Checked'><br/>";
-					echo $count_date . "day left";
+					
+					echo "<img  src='" . JURI::base() . "components/com_wimtvpro/assets/images/check.png'><br/>";
+					if ($a->name != "Free")
+						echo $count_date . " " . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DAY');
 				}
 				else {
 					echo "<a href='index.php?option=com_wimtvpro&view=settings&pack=1";
 					echo "&upgrade=" . $a->name;
-					echo "'><img class='icon_upgrade' src='" . JURI::base() . "components/com_wimtvpro/assets/images/uncheck.png' title='Upgrade'>";
+					echo "'><img class='icon_upgrade' src='" . JURI::base() . "components/com_wimtvpro/assets/images/uncheck.png' title='" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_UPDATE') . "'>";
 					echo "</a>";
 				}
 				echo "</td>";
@@ -651,10 +641,17 @@ if ($view_page){
 			echo "</tbody>";
 			echo "</table>";
 			
-			echo "<h3>You have a free trial of 30 days to try the WimTVPro plugin.</h3>
-			<h3>After 30 days you can subscribe a plan that suit your needs.</h3>
-			<h3>All plans come with all features, only changes the amount of bandwidth and storage available.</h3>
-			<h3>Enyoy your WimTVPro video plugin!</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC1') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC2') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC3') . "</h3>";
+			echo "<ol>";
+			echo "<li>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC3_OL1') . "</li>";
+			echo "<li>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC3_OL2') . "</li>";
+			echo "</ol>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC4') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC5') . "</h3>";
+			echo "<h3>" . JText::_('COM_WIMTVPRO_CONFIG_CREDENTIAL_DESC6') . "</h3>";
+			
 			
 		}
 	

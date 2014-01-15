@@ -2,12 +2,12 @@
 
 <config>
 	<fieldset name="component" label="WimTv"
-		description="Insert your credential">
+		description="COM_WIMTVPRO_CONFIG_CREDENTIAL">
 
 		<field name="wimtv_username" type="text" default="username"
-			label="Username WimTV" description="" />
+			label="COM_WIMTVPRO_CONFIG_USERNAME" description="" />
 		<field name="wimtv_password" type="password" default="password"
-			label="Password WimTV" description="" />
+			label="COM_WIMTVPRO_CONFIG_PASSWORD" description="" />
 				
 		<field name="wimtv_basepath" type="hidden" default="https://www.wim.tv/wimtv-webapp/rest/" 
 		   label="wimtv_urlVideosDetailWimtv" description="Base path for wimtv api" />
