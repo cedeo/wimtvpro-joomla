@@ -61,15 +61,15 @@ if ($view_page){
 	if ($current_month==TRUE){
 
 		$url_view  = $baseReport . "users/" . $username . "/views";
-		$title_views = "Views (current month)";
+		$title_views = JText::_("COM_WIMTVPRO_REPORT_VIEWERS") . "Views ("   .  JText::_("COM_WIMTVPRO_REPORT_CURRENTMONTH")  .  ")";
 			
 		$url_stream = $baseReport . "users/" . $username . "/streams";
-		$title_streams = "Streams (current month)";
+		$title_streams = JText::_("COM_WIMTVPRO_REPORT_STREAM") . " (" . JText::_("COM_WIMTVPRO_REPORT_CURRENTMONTH") . ")";
 		$url_view_single = $baseReport . "views/@";
 
 			
 		$url_info_user = $baseReport . "users/" . $username;
-		$title_user = "Current Month  <a href='#' id='customReport'>Change Date</a> ";
+		$title_user = JText::_("COM_WIMTVPRO_REPORT_CURRENTMONTH") . " <a href='#' id='customReport'> " . JText::_("COM_WIMTVPRO_REPORT_CHANGEDATE") . "</a> ";
 		$style_date = "display:none;";
 		$url_packet = $baseReport . "users/" . $username . "/commercialPacket/usage";
 			
@@ -84,10 +84,9 @@ if ($view_page){
 			
 		$url_info_user = $baseReport . "users/" . $username . "?from=" . $from_tm . "&to=" . $to_tm . "&format=json";
 			
-		$title_user = "<a href='index.php?option=com_wimtvpro&view=report'>Current Month</a> Change Date";
-
-
-
+		$title_user = "<a href='index.php?option=com_wimtvpro&view=report'>" . 
+			JRoute::_('index.php?option=com_wimtvpro&view=report') . 
+			"</a> " . JText::_("COM_WIMTVPRO_REPORT_CHANGEDATE");
 	}
 
 	echo "<h1>Report user Wimtv " . $username . "</h1>";
@@ -95,22 +94,20 @@ if ($view_page){
 
 	echo '
 			<script type="text/javascript">
-			jQuery(document).ready(function(){
-			jQuery.noConflict();
-			jQuery("#customReport").click(function(){
-			jQuery("#fr_custom_date").fadeToggle();
-			jQuery("#changeTitle").html("<a href=\'' . JRoute::_('index.php?option=com_wimtvpro&view=report') . '\'>Current Month</a> Change Date");
-});
-
-			jQuery(".tabs span").click(function(){
-			var idSpan = jQuery(this).attr("id");
-			jQuery(".view").fadeOut();
-			jQuery("#view_" + idSpan).fadeIn();
-			jQuery(".tabs span").attr("class","");
-			jQuery(this).attr("class","active");
-});
-
-});
+				jQuery(document).ready(function(){
+					jQuery.noConflict();
+					jQuery("#customReport").click(function(){
+						jQuery("#fr_custom_date").fadeToggle();
+						jQuery("#changeTitle").html("<a href=\'' . JRoute::_('index.php?option=com_wimtvpro&view=report') . '\'>' . JText::_("COM_WIMTVPRO_REPORT_CURRENTMONTH") . '</a>' . JText::_("COM_WIMTVPRO_REPORT_CHANGEDATE") . '");
+					});
+					jQuery(".tabs span").click(function(){
+						var idSpan = jQuery(this).attr("id");
+						jQuery(".view").fadeOut();
+						jQuery("#view_" + idSpan).fadeIn();
+						jQuery(".tabs span").attr("class","");
+						jQuery(this).attr("class","active");
+					});
+				});
 			</script>
 			';
 
@@ -120,9 +117,9 @@ if ($view_page){
 	echo '<div class="registration" id="fr_custom_date" style="' . $style_date . '">
   
 	<fieldset>
-	<div style="float:left"><label style="float:left;"> From </label> ';
+	<div style="float:left"><label style="float:left;"> ' . JText::_("COM_WIMTVPRO_REPORT_FROM") . ' </label> ';
 	echo JHTML::calendar($from,'from','edit-from'); //%Y-%m-%d
-	echo '</div><div style="float:left"><label style="float:left;"> To </label> ';
+	echo '</div><div style="float:left"><label style="float:left;">' . JText::_("COM_WIMTVPRO_REPORT_TO") . ' </label> ';
 	echo JHTML::calendar($to,'to','edit-to');
 	echo '</div><div style="float:left"><input type="submit" value=">" class="button button-primary" />';
 	echo '</div></fieldset>
@@ -157,10 +154,10 @@ if ($view_page){
 		$currentPacket = $commercialPacket_json->current_packet;
 		if (($currentPacket->id)>0) $namePacket =  $currentPacket->name;
 		else $namePacket =  $currentPacket->error;
-		echo "<p>Your Commercial Packet: <b>" . $namePacket . "</p> ";
+		echo "<p>" . JText::_("COM_WIMTVPRO_REPORT_CURRENTPACK_DESC") .  " <b>" . $namePacket . "</p> ";
 
-		$traffic_of = " of " . $currentPacket->band_human;
-		$storage_of = " of " . $currentPacket->storage_human;
+		$traffic_of = " / " . $currentPacket->band_human;
+		$storage_of = " / " . $currentPacket->storage_human;
 
 		$traffic_bar = "<div class='progress'><div class='bar' style='width:" . $commercialPacket_json->traffic->percent . "%'>" . $commercialPacket_json->traffic->percent_human . "%</div></div>";
 		$storage_bar = "<div class='progress'><div class='bar' style='width:" . $commercialPacket_json->storage->percent . "%'>" . $commercialPacket_json->storage->percent_human . "%</div></div>";
@@ -178,10 +175,10 @@ if ($view_page){
 
 	//$commercialPacket = $traffic_json->commercialPacket;
 	if ($traffic=="") {
-		echo "<p>You account don't generate traffic in this period.</p>";
+		echo "<p>" . JText::_("COM_WIMTVPRO_REPORT_EMPTY") .  "</p>";
 	} else {
-		echo "<p>Traffic: " . $byteToMb . "</p>";
-		echo "<p>Storage space: " . $byteToMbS . "</p>";
+		echo "<p>" . JText::_("COM_WIMTVPRO_REPORT_TRAFFIC") . ": " . $byteToMb . "</p>";
+		echo "<p>" . JText::_("COM_WIMTVPRO_REPORT_STORAGE") . ": " . $byteToMbS . "</p>";
 
 
 
@@ -198,15 +195,15 @@ if ($view_page){
 			
 		echo '
 		<div class="summary"><div class="tabs">
-		<span id="stream" class="active">View Streams</span><span id="graph">View graph</span>
+		<span id="stream" class="active">' . JText::_("COM_WIMTVPRO_REPORT_STREAM") . '</span><span id="graph">' . JText::_("COM_WIMTVPRO_REPORT_CHART") . '</span>
 		</div>
 		<div id="view_stream" class="view">
 		<h3>' . $title_streams . '</h3>';
-		echo '<table><tr>
-		<th class="manage-column column-title">Video</th>
-		<th class="manage-column column-title">Views</th>
-		<th class="manage-column column-title">Activate view</th>
-		<th class="manage-column column-title">Max viewers</th>
+		echo '<table class="adminlist"><tr>
+		<th class="manage-column column-title">' . JText::_("COM_WIMTVPRO_REPORT_VIDEO") . '</th>
+		<th class="manage-column column-title">' . JText::_("COM_WIMTVPRO_REPORT_VIEWERS") . '</th>
+		<th class="manage-column column-title">' . JText::_("COM_WIMTVPRO_REPORT_ACVIEWERS") . '</th>
+		<th class="manage-column column-title">' . JText::_("COM_WIMTVPRO_REPORT_MAXVIEWERS") . '</th>
 		</tr>
 		';
 			
@@ -237,23 +234,23 @@ if ($view_page){
 			if ((isset($value->title))) $video = $thumbs . "<br/><b>" . $value->title . "</b><br/>" . $value->type ;
 			else $video = $thumbs . "<br/>" . $value->id;
 
-			$html_view_exp = "<b>Total " . $value->views . " Views</b><br/>";
+			$html_view_exp = "<b>" .  JText::_("COM_WIMTVPRO_REPORT_TOTAL") . " "  . $value->views .   " " .  JText::_("COM_WIMTVPRO_REPORT_VIEWERS") . "</b><br/>";
 			$view_exp = $value->views_expanded;
 			if (count($view_exp)>0) {
-				$html_view_exp .= "<table class='wp-list-table'>
+				$html_view_exp .= "<table class='adminlist'>
 						<tr>
-						<th class='manage-column column-title' style='font-size:10px;'>End Time</th>
-						<th class='manage-column column-title' style='font-size:10px;'>Duration</th>
-						<th class='manage-column column-title' style='font-size:10px;'>Traffic</th>
+						<th class='manage-column column-title' style='font-size:10px;'>" .  JText::_("COM_WIMTVPRO_REPORT_DATE") . "</th>
+						<th class='manage-column column-title' style='font-size:10px;'>" .  JText::_("COM_WIMTVPRO_REPORT_DURATION") . "</th>
+						<th class='manage-column column-title' style='font-size:10px;'>" .  JText::_("COM_WIMTVPRO_REPORT_TRAFFIC") . "</th>
 						</tr>
 						";
 				foreach ($view_exp as $value_exp){
 					$value_exp->traffic =  round($value_exp->traffic / $megabyte, 2) . " MB";
 					$date_human =  date('Y/m/d', ($value_exp->end_time/1000));
 					$html_view_exp .= "<tr>";
-					$html_view_exp .= "<td style='font-size:10px;'>" . $date_human . "</td>";
-					$html_view_exp .= "<td style='font-size:10px;'>" . $value_exp->duration . "s</td>";
-					$html_view_exp .= "<td style='font-size:10px;'>" . $value_exp->traffic  . "</td>";
+					$html_view_exp .= "<td class='center'>" . $date_human . "</td>";
+					$html_view_exp .= "<td class='center'>" . $value_exp->duration . "s</td>";
+					$html_view_exp .= "<td class='center'>" . $value_exp->traffic  . "</td>";
 					$html_view_exp .= "</tr>";
 
 					if (isset($dateNumber[$date_human])) $dateNumber[$date_human] = $dateNumber[$date_human] + 1;
@@ -300,12 +297,12 @@ if ($view_page){
 		}
 		if (count($single_taffic_media)>0) {
 			$traffic_view_max = max($single_taffic_media);
-			$single_traffic_percent = (100/$traffic_view_max);
+			$single_traffic_percent = ($traffic_view_max>0) ? (100/$traffic_view_max) : 0;
 		} else {
 			$traffic_view_max =0;
 			$single_traffic_percent = 0;
 		}
-		echo "<div class='col'><div class='date'>Date</div><div class='title'>Total view</div><div class='title'>Average Traffic</div></div>";
+		echo "<div class='col'><div class='date'>" .  JText::_("COM_WIMTVPRO_REPORT_DATE") . "</div><div class='title'>" .  JText::_("COM_WIMTVPRO_REPORT_TOTALVIEW") . "</div><div class='title'>" .  JText::_("COM_WIMTVPRO_REPORT_AVERAGE") . "</div></div>";
 		for ($i=0;$i<$count_date;$i++){
 			if (isset($dateNumber[$dateRange[$i]])) $count_single = $single_percent * $dateNumber[$dateRange[$i]];
 			if (isset($single_taffic_media[$dateRange[$i]])) $traffic_single = $single_traffic_percent * $single_taffic_media[$dateRange[$i]];
@@ -313,8 +310,8 @@ if ($view_page){
 			echo "<div class='col' >
 					<div class='date'>" . $dateRange[$i] . "</div>
 							<div class='countview'><div class='bar' style='width:" . $count_single . "%'>";
-			if ($dateNumber[$dateRange[$i]]>1) echo $dateNumber[$dateRange[$i]] . " viewers";
-			if ($dateNumber[$dateRange[$i]]==1) echo $dateNumber[$dateRange[$i]] . " viewer";
+			if ($dateNumber[$dateRange[$i]]>1) echo $dateNumber[$dateRange[$i]] . " " .  JText::_("COM_WIMTVPRO_REPORT_VIEWERS");
+			if ($dateNumber[$dateRange[$i]]==1) echo $dateNumber[$dateRange[$i]] . " " .  JText::_("COM_WIMTVPRO_REPORT_VIEWER");
 			echo "</div></div>
 					<div class='countview'><div class='barTraffic' style='width:" . $traffic_single . "%'>";
 			if ($single_taffic_media[$dateRange[$i]]>0) echo $single_taffic_media[$dateRange[$i]] . " MB";
