@@ -51,9 +51,7 @@ class wimtvproViewsettings extends JView
 			
 			JToolBarHelper::divider();
 
-			JToolBarHelper::save('settings.save', JText::_("Save")); //Download a video
-			//JToolBarHelper::custom('settings.save', 'save', 'assets/images/download.png', JText::_("Download"), false); //Download a video
-			//JToolBarHelper::editListX('mymedia.edit');
+			JToolBarHelper::save('settings.save', JText::_("COM_WIMTVPRO_UPDATE"));
 			JToolBarHelper::divider();
 		
 		} else

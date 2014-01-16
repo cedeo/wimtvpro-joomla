@@ -144,7 +144,7 @@ class wimtvproControllersettings extends JControllerAdmin
 					
 				$cache = JCache::getInstance('callback', $options);
 				$cache->clean();
-				JFactory::getApplication()->enqueueMessage('Credential update Successfully');
+				JFactory::getApplication()->enqueueMessage(JText::_("COM_WIMTVPRO_MSG_UPDATE"));
 				
 			}
 			

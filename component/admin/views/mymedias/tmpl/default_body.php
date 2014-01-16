@@ -34,7 +34,7 @@ foreach ($this->items as $row)
 	else {
 		$action = '<a class="jgrid" href="javascript:void(0);" title="' . JText::_('COM_WIMTVPRO_STATE_ADD') . '"><span class="state unpublish icon_Putshowtime" id="' . $row->contentidentifier . '"></span></a>';
 		$form_st = '
-		<div class="free">FREE OF CHARGE</div>
+		<div class="free">' . strtoupper(JText::_('COM_WIMTVPRO_LICENCE_FREE')) . '</div>
 		<div class="cc">CREATIVE COMMONS</div>
 		<div class="ppv">PAY PER VIEW</div>
    	 	';

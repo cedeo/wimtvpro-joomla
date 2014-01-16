@@ -27,7 +27,7 @@ if (!is_dir($directory)) {
 if (is_dir($directory)) {
 	if ($directory_handle = opendir($directory)) {
 		//Read directory for skin JWPLAYER
-		$elencoSkin[""] = "-- Base Skin --";
+		$elencoSkin[""] = "-- Default Skin --";
 		while (($file = readdir($directory_handle)) !== FALSE) {
 			if ((!is_dir($file)) && ($file!=".") && ($file!="..")) {
 				$explodeFile = explode("." , $file);

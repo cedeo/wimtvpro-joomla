@@ -70,7 +70,7 @@ $videos .= "</div>";
 		
 		<?php echo $videos;?>
 		
-		<ul style="float:left; margin:0 0 0 10px;" class="adminformlist">
+		<ul style="float:left; margin:0 0 0 10px; width:400px;" class="adminformlist">
 			
 			
 
@@ -78,38 +78,37 @@ $videos .= "</div>";
 switch ($type) {
 	
 	case "cc":
-		echo "<h1>CREATIVE COMMONS</h1>";
+		echo "<li><h1>CREATIVE COMMONS</h1></li>";
+		echo "<li><h2>" . JText::_('COM_WIMTVPRO_LICENCE_CC_DESC') . "</h2></li>";
 		$option[] = JHTML::_( 'select.option', 'BY_NC_SA', '<p class="cc_set"><img  src="http://www.wim.tv/wimtv-webapp/images/cclicense/Attribution Non-commercial No Derivatives.png" 	title="Attribution Non-Commercial No Derivatives"/> Attribution Non-Commercial No Derivatives</p>' );
 		$option[] = JHTML::_( 'select.option', 'BY_NC_ND','<p class="cc_set"><img src="http://www.wim.tv/wimtv-webapp/images/cclicense/Attribution Non-commercial Share Alike.png" 	title="Attribution Non-Commercial Share Alike" /> Attribution Non-Commercial Share Alike</p>' );
 		$option[] = JHTML::_( 'select.option', 'BY_NC','<p class="cc_set"><img src="http://www.wim.tv/wimtv-webapp/images/cclicense/Attribution Non-commercial.png" 			title="Attribution Non-Commercial" /> Attribution Non-Commercial</p>' );
 		$option[] = JHTML::_( 'select.option', 'BY_ND','<p class="cc_set"><img src="http://www.wim.tv/wimtv-webapp/images/cclicense/Attribution No Derivatives.png" 			title="Attribution No Derivatives" /> Attribution No Derivatives</p>' );
 		$option[] = JHTML::_( 'select.option', 'BY_SA','<p class="cc_set"><img src="http://www.wim.tv/wimtv-webapp/images/cclicense/Attribution Share Alike.png" 				title"Attribution Share Alike"/> Attribution Share Alike</p>' );
-		$option[] = JHTML::_( 'select.option', 'BY','<p class="cc_set"><img src="http://www.wim.tv/wimtv-webapp/images/cclicense/Attribution.png" 						title="Attribution" /> Attribution</p>' );
+		$option[] = JHTML::_( 'select.option', 'BY','<p class="cc_set"><img src="http://www.wim.tv/wimtv-webapp/images/cclicense/Attribution.png" title="Attribution" /> Attribution</p>' );
 		
 		echo "<li style='margin:0 0 10px 0;'>" . JHTML::_('select.radiolist', $option, 'cc_type', array('style'=>'display:none')) . "</li>";
 		
 	break;
 	
 	case "ppv":
-		echo "<h1>PAY PER VIEW</h1>";
-		echo '<p style="margin:0 0 10px 0;"><input type="text" name="amount" class="amount" value="00" />.<input type="text" name="amount_cent" class="amount_cent" value="00" maxlength="2"/>';
-		echo 'Euro<input type="hidden" name="currency" class="currency" value="EUR"></p>';
+		echo "<li><h1>PAY PER VIEW</h1></li>";
+		echo "<li><h2>" . JText::_('COM_WIMTVPRO_LICENCE_PPV_DESC') . "</h2></li>";
+		echo '<li><p style="margin:0 0 10px 0;"><input type="text" name="amount"  class="amount" value="00" /><span class="amount" >.</span><input type="text"  name="amount_cent" class="amount_cent" value="00" maxlength="2"/>';
+		echo '<span class="amount">Euro</span><input type="hidden" name="currency" class="currency" value="EUR"></p></li>';
 
 	break;
 
 	case "free":
-		echo "<h1>FREE OF CHARGE</h1>";
-		echo "<h2>Do you want your video to be visible to all for free?</h2>";
-		
+		echo "<li><h1>" . strtoupper(JText::_('COM_WIMTVPRO_LICENCE_FREE')) . "</h1></li>";
+		echo "<li><h2>" . JText::_('COM_WIMTVPRO_LICENCE_FREE_DESC') . "</h2></li>";
 	break;
 	
 }
 
 
 ?>
-
-
-			
+		<li style="clear:both;"><h2><?php echo JText::_('COM_WIMTVPRO_LICENCE_CONFIRM'); ?></h2></li>
 		</ul>
 	</fieldset>
 

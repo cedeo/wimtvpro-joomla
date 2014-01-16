@@ -463,3 +463,6 @@ iframe {
 
 .videosElenco {width:70%; float:left;}
 .playlistElenco {width:30%; float:left;}
+
+input.amount, input.amount_cent {float:left; width:70px; margin:10px; font-size:16px;}
+span.amount {float:left; line-height:45px;font-size:16px;}
