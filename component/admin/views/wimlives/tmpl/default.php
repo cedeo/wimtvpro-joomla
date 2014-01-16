@@ -38,11 +38,16 @@ jQuery(document).ready(function(){
 
 <form action="<?php echo JRoute::_('index.php?option=com_wimtvpro&view=wimlives'); ?>" method="post" name="adminForm">
 
+	<p><?php echo JText::_( 'COM_WIMTVPRO_LIVE_DESC1' ); ?></p>
+    <p><?php echo JText::_( 'COM_WIMTVPRO_LIVE_DESC2' ); ?></p>
+    
+   
+    <ol>
+        <li><p><?php echo JText::_( 'COM_WIMTVPRO_LIVE_DESC3_OL1' ); ?></p></li>
+        <li><p><?php echo JText::_( 'COM_WIMTVPRO_LIVE_DESC3_OL2' ); ?></p></li>
+    </ol>
 
-	<p>Here you can create live streaming events to be published on the pages of the site.</p>
-	<p>To use this service you must have installed on your pc a video encoding software (e.g. Adobe Flash Media Live Encoder, Wirecast etc.) or you can broadcast directly from your webcam, simply clicking the icon below under the "Live now" column.</p>
-	<p>By clicking the icon, the producer will open in a new browser tab, keep it open during the whole transmission.</p>
-	
+	<p><?php echo JText::_( 'COM_WIMTVPRO_LIVE_SCHEDULE_DESC' ); ?></p>
 	
 	<div id="editcell">
 		<table class="adminlist live_table" id="tableLive" >
@@ -50,13 +55,13 @@ jQuery(document).ready(function(){
 				<tr>
 					
 					<th></th>
-					<th>Name</th>
-					<th>Live Now</th>
-					<th>Pay-Per-View</th>
-					<th>URL	Streaming</th>
-					<th>Date</th>
-					<th>Embed Code</th>
-					<th>Action</th>
+					<th><?php echo JText::_( 'COM_WIMTVPRO_LIVE_TITLE' ); ?></th>
+					<th><?php echo JText::_( 'COM_WIMTVPRO_LIVE_NOW' ); ?></th>
+					<th><?php echo JText::_( 'COM_WIMTVPRO_LIVE_PPV' ); ?></th>
+					<th><?php echo JText::_( 'COM_WIMTVPRO_LIVE_URL' ); ?></th>
+					<th><?php echo JText::_( 'COM_WIMTVPRO_LIVE_SCHEDULE' ); ?></th>
+					<th><?php echo JText::_( 'COM_WIMTVPRO_LIVE_EMBED' ); ?></th>
+					<!--th><?php echo JText::_( 'COM_WIMTVPRO_LIVE_ACTION' ); ?></th-->
 					
 					
 				</tr>

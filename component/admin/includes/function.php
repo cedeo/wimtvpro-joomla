@@ -269,7 +269,7 @@ function wimtvpro_alert_reg($username,$password,$stamp=true){
 		
 		$ahrefReg= '<a class="modal" href="index.php?option=com_wimtvpro&amp;view=register&amp;tmpl=component&amp;layout=edit" rel="{handler: \'iframe\', size: {x: 875, y: 550}, onClose: function() {}}">';
 		if ($stamp)
-		JError::raiseWarning( 100, "Please " . $ahref  . "configuration you wimtv account</a> or " . $ahrefReg . " register </a>" );
+		JError::raiseWarning( 100, JText::_( 'COM_WIMTVPRO_CONFIG_WARNING1' ) . $ahrefReg  . JText::_( 'COM_WIMTVPRO_CONFIG_REGISTER' ) . "</a>|" . $ahref  . JText::_( 'COM_WIMTVPRO_CONFIG_LOGIN' ) . " </a>" );
 		return FALSE;
 	} else {
 		return TRUE;

@@ -103,7 +103,7 @@ if ($arrayjson_live ){
       <td>" . $url . "</td>
       <td>"  . $data . " " . $oraMin . "<br/>" . $durata . "</td>
       <td>" . $embedded_code . "</td>
-		<td><a href='index.php?option=com_wimtvpro&view=wimlive&layout=edit&cid=" . $identifier . "'>Modifica</a></td>
+		<!--td><a href='index.php?option=com_wimtvpro&view=wimlive&layout=edit&cid=" . $identifier . "'>Modifica</a></td-->
       </tr>";
     }
     elseif ($type=="list") {
@@ -124,7 +124,7 @@ if ($arrayjson_live ){
    }
   }
   if ($count<0)
-    $output = "Aren't Event Live";
+    $output =JText::_( 'COM_WIMTVPRO_LIVE_NOTEVENT' );
 
 echo $output;
 
