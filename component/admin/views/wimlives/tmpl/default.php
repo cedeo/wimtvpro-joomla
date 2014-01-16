@@ -1,9 +1,6 @@
 <?php 
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
-$mainframe =& JFactory::getApplication();
-
-$app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');

@@ -44,7 +44,7 @@ class WimtvproControllermymedia extends JControllerForm
 		// Required
 		if (strlen(trim($titlefile))==0) {
 			$error ++;
-			JError::raiseWarning( 100, 'You must write a title' );
+			JError::raiseWarning( 100, JText::_("COM_WIMTVPRO_LIVE_ERROR_TITLE2") );
 		}
 		
 		if ((strlen(trim($urlfile))>0) && ($error==0)) {
@@ -97,7 +97,7 @@ class WimtvproControllermymedia extends JControllerForm
 					
 					//Redirect MyMedia
 					$link = JRoute::_("index.php?option=com_wimtvpro&view=mymedias");
-					JFactory::getApplication()->redirect($link , 'Upload successfully', 'Redirect' );
+					JFactory::getApplication()->redirect($link , JText::_("COM_WIMTVPRO_UPLOADOK"), 'Redirect' );
 
 				} catch (Exception $e) {
 					throw new Exception($e);
@@ -110,14 +110,13 @@ class WimtvproControllermymedia extends JControllerForm
 				
 			else{
 				$error ++;
-				JError::raiseWarning( 100, "Upload error" );
+				JError::raiseWarning( 100, JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_SAVE"));
 		
 			}
 				
 		} else {
 			$error ++;
-
-			JError::raiseWarning( 100, 'You must upload a file' );
+			JError::raiseWarning( 100, JText::_("COM_WIMTVPRO_ERROR_UPLOAD"));
 		}
 		
 	}

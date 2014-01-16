@@ -57,27 +57,27 @@ class WimtvproControllerwimlive extends JControllerForm
 		$giorno  = str_replace ("-","/",$jform['Giorno']);
 		
 		if (strlen(trim($name))==0) {
-			JError::raiseWarning( 100,"You must write a wimlive's name." );
+			JError::raiseWarning( 100,JText::_("COM_WIMTVPRO_LIVE_ERROR_TITLE") );
 			$error ++;
 		}
 		if (strlen(trim($payperview))==0) {
-			JError::raiseWarning( 100,"You must write a price for your event (or free of charge)." );
+			JError::raiseWarning( 100,JText::_("COM_WIMTVPRO_LIVE_ERROR_PRICE") );
 			$error ++;
 		}
 		if (strlen(trim($url))==0) {
-			JError::raiseWarning( 100,"You must write a url.");
+			JError::raiseWarning( 100,JText::_("COM_WIMTVPRO_LIVE_ERROR_URL"));
 			$error ++;
 		}
 		if (strlen(trim($giorno))==0) {
-			JError::raiseWarning( 100,"You must write a day of your event.");
+			JError::raiseWarning( 100,JText::_("COM_WIMTVPRO_LIVE_ERROR_DAY"));
 			$error ++;
 		}
 		if (strlen(trim($orain))==0) {
-			JError::raiseWarning( 100,"You must write a hour of your event.");
+			JError::raiseWarning( 100,JText::_("COM_WIMTVPRO_LIVE_ERROR_HOUR"));
 			$error ++;
 		}
 		if (strlen(trim($durationin))==0) {
-			JError::raiseWarning( 100,"You must write a duration of your event.");
+			JError::raiseWarning( 100,JText::_("COM_WIMTVPRO_LIVE_ERROR_TIME"));
 			$error ++;
 		}
 		
@@ -131,7 +131,7 @@ class WimtvproControllerwimlive extends JControllerForm
 					
 					//Redirect Wimlive
 					$link = "index.php?option=com_wimtvpro&view=wimlives";
-					JFactory::getApplication()->enqueueMessage('Live Successfully');
+					JFactory::getApplication()->enqueueMessage(JText::_("COM_WIMTVPRO_LIVE_UPDATE"));
 					$this->setRedirect('index.php?option=com_wimtvpro&view=wimlives', $message);
 				}
 				else {

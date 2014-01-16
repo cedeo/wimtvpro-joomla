@@ -5,7 +5,6 @@ defined('_JEXEC') or die('Restricted Access');
 // load tooltip behavior
 JHtml::_('behavior.tooltip');
 
-$app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');

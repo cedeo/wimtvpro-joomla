@@ -32,7 +32,7 @@ class WimtvproModelwimlive extends JModelAdmin
 	 */
 	
 	public function getItem($pk = null){
-		$app = &JFactory::getApplication();
+
 		$params = JComponentHelper::getParams('com_wimtvpro');
 		$basePathWimtv = $params->get('wimtv_basepath');
 		$username = $params->get('wimtv_username');

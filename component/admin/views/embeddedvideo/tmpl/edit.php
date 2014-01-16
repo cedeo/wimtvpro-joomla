@@ -32,7 +32,6 @@ if ($error = $db2->getErrorMsg()) {
 	throw new Exception($error);
 }
 
-$app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');

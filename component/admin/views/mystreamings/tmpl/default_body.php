@@ -13,7 +13,6 @@ $i = 0;
 
 $user		= JFactory::getUser();
 
-$app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');

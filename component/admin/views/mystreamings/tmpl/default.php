@@ -9,7 +9,7 @@ require_once JPATH_ROOT . '/components/com_content/helpers/route.php';
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 $function	= JRequest::getCmd('function', 'jSelectArticle');
 JHtml::_('behavior.tooltip');
-$app = &JFactory::getApplication();
+
 $params = JComponentHelper::getParams('com_wimtvpro');
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');
@@ -50,14 +50,14 @@ if ($view_page){
 		<h1>PlayList Free</h1>
 		<?php if (!isset($_GET["inserInto"])) {?>
 			
-		    <p>Create a playlist of videos (ONLY FREE) to be<br/>inserted within your website</p>
+		    <p><?php echo JText::_( 'COM_WIMTVPRO_PLAYLIST_DESC' );?></p>
 			
 			<?php //My Playlist ?>
-			<p><a href="index.php?option=com_wimtvpro&view=myplaylist&layout=edit">Create new Playlist</a></p>
+			<p><a href="index.php?option=com_wimtvpro&view=myplaylist&layout=edit"><?php echo JText::_( 'COM_WIMTVPRO_PLAYLIST_CREATE' );?></a></p>
 		
 		<?php 
 		} 
-			$app = &JFactory::getApplication();
+
 			$params = JComponentHelper::getParams('com_wimtvpro');
 			$username = $params->get('wimtv_username');
 			

@@ -33,8 +33,8 @@ class JFormFieldtexturl extends JFormField
         public function getInput()
         {
 			
+
         	$html = '<select style=" height:100px"  multiple="multiple" name="'.$this->name.'">';
-        	$app = &JFactory::getApplication();
         	$params = JComponentHelper::getParams('com_wimtvpro');
         	$basePathWimtv = $params->get('wimtv_basepath');
         	$username = $params->get('wimtv_username');
@@ -54,7 +54,7 @@ class JFormFieldtexturl extends JFormField
 		    
         	if ($this->value=="") $html .= 'display: none;';
 		    else $html .= 'display: block;';
-		    $html .= '>REMOVE YOUR URL</b>
+		    $html .= '>' .  JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_REMOVEURL") . '</b>
 		       <br><div class="passwordUrlLive">Password Live is missing, insert a password for live streaming: <input type="password" id="passwordLive"> <b class="createPass">Salva</b>
 		       </div>
 		     </div>';
@@ -62,8 +62,8 @@ class JFormFieldtexturl extends JFormField
 		     $html .= '
 		     		<script>
 		     		jQuery(document).ready(function(){ 
-		     		
-		     		//Request new URL for create a wimlive Url
+						jQuery.noConflict();
+						//Request new URL for create a wimlive Url
 						jQuery(".createUrl").click(function(){
 						  jQuery.ajax({
 								context: this,
@@ -75,7 +75,7 @@ class JFormFieldtexturl extends JFormField
 						     		username: "' . $username . '",
 						     		password: "' . $password  . '",
 						     		basePath: "' . $basePathWimtv . '",
-									titleLive: jQuery("#edit-name").val()	
+									titleLive: jQuery("#jform_name").val()	
 								},
 								success: function(response) {
 								  var json =  jQuery.parseJSON(response);
@@ -89,21 +89,21 @@ class JFormFieldtexturl extends JFormField
 								    //alert (response);
 								    alert ("Insert a password for live streaming is required");
 								    jQuery(".passwordUrlLive").show();
-								    jQuery(".createPass").click(function(){
-								     jQuery.ajax({
-								     context: this,
-								     url:  "components/com_wimtvpro/includes/script.php", 
-								     type: "GET",
-								     dataType: "html",
-								     data:{
-									  namefunction: "passCreate",
-									  newPass: jQuery("#passwordLive").val()
-								     },
-					                 success: function(response) {
-					                 	alert (response);
-					                 	jQuery(".passwordUrlLive").hide();
-					                 }
-								    });
+									jQuery(".createPass").click(function(){
+										 jQuery.ajax({
+											 context: this,
+											 url:  "components/com_wimtvpro/includes/script.php", 
+											 type: "GET",
+											 dataType: "html",
+											 data:{
+											  namefunction: "passCreate",
+											  newPass: jQuery("#passwordLive").val()
+											 },
+											 success: function(response) {
+												alert (response);
+												jQuery(".passwordUrlLive").hide();
+											 }
+										});
 						            });
 								  }
 								},

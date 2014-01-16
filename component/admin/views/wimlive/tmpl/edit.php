@@ -14,7 +14,7 @@ jQuery(document).ready(function(){
 });
 </script>';
 
-$app = &JFactory::getApplication();
+
 $params = JComponentHelper::getParams('com_wimtvpro');
 $basePathWimtv = $params->get('wimtv_basepath');
 $username = $params->get('wimtv_username');

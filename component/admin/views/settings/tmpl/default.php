@@ -7,7 +7,6 @@ require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php
 // load tooltip behavior
 JHtml::_('behavior.tooltip');
 
-$app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');

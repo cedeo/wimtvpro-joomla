@@ -33,7 +33,6 @@ class JFormFieldcategoryApi extends JFormField
         public function getInput()
         {
         	$html = '<select style=" height:100px"  multiple="multiple" name="'.$this->name.'">';
-        	$app = &JFactory::getApplication();
         	$params = JComponentHelper::getParams('com_wimtvpro');
         	$basePathWimtv = $params->get('wimtv_basepath');
         	

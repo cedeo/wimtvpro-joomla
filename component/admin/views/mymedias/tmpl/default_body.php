@@ -9,7 +9,6 @@ $i = 0;
 
 //TODO: questo codice è terribile
 
-$app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');

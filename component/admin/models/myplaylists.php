@@ -16,7 +16,7 @@ class WimtvproModelmyplaylists extends JModelList
 	}
 function getListQuery()
 	{
-		$app = &JFactory::getApplication();
+
 		$params = JComponentHelper::getParams('com_wimtvpro');
 		$username = $params->get('wimtv_username');
 
