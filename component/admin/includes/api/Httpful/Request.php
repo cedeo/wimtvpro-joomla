@@ -204,8 +204,9 @@ class Request
         
         if ($result === false) {
             $this->_error(curl_error($this->_ch));
-            debug(curl_error($this->_ch));
-            throw new ConnectionErrorException('Unable to connect.');
+            //debug(curl_error($this->_ch));
+            //throw new ConnectionErrorException('Unable to connect.');
+            return new Response(curl_error($this->_ch), "", $this);
         }
 
         $info = curl_getinfo($this->_ch);

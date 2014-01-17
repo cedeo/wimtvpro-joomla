@@ -133,6 +133,8 @@ class Response
 
     public function _parseCode($headers)
     {
+        if (!$headers)
+            return 0;
         $parts = explode(' ', substr($headers, 0, strpos($headers, "\r\n")));
         if (count($parts) < 2 || !is_numeric($parts[1])) {
             throw new \Exception("Unable to parse response code from HTTP response due to malformed response");

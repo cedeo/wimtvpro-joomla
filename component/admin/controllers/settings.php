@@ -118,33 +118,37 @@ class wimtvproControllersettings extends JControllerAdmin
 				$page = "&credential=1";
 				$usernameNew =$_POST['wimtv_username'];
 				$passwordNew = $_POST['wimtv_password'];
-				
-				$params->set('wimtv_username',$usernameNew);
-				$params->set('wimtv_password',$passwordNew);
-					
-				// Get a new database query instance
-				$db = JFactory::getDBO();
-				$query = $db->getQuery(true);
-				$params = JComponentHelper::getParams('com_wimtvpro');
-				// Build the query
-				$query->update('#__extensions AS a');
-				$query->set('a.params = ' . $db->quote((string)$params));
-				$query->where('a.element = "com_wimtvpro"');
-					
-				// Execute the query
-				$db->setQuery($query);
-				$db->query();
-					
-				$conf = JFactory::getConfig();
-				//JError::raiseWarning( 100,"You must check if you event is public or private.");
-				$options = array(
-						'defaultgroup' => '_system',
-						'cachebase' => $conf->get('cache_path', JPATH_SITE . '/cache')
-				);
-					
-				$cache = JCache::getInstance('callback', $options);
-				$cache->clean();
-				JFactory::getApplication()->enqueueMessage(JText::_("COM_WIMTVPRO_MSG_UPDATE"));
+
+                if (!wimtvpro_alert_reg($usernameNew, $passwordNew, false)) {
+                    JFactory::getApplication()->enqueueMessage(JText::_("COM_WIMTVPRO_WRONG_CREDENTIALS"), "error");
+                } else {
+                    $params->set('wimtv_username',$usernameNew);
+                    $params->set('wimtv_password',$passwordNew);
+
+                    // Get a new database query instance
+                    $db = JFactory::getDBO();
+                    $query = $db->getQuery(true);
+                    $params = JComponentHelper::getParams('com_wimtvpro');
+                    // Build the query
+                    $query->update('#__extensions AS a');
+                    $query->set('a.params = ' . $db->quote((string)$params));
+                    $query->where('a.element = "com_wimtvpro"');
+
+                    // Execute the query
+                    $db->setQuery($query);
+                    $db->query();
+
+                    $conf = JFactory::getConfig();
+                    //JError::raiseWarning( 100,"You must check if you event is public or private.");
+                    $options = array(
+                            'defaultgroup' => '_system',
+                            'cachebase' => $conf->get('cache_path', JPATH_SITE . '/cache')
+                    );
+
+                    $cache = JCache::getInstance('callback', $options);
+                    $cache->clean();
+                    JFactory::getApplication()->enqueueMessage(JText::_("COM_WIMTVPRO_MSG_UPDATE"));
+                }
 				
 			}
 			

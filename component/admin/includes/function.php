@@ -263,13 +263,14 @@ function getDateRange($startDate, $endDate, $format="Y/m/d"){
 
 function wimtvpro_alert_reg($username,$password,$stamp=true){
 	//If user isn't register or not inser user and password
-	if (($username=="username" && $password=="password") || ($username=="" && $password=="")){
-		
+    $params = JComponentHelper::getParams('com_wimtvpro');
+    $basePathWimtv = $params->get('wimtv_basepath');
+    initApi($basePathWimtv, $username, $password);
+	if (!json_decode(apiGetProfile())->name){
 		$ahref= '<a class="modal" href="index.php?option=com_config&amp;view=component&amp;component=com_wimtvpro&amp;path=&amp;tmpl=component" rel="{handler: \'iframe\', size: {x: 875, y: 550}, onClose: function() {}}">';
-		
 		$ahrefReg= '<a class="modal" href="index.php?option=com_wimtvpro&amp;view=register&amp;tmpl=component&amp;layout=edit" rel="{handler: \'iframe\', size: {x: 875, y: 550}, onClose: function() {}}">';
 		if ($stamp)
-		JError::raiseWarning( 100, JText::_( 'COM_WIMTVPRO_CONFIG_WARNING1' ) . $ahrefReg  . JText::_( 'COM_WIMTVPRO_CONFIG_REGISTER' ) . "</a>|" . $ahref  . JText::_( 'COM_WIMTVPRO_CONFIG_LOGIN' ) . " </a>" );
+            JFactory::getApplication()->enqueueMessage(JText::_( 'COM_WIMTVPRO_CONFIG_WARNING1' ) . $ahrefReg  . JText::_( 'COM_WIMTVPRO_CONFIG_REGISTER' ) . "</a>|" . $ahref  . JText::_( 'COM_WIMTVPRO_CONFIG_LOGIN' ) . " </a>", "error" );
 		return FALSE;
 	} else {
 		return TRUE;
