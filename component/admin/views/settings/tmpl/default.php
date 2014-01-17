@@ -201,7 +201,7 @@ if ($view_page){
 			if ($dati['liveStreamPwd']=="null") $dati['liveStreamPwd']= "";
 	
 			echo '<div class="clear"></div>
-				  <p>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_DESC") . '</p>';
+				  <p>' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_DESC") . '</p>';
 			echo '
 				
 				  <script>
@@ -233,33 +233,33 @@ if ($view_page){
 				
 				  <form action="index.php?option=com_wimtvpro&view=settings&update=2" method="post" name="adminForm" enctype="multipart/form-data">
 					 <fieldset class="adminform">
-								<legend>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE") . '</legend>
+								<legend>' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE") . '</legend>
 						<ul class="adminformlist">
-								<li><label for="liveStreamEnabled">' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_STREAMING") . '</label>
+								<li><label for="liveStreamEnabled">' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_STREAMING") . '</label>
 									<input type="checkbox" id="edit-liveStreamEnabled" name="liveStreamEnabled" value="true"';
 									if (strtoupper($dati['liveStreamEnabled'])=="TRUE") echo ' checked="checked"';
 									echo  '/>
-									  <div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_STREAMING_DESC")  . '</li>
-								<li><label for="liveStreamPwd">' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_PASSWORD")  . '</label></th>
+									  <div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_STREAMING_DESC")  . '</li>
+								<li><label for="liveStreamPwd">' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_PASSWORD")  . '</label></th>
 									<input type="password" id="edit-liveStreamPwd" name="liveStreamPwd" value="' . $dati['liveStreamPwd'] .  '"/>
-									<div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_PASSWORD_DESC")  . '</li>
+									<div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_PASSWORD_DESC")  . '</li>
 	
-								<li><label for="eventResellerEnabled">' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_RESALE")  . '</label></li>
+								<li><label for="eventResellerEnabled">' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_RESALE")  . '</label></li>
 									
 									  <input type="checkbox" id="edit-eventResellerEnabled" name="eventResellerEnabled" value="true"
 									  ';
 									if (strtoupper($dati['eventResellerEnabled'])=="TRUE") echo ' checked="checked"';
 									echo '
-									  /><div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_RESALE_DESC")  . '</li>
+									  /><div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_RESALE_DESC")  . '</li>
 					
-								<li><label for="eventOrganizerEnabled">' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_ORGANIZ")  . '</label></th>
+								<li><label for="eventOrganizerEnabled">' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_ORGANIZ")  . '</label></th>
 									
 									  <input type="checkbox" id="edit-eventOrganizerEnabled" name="eventOrganizerEnabled" value="true"
 									  ';
 										if (strtoupper($dati['eventOrganizerEnabled'])=="TRUE") echo ' checked="checked"';
 										echo '
 									  />
-									  <div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONGIF_WIMLIVE_ORGANIZ_DESC")  . '</li>
+									  <div class="empty"></div>' . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE_ORGANIZ_DESC")  . '</li>
 							</ul>
 						</fieldset>';
 	
