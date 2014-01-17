@@ -123,27 +123,52 @@ if ($view_page){
 <?php 
 	
 	} else {
-
-		/*$urlUpdate = $basePath . "profile";
-
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $urlUpdate);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($ch, CURLOPT_USERPWD, $credential);*/
-		$response = apiGetProfile(); // curl_exec($ch);
+		$response = apiGetProfile();
 		$dati = json_decode($response, true);
 		switch ($_GET['update']){
 	
 		case "1": //Payment
-	
-			
+            echo '
+				  <script>
+				  	jQuery(document).ready(function() {
+
+				    	function hideAffiliateFields(state) {
+                            if (state) {
+                                jQuery("#field-companyName").show();
+                                jQuery("#field-affiliateConfirm").show();
+                            } else {
+                                jQuery("#field-companyName").hide();
+                                jQuery("#field-affiliateConfirm").hide();
+                            }
+                        }
+
+                        var input_field = jQuery("#edit-affiliate");
+                        if (jQuery(input_field)) {
+                            hideAffiliateFields(jQuery(input_field).attr("checked"));
+                            jQuery(input_field).change(function () { hideAffiliateFields(this.checked) });
+                        }
+                    });
+				  </script>';
 			echo '<div class="clear"></div>
 				  <p>'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_DESC") . '</p>';
-			echo '
-				
-				  <form action="index.php?option=com_wimtvpro&view=settings&update=1" method="post" name="adminForm" enctype="multipart/form-data">
+            $affiliate = $dati['affiliate'] == 'true' ? 'checked' : '';
+            $affiliateConfirm = $dati['affiliateConfirm'] == 'true' ? 'checked' : '';
+			echo '<form action="index.php?option=com_wimtvpro&view=settings&update=1" method="post" name="adminForm" enctype="multipart/form-data">
+				     <fieldset class="adminform">
+							<legend>' . JText::_("COM_WIMTVPRO_CONFIG_PRICING_AFFILIATION_TITLE") . '</legend>
+							<ul class="adminformlist">
+							    <li><label for="affiliate">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_AFFILIATE") . '</label>
+									<input type="checkbox" id="edit-affiliate" name="affiliate" ' . $affiliate . ' />
+								</li>
+								<li id="field-companyName"><label for="companyName">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_COMPANY_NAME") . '</label>
+									<input type="text" id="edit-companyName" name="companyName" value="' . $dati['companyName'] . '" size="100" maxlength="100" />
+								</li>
+								<li id="field-affiliateConfirm"><label for="affiliateConfirm">'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_AFFILIATE_CONFIRM") . '</label>
+									<input type="checkbox" id="edit-affiliateConfirm" name="affiliateConfirm" ' . $affiliateConfirm . '  />
+								</li>
+							</ul>
+					 </fieldset>
+
 					 <fieldset class="adminform">
 							<legend>PayPal</legend>
 							<ul class="adminformlist">
@@ -151,7 +176,7 @@ if ($view_page){
 									<input type="text" id="edit-paypalEmail" name="paypalEmail" value="' . $dati['paypalEmail'] . '" size="100" maxlength="100"/>
 								</li>
 							</ul>
-					</fieldset>
+					 </fieldset>
 				
 					 <fieldset class="adminform">
 							<legend>'  . JText::_("COM_WIMTVPRO_CONFIG_PRICING_TAX_TITLE") . '</legend>

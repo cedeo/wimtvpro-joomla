@@ -163,8 +163,14 @@ class wimtvproControllersettings extends JControllerAdmin
 					$dati[$key] = $value;
 					
 				}
+
                 if (isset($dati["dateOfBirth"]))
 				    $dati["dateOfBirth"]  = str_replace ("-","/", $dati["dateOfBirth"]);
+                if (isset($dati["affiliate"]))
+				    $dati["affiliate"] = $dati['affiliate'] == 'on' ? 'true' : 'false';
+                if (isset($dati["affiliateConfirm"]))
+				    $dati["affiliateConfirm"] = $dati['affiliateConfirm'] == 'on' ? 'true' : 'false';
+
 				unset($dati['task']);
 				unset($dati['token']);
 				$response = apiEditProfile($dati);
