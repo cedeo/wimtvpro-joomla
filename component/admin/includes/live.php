@@ -17,6 +17,7 @@ $userpeer = $username;
 $json = apiGetLiveEvents($timezone, $onlyActive);
 $arrayjson_live = json_decode($json);
 
+//print_r($arrayjson_live);
 $output = "";
 
 
@@ -55,6 +56,7 @@ if ($arrayjson_live ){
     $livedate = json_decode($details_live);
 	$data = $livedate->eventDate;
 	if (intval($livedate->eventMinute)<10) $livedate->eventMinute = "0" .  $livedate->eventMinute;
+    //print_r($livedate->eventMinute);
 	$oraMin = $livedate->eventHour . ":" . $livedate->eventMinute;
 	$timeToStart= $livedate->timeToStart;
 	$timeLeft = $livedate->timeLeft;

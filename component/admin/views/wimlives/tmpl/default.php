@@ -13,21 +13,22 @@ $urllive =  "components/com_wimtvpro/includes/live.php";
 echo '	
 <script>
     var timezone = -(new Date().getTimezoneOffset())*60*1000;
-jQuery(document).ready(function(){ 
-	jQuery.ajax({
-			context: this,
-			url:  "' . $urllive  . '", 		      
-			type: "POST",
-			dataType: "html",
-			async: false,
-			data: "type=table&timezone =" + timezone  + "&id=all&onlyActive=true&username=' . $username . '&password=' . $password . '&basePath=' . $basePath . '",  
-			success: function(response) {
+    jQuery(document).ready(function(){
+        //console.log("' . $urllive . '");
+        jQuery.ajax({
+                context: this,
+                url:  "' . $urllive  . '",
+                type: "POST",
+                dataType: "html",
+                async: false,
+                data: "type=table&timezone =" + timezone  + "&id=all&onlyActive=true&username=' . $username . '&password=' . $password . '&basePath=' . $basePath . '",
+                success: function(response) {
+                    //console.log(response);
+                    jQuery(".live_table tbody").html(response);
+                },
 
-				jQuery(".live_table tbody").html(response);
-			},
-				
-	});
-});			
+        });
+    });
 </script>';
 		
 ?>

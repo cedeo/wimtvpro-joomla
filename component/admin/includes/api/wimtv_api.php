@@ -7,8 +7,8 @@ include_once("api.php");
 
 if (JComponentHelper == 'JComponentHelper') {
     define('_JEXEC', 1 );
-    include_once( '../../../libraries/import.php' ); // framework
-    include_once( '../../../configuration.php' );
+    include_once( '../../../../libraries/import.php' ); // framework
+    include_once( '../../../../configuration.php' );
     jimport( 'joomla.application.component.helper' );
 }
 
