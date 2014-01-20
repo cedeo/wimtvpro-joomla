@@ -46,6 +46,10 @@ if (is_dir($directory)) {
 }
 $submenu = "<div id='submenu-box'><div class='m'><ul id='submenu'>";
 if ($view_page){
+	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&credential=1' class='";
+	if ($_GET["credential"]=="1") $submenu .= "active";
+	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_CREDENTIALTAB") . "</a> ";
+	
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings' class='";
 	if (!isset($_GET["credential"]) AND !isset($_GET["update"]) AND !isset($_GET["pack"])) $submenu .= "active";
 	$submenu .= " config'>" . JText::_("COM_WIMTVPRO_CONFIG_SKIN") . "</a>";
@@ -64,9 +68,7 @@ if ($view_page){
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=4' class='";
 	if ($_GET["update"]=="4") $submenu .= "active";
 	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_FEATURES") . "</a> ";
-	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&credential=1' class='";
-	if ($_GET["credential"]=="1") $submenu .= "active";
-	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_CREDENTIALTAB") . "</a> ";
+	
 }
 $submenu .= "</ul><div class='clr'></div></div></div>";
 echo $submenu;

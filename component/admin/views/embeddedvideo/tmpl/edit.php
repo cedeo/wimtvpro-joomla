@@ -5,7 +5,6 @@ JHtml::_('behavior.tooltip');
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
-$app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');
@@ -99,9 +98,9 @@ if ($arrayPlay[0]->showtimeIdentifier==""){
 	$videos .= $response;
 	
 	$videos .= "<p>" . $arrayST["description"] . "</p>";
-	$videos .= "<p>Duration: <b>" . $arrayST["duration"] . "</b>";
+	$videos .= "<p>" . jText::_("COM_WIMTVPRO_REPORT_DURATION") . ": <b>" . $arrayST["duration"] . "</b>";
 	if (count($arrayST["categories"])>0){
-		$videos .= "<br/>Categories<br/>";
+		$videos .= "<br/>" . jText::_("COM_WIMTVPRO_UPLOAD_TITLE_FIELD_CATEGORY") . "<br/>";
 		foreach ($arrayST["categories"] as $key => $value) {
 			$valuescCatST = "<i>" . $value->categoryName . ":</i> ";
 			$videos .= $valuescCatST;

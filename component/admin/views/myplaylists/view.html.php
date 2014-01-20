@@ -68,6 +68,8 @@ class WimtvproViewmyplaylists extends JView
 		$document = JFactory::getDocument();
 		//JHTML::_('custom.tablesorter');
 		$document->setTitle(JText::_('COM_WIMTVPRO_ADMINISTRATION'));
+		JText::script('COM_WIMTVPRO_MSG_PLAYLIST_ADDEDVIDEO');
+		JText::script('COM_WIMTVPRO_MSG_PLAYLIST_ERROR');
 		$document->addStyleSheet(JURI::base() . "components/com_wimtvpro/assets/css/wimtvpro.css");
 		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/jquery-2.0.2.min.js");
 		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/wimtvpro.js");

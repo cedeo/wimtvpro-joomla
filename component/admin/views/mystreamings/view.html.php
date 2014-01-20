@@ -24,6 +24,7 @@ class WimtvproViewmystreamings extends JView
 		||    $lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
 		
 		$document = JFactory::getDocument();
+		
 		$document->addStyleSheet(JURI::base() . "components/com_wimtvpro/assets/css/wimtvpro.css");
 		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/jquery-2.0.2.min.js");
 		
@@ -91,6 +92,9 @@ class WimtvproViewmystreamings extends JView
 		$document = JFactory::getDocument();		
 		$document->setTitle(JText::_('COM_WIMTVPRO_ADMINISTRATION'));
 		$document->addStyleSheet(JURI::base() . "components/com_wimtvpro/assets/css/wimtvpro.css");
+		JText::script('COM_WIMTVPRO_MSG_PLAYLIST_ERROR');
+		JText::script('COM_WIMTVPRO_MSG_PLAYLIST_ADDEDVIDEO');
+		JHtml::_('behavior.framework', true);
 		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/jquery-2.0.2.min.js");
 		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/wimtvpro.js");
 		if (isset($_GET["inserInto"])) {
@@ -102,7 +106,7 @@ class WimtvproViewmystreamings extends JView
 			$document->addScriptDeclaration('
 				
 				jQuery(document).ready(function() {
- 
+ 						
 						jQuery(".iframeClicked").click(function(){
 								id = jQuery(this).attr("id");
 								jQuery("input").each(function(){

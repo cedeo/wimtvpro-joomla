@@ -22,8 +22,9 @@ if ($view_page){
 	
 
 	
-	
 ?>
+
+
 <form action="<?php echo JRoute::_('index.php?option=com_wimtvpro&view=mystreamings'); ?>"
 	method="post" name="adminForm">
 	

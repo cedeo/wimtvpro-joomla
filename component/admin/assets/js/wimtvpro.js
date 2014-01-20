@@ -142,7 +142,7 @@ jQuery(document).ready(function(){
 			  }
 			});
 			if (playlistId == ""){
-				alert ("First, You must selected a playlist");
+				alert (Joomla.JText._('COM_WIMTVPRO_MSG_PLAYLIST_ERROR'));
 			}else{
 		
 			
@@ -161,7 +161,7 @@ jQuery(document).ready(function(){
 			   			    var counter = parseInt(jQuery(this).children(".counter").html());
 			   			    jQuery(this).children(".counter").html(counter +1);
 			   			  }
-			   			  alert ("The video is insert into playlist selected!");
+			   			  alert (Joomla.JText._('COM_WIMTVPRO_MSG_PLAYLIST_ADDEDVIDEO'));
 			   			});
 			   		}
 
