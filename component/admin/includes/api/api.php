@@ -71,10 +71,13 @@ class Api {
 
     function execute($request, $expectedMimeType='text/html', $defaultLanguage=null) {
         $request->expects($expectedMimeType);
-        if (!$defaultLanguage)
+        if (!$defaultLanguage) {
+            $request->addHeader('Content-language', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
             $request->addHeader('Accept-Language', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-        else
+        } else {
+            $request->addHeader('Content-language', $defaultLanguage);
             $request->addHeader('Accept-Language', $defaultLanguage);
+        }
         $request->_curlPrep();
         $result = $request->send();
 	    return $result;

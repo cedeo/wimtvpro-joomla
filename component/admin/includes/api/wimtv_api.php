@@ -135,7 +135,7 @@ function apiGetLiveIframe($host_id, $timezone="") {
         $url .= '?timezone=' . $timezone;
     $request = $apiAccessor->getRequest($url);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, 'text/xml, application/xml');
+    return $apiAccessor->execute($request, 'text/xml, application/xml', 'it-it');
 }
 
 function apiAddLive($parameters) {
