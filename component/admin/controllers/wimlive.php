@@ -156,7 +156,23 @@ class WimtvproControllerwimlive extends JControllerForm
 	
 	}
 
-	
+    public function edit()
+    {
+        $input = JFactory::getApplication()->input;
+        //var_dump ($input);
+        $pks = $input->post->get('cid', array(), 'array');
+
+        if (count($pks)>1){
+            JFactory::getApplication()->enqueueMessage("You can select only one event to edit");
+            $this->setRedirect('index.php?option=com_wimtvpro&view=wimlives');
+        } else {
+            $this->setRedirect('index.php?option=com_wimtvpro&view=wimlive&layout=edit&cid=' . $pks[0]);
+
+        }
+
+
+    }
+
 	public function delete()
 	{
 		$input = JFactory::getApplication()->input;

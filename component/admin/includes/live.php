@@ -5,6 +5,8 @@ error_reporting(0);
 require_once ( "api/wimtv_api.php" );
 
 $timezone = $_POST['timezone_'];
+$session = JFactory::getSession();
+$session->set('timezone', $timezone);
 $type = $_POST['type'];
 $id =  $_POST['id'];
 $onlyActive = $_POST['onlyActive'];
