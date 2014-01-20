@@ -50,7 +50,6 @@ class WimtvproControllerwimlive extends JControllerForm
 		$url = $jform['Url'];
 		$public = $jform['Public'];
 		$record = $jform['Record'];
-		$giorno = $jform['Giorno'];
 		$orain = $jform['Ora'];
 		$durationin = $jform['Duration'];
 		$timelive = $jform['timelivejs'];
@@ -105,9 +104,10 @@ class WimtvproControllerwimlive extends JControllerForm
 				$duration = ($separe_duration[0] * 60) + $separe_duration[1];
 			}
 			else $duration = 0;
-		
-            $post = array("name"    => $name,
-                          "url"     => $url,
+
+
+            $post = array("name" => $name,
+                          "url" => $url,
                           "eventDate" => $giorno,
                           "paymentMode" => $typemode,
                           "eventHour" => $ora[0],
@@ -115,13 +115,12 @@ class WimtvproControllerwimlive extends JControllerForm
                           "duration" => $duration,
                           "durationUnit" => "Minute",
                           "publicEvent" => $public,
-                          "timezone" => $timelive,
                           "recordEvent" => $record);
 
 			if ($_GET["cid"]!="")  
-				$response = apiModifyLive($_GET['cid'], $post);
+				$response = apiModifyLive($_GET['cid'], $post, $timelive);
             else
-			    $response = apiAddLive($post); //
+			    $response = apiAddLive($post, $timelive); //
 
 			if ($response!=""){
 				$message = json_decode($response);

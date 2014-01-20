@@ -18,7 +18,7 @@
                   <option value="false">COM_WIMTVPRO_FIELD_RECORD_FALSE</option>
                 </field>
                                 
-                <field name="Giorno" type="calendar" default="" label="COM_WIMTVPRO_FIELD_DATE"   format="%d/%m/%Y" />
+                <field name="Giorno" type="calendar" default="" label="COM_WIMTVPRO_FIELD_DATE" format="%d/%m/%Y" />
         
                 <field name="Ora" type="text" default="00:00"  label="COM_WIMTVPRO_FIELD_HOUR"  />
                 <field name="Duration" type="text" default="00:00" label="COM_WIMTVPRO_FIELD_DURATION"  />

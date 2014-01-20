@@ -52,7 +52,7 @@ if ($arrayjson_live ){
 
     $identifier = $value -> identifier;
     $embedded_iframe = apiGetLiveIframe($identifier, $timezone);
-    $details_live = apiEmbeddedLive($identifier);
+    $details_live = apiEmbeddedLive($identifier, $timezone);
     $livedate = json_decode($details_live);
 	$data = $livedate->eventDate;
 	if (intval($livedate->eventMinute)<10) $livedate->eventMinute = "0" .  $livedate->eventMinute;

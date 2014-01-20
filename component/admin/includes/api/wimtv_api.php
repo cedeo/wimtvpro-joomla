@@ -138,21 +138,28 @@ function apiGetLiveIframe($host_id, $timezone="") {
     return $apiAccessor->execute($request, 'text/xml, application/xml', 'it-it');
 }
 
-function apiAddLive($parameters) {
+function apiAddLive($parameters, $timezone=null) {
     $apiAccessor = getApi();
-    $request = $apiAccessor->postRequest($apiAccessor->liveHostsUrl);
+    $url = $apiAccessor->liveHostsUrl;
+    if ($timezone)
+        $url .= '?timezone=' . $timezone;
+    $request = $apiAccessor->postRequest($url);
     $request->body($parameters);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, 'text/html, application/json', 'it-it');
+    return $apiAccessor->execute($request, 'application/json', 'it-it');
 }
 
-function apiModifyLive($host_id, $parameters) {
+function apiModifyLive($host_id, $parameters, $timezone=null) {
     $apiAccessor = getApi();
-    $request = $apiAccessor->postRequest($apiAccessor->liveHostsUrl . '/' . $host_id);
+    $url = $apiAccessor->liveHostsUrl . '/' . $host_id;
+    if ($timezone)
+        $url .= '?timezone=' . $timezone;
+    $request = $apiAccessor->postRequest($url);
     $request->body($parameters);
     $request = $apiAccessor->authenticate($request);
-    return $apiAccessor->execute($request, 'text/html, application/json', 'it-it');
+    return $apiAccessor->execute($request,  'application/json', 'it-it');
 }
+
 
 function apiPublishOnShowtime($id, $parameters) {
     $apiAccessor = getApi();
@@ -313,7 +320,7 @@ function apiCommercialPacket() {
 }
 
 $params = JComponentHelper::getParams('com_wimtvpro');
-$basePathWimtv = $params->get('wimtv_basepath');
+$basePathWimtv = $params->get('wimtv_basepath');  //"http://192.168.31.198:8082/wimtv-webapp/rest/"; //
 $username = $params->get('wimtv_username');
 $password = $params->get('wimtv_password');
 initApi($basePathWimtv, $username, $password);

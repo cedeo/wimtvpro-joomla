@@ -264,7 +264,7 @@ function getDateRange($startDate, $endDate, $format="Y/m/d"){
 function wimtvpro_alert_reg($username,$password,$stamp=true){
 	//If user isn't register or not inser user and password
     $params = JComponentHelper::getParams('com_wimtvpro');
-    $basePathWimtv = $params->get('wimtv_basepath');
+    $basePathWimtv = $params->get('wimtv_basepath');   //"http://192.168.31.198:8082/wimtv-webapp/rest/"; //
     initApi($basePathWimtv, $username, $password);
 	if (!json_decode(apiGetProfile())->name){
 		$ahref= '<a class="modal" href="index.php?option=com_config&amp;view=component&amp;component=com_wimtvpro&amp;path=&amp;tmpl=component" rel="{handler: \'iframe\', size: {x: 875, y: 550}, onClose: function() {}}">';
@@ -287,7 +287,7 @@ function wimtvpro_viever_jwplayer($userAgent,$contentId,$video,$dirJwPlayer){
 		$urlPlayIPadIphone = "";
 		$contentId = $video[0]->contentidentifier;
 		$response = apiGetDetailsVideo($contentId);
-		$arrayjson   = json_decode($response);
+		$arrayjson = json_decode($response);
 
 		$urlPlayIPadIphone = $arrayjson->streamingUrl->streamer;
 		$configFile = "'file': '" . $urlPlayIPadIphone . "',";

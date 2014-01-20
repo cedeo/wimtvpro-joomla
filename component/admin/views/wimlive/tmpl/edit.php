@@ -10,7 +10,9 @@ echo '
     
 jQuery(document).ready(function(){
 	var timezone = -(new Date().getTimezoneOffset())*60*1000;
+	console.log(timezone);
 	jQuery(".timelivejs").val(timezone);	
+	console.log(jQuery(".timelivejs").val());
 });
 </script>';
 
@@ -26,17 +28,6 @@ $userpeer = $username;
 
 $id = $_GET["cid"];
 
-/*$url_live_embedded = $basePathWimtv . "liveStream/" . $userpeer . "/" . $userpeer . "/hosts/" . $id;
-
-$ch_embedded= curl_init();
-
-curl_setopt($ch_embedded, CURLOPT_URL, $url_live_embedded);
-curl_setopt($ch_embedded, CURLOPT_VERBOSE, 0);
-
-curl_setopt($ch_embedded, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($ch_embedded, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-curl_setopt($ch_embedded, CURLOPT_USERPWD, $credential);
-curl_setopt($ch_embedded, CURLOPT_SSL_VERIFYPEER, FALSE);*/
 if ($id) {
     $embedded = apiEmbeddedLive($id); //curl_exec($ch_embedded);
     $arrayjson_live = json_decode($embedded);
