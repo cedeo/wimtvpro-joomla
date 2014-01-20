@@ -4,7 +4,7 @@ error_reporting(0);
 
 require_once ( "api/wimtv_api.php" );
 
-$timezone = $_POST['timezone'];
+$timezone = $_POST['timezone_'];
 $type = $_POST['type'];
 $id =  $_POST['id'];
 $onlyActive = $_POST['onlyActive'];
@@ -68,7 +68,7 @@ if ($arrayjson_live ){
     $embedded_code = '<textarea readonly="readonly" onclick="this.focus(); this.select();">' . $embedded_iframe . '</textarea>';
     if ($type=="table") {
 
-      //Check Live is now
+      /*/Check Live is now
       $dataNow = date("d/m/Y");
       $arrayData = explode ("/",$data);
 	  $arrayOra = explode (":",$oraMin);
@@ -82,14 +82,11 @@ if ($arrayjson_live ){
       $timeStampFine =  mktime($arrayOra[0]+$arrayDurata[0],$arrayOra[1]+$arrayDurata[1],$arrayOra[2]+$arrayDurata[2],$arrayData[1],$arrayData[0],$arrayData[2]);
 
       $timeStampNow =  mktime(date("H"),date("i"),date("s"));
-
+                        */
       $liveIsNow = false;
-      if ($dataNow == $data){
-      	//if (($timeStampNow>=$timeStampInizio) && ($timeStampNow<$timeStampFine )) {
-			 $liveIsNow = true;
-		//}
+      if ($timeToStart <= 0 && $timeLeft > 0) {
+          $liveIsNow = true;
       }
-
 
       $checked = '<input type="checkbox" id="cb1" name="cid[]" value="' .  $identifier . '" onclick="Joomla.isChecked(this.checked);" title="">';
 

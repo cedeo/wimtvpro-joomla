@@ -14,7 +14,7 @@ echo '
 <script>
     var timezone = -(new Date().getTimezoneOffset())*60*1000;
     jQuery(document).ready(function(){
-        //console.log("' . $urllive . '");
+        //console.log(timezone);
         jQuery.ajax({
                 context: this,
                 url:  "' . $urllive  . '",

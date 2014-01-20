@@ -10,22 +10,10 @@ echo '
     
 jQuery(document).ready(function(){
 	var timezone = -(new Date().getTimezoneOffset())*60*1000;
-	console.log(timezone);
+	//console.log(timezone);
 	jQuery(".timelivejs").val(timezone);	
-	console.log(jQuery(".timelivejs").val());
 });
 </script>';
-
-
-$params = JComponentHelper::getParams('com_wimtvpro');
-$basePathWimtv = $params->get('wimtv_basepath');
-$username = $params->get('wimtv_username');
-$password = $params->get('wimtv_password');
-$credential = $username . ":" . $password;
-
-$userpeer = $username;
-
-
 $id = $_GET["cid"];
 
 if ($id) {
@@ -45,25 +33,18 @@ if ($id) {
 			<?php echo JText::_( 'COM_WIMTVPRO_TITLE_LIVE' ); ?>
 		</legend>
 		<ul class="adminformlist">
-			<?php foreach($this->form->getFieldset() as $field): ?>
-			
-		
-			
-			<li><?php echo $field->label;echo $field->input;?></li>
+			<?php foreach ($this->form->getFieldset() as $field): ?>
+			    <li><?php echo $field->label;echo $field->input;?></li>
 			<?php endforeach; ?>
 		</ul>
 	</fieldset>
 	<div>
+    <script>
+
+    </script>
 
 	
 	<input type="hidden" name="task" value="wimlive.edit" />
 		<?php echo JHtml::_('form.token'); ?>
 	</div>
 </form>
-
-<?php 
-
-
-
-
-?>

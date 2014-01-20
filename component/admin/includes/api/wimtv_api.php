@@ -31,9 +31,12 @@ function apiCreateUrl($name) {
     return $apiAccessor->execute($request);
 }
 
-function apiEmbeddedLive($hostId) {
+function apiEmbeddedLive($hostId, $timezone=null) {
     $apiAccessor = getApi();
-    $request = $apiAccessor->getRequest('liveStream/' . $apiAccessor->username . '/' . $apiAccessor->username . '/hosts/' . $hostId);
+    $url = 'liveStream/' . $apiAccessor->username . '/' . $apiAccessor->username . '/hosts/' . $hostId;
+    if ($timezone)
+        $url .= "?timezone=" .$timezone;
+    $request = $apiAccessor->getRequest($url);
     $request = $apiAccessor->authenticate($request);
     return $apiAccessor->execute($request, Mime::JSON, 'it-it');
 }
