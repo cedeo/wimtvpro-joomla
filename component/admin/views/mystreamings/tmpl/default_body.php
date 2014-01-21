@@ -104,17 +104,19 @@ foreach ($this->items as $i => $row)
 
 		
 		<?php if ($canChange) : ?>
+            <!-- Eliminati gli span inutili
 			<?php if ($saveOrder) : ?>
 					<span><?php echo $this->pagination->orderUpIcon($k, $row->contentidentifier == @$this->items[$k-1]->contentidentifier, 'mystreamings.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
 					<span><?php echo $this->pagination->orderDownIcon($k, $this->pagination->total, $row->contentidentifier == @$this->items[$k+1]->contentidentifier, 'mystreamings.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-				<?php endif; ?>
-				<?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>
-				
-				<input type="text" name="order[<?php echo $row->contentidentifier;?>]" size="5" value="<?php echo $orderkey;?>" <?php echo $disabled ?> class="text-area-order" />
-				<?php $originalOrders[] = $orderkey; ?>
+            <?php endif; ?>
+            -->
+            <?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>
+
+            <input type="text" name="order[<?php echo $row->contentidentifier;?>]" size="5" value="<?php echo $orderkey;?>" <?php echo $disabled ?> class="text-area-order" />
+            <?php $originalOrders[] = $orderkey; ?>
 			
 			<?php else : ?>
-				<?php echo $orderkey;?>
+            <?php echo $orderkey;?>
 		<?php endif; ?>
 	</td>
 	<?php } ?>
