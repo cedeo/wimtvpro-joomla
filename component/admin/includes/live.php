@@ -115,7 +115,7 @@ if ($arrayjson_live ){
     else {
       if ($count==0) {
         $name = "<b>" . $name . "</b>";
-        $day =  "" . $day;
+        $day =  "Begins to " . $day;
         $output = $name . "<br/>";
         $output .= $data . " " . $oraMin  . "<br/>" . $durata . "<br/>";
         $output .= $embedded_iframe;
@@ -125,7 +125,7 @@ if ($arrayjson_live ){
    }
   }
   if ($count<0)
-    $output = JText::_("COM_WIMTVPRO_LIVE_NOTEVENT");
+    $output =JText::_( 'COM_WIMTVPRO_LIVE_NOTEVENT' );
 
 echo $output;
 

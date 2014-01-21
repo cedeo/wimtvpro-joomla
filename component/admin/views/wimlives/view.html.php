@@ -27,10 +27,9 @@ class WimtvproViewwimlives extends JView
 
 		JToolBarHelper::title( JText::_('WimTVPro') . ": " .  JText::_( "COM_WIMTVPRO_TITLE_LIVE" ), 'wimtv' );
 		if (($username!="username" && $password!="password") || ($username!="" && $password!="")){
-			JToolBarHelper::divider();
 			JToolBarHelper::addNewX('wimlive.add');  //Upload new Media
 			//JToolBarHelper::custom('mymedia.download', 'download', 'assets/images/download.png', JText::_("Download"), true); //Download a video
-			JToolBarHelper::custom('wimlive.edit', 'edit', 'edit', JText::_("MYMEDIA_CONFIRM_EDIT"), true);
+			JToolBarHelper::editList('wimlive.edit', JText::_("MYMEDIA_CONFIRM_EDIT")); //'edit', 'edit', JText::_("MYMEDIA_CONFIRM_EDIT"), true);
 			JToolBarHelper::custom('wimlive.delete', 'delete', 'delete', JText::_("MYMEDIA_CONFIRM_DELETE"), true);
 			JToolBarHelper::divider();
 		}else

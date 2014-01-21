@@ -35,8 +35,10 @@ class WimtvproControllerputvideos extends JControllerForm
 		jimport('joomla.filesystem.file');		
 
 		$type = $_POST['type'];
-		$coid =$_POST['coid'];
-		
+		$coid = $_POST['coid'];
+        $video = json_decode(apiGetDetailsVideo($coid));
+        $status = $video->status;
+
 		
 		switch ($type) {
 		
@@ -81,7 +83,12 @@ class WimtvproControllerputvideos extends JControllerForm
                       "ccType" => $ccType,
                       "pricePerView" => $pricePerView,
                       "pricePerViewCurrency" => $pricePerViewCurrency);
-		$response = apiPublishOnShowtime($coid, $post);
+        if ($status != "OWNED") {
+            $acquid = $video->relationId;
+            $response = apiPublishAcquiredOnShowtime($coid, $acquid, $post);
+        } else {
+            $response = apiPublishOnShowtime($coid, $post);
+        }
 
 		
         $state = "showtime";
