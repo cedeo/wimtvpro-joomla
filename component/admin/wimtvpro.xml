@@ -51,7 +51,7 @@
 			<menu link="option=com_wimtvpro&amp;view=mymedias" view="mymedias" img="components/com_wimtvpro/assets/images/s_mymedias.png" alt="Wimtvpro/WimBox">COM_WIMTVPRO_TITLE_MEDIA</menu>
 			<menu link="option=com_wimtvpro&amp;view=mystreamings" view="mystreamings" img="components/com_wimtvpro/assets/images/s_mymedias.png" alt="Wimtvpro/WimVod">COM_WIMTVPRO_TITLE_STREAMING</menu>
 			<menu link="option=com_wimtvpro&amp;view=wimlives" view="wimlives" img="components/com_wimtvpro/assets/images/s_mymedias.png" alt="Wimtvpro/WimLive">COM_WIMTVPRO_TITLE_WIMLIVE</menu>
-			<menu link="option=com_wimtvpro&amp;view=report" view="report" img="components/com_wimtvpro/assets/images/s_myplaylists.png" alt="Wimtvpro/Report">COM_WIMTVPRO_TITLE_REPORT</menu>
+			   <menu link="option=com_wimtvpro&amp;view=report" view="report" img="components/com_wimtvpro/assets/images/s_myplaylists.png" alt="Wimtvpro/Report">COM_WIMTVPRO_TITLE_REPORT</menu>
 		</submenu>
 
 		<files folder="admin">
