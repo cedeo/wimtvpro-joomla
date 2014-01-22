@@ -120,7 +120,7 @@ class WimtvproViewmystreamings extends JView
 									context: this,
 									url : "components/com_wimtvpro/includes/script.php",
 									type: "GET",
-									data: "namefunction=createIframe&basePath=' . $basePath . '&directory=' . $directorySkin .  '&credential=' . $credential . '&id=" +id + "&width=" + width + "&height=" + height , 
+									data: "namefunction=createIframe&basePath=' . $directorySkin . '&directory=' . $directorySkin .  '&credential=' . $credential . '&id=" +id + "&width=" + width + "&height=" + height , 
 					
 									success: function(response) {
 										window.parent.jInsertEditorText(response,"' .  $_GET["e_name"] . '");
