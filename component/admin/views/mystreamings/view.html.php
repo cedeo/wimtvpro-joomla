@@ -95,7 +95,7 @@ class WimtvproViewmystreamings extends JView
 		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/wimtvpro.js");
 		if (isset($_GET["inserInto"])) {
 			if ($skinName!="") {
-				$directorySkin  = JURI::base() . "administrator/components/com_wimtvpro/uploads/skin";
+				$directorySkin  = JURI::base() . "components/com_wimtvpro/uploads/skin";
 				$directorySkin = $directorySkin   . "/" . $skinName . ".zip";
 			}
 			
