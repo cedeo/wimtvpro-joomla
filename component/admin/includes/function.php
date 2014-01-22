@@ -374,7 +374,7 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 		if ($user=="admin")
 			$directory  = JURI::base() . "components/com_wimtvpro/uploads/skin";
 		else
-			$directory  = JURI::base() . "components/com_wimtvpro/uploads/skin";
+			$directory  = JURI::base() . "administrator/components/com_wimtvpro/uploads/skin";
 		if ($skinName!="") {
 			$output .= "'skin':'" . $directory  . "/" . $skinName . ".zip',";
 		} else {
