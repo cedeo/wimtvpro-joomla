@@ -309,7 +309,7 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 	$username = $params->get('wimtv_username');
 	$height = $params->get('wimtv_heightPreview');
 	$width = $params->get('wimtv_widthPreview');
-
+	$skinName = $params->get('wimtv_nameSkin');
 	if (!count($arrayVideo)){
 		$output = "No Videos";
 	} else {
@@ -374,9 +374,11 @@ function createIframePlaylist($arrayVideo,$dirJwPlayer,$user="admin"){
 		if ($user=="admin")
 			$directory  = JURI::base() . "components/com_wimtvpro/uploads/skin";
 		else
-			$directory  = JURI::base() . "administrator/components/com_wimtvpro/uploads/skin";
+			$directory  = JURI::base() . "components/com_wimtvpro/uploads/skin";
 		if ($skinName!="") {
 			$output .= "'skin':'" . $directory  . "/" . $skinName . ".zip',";
+		} else {
+			$output .= "'skin':'" . $directory  . "/wimtv.zip',";
 		}
 	
 		$output .= $dimensions . "'playlist': [" .  $playlist . "],'playlist.position': 'right',	'playlist.size': '" . $playlistSize  . "'});</script>";
