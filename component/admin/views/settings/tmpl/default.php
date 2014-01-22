@@ -55,7 +55,7 @@ if ($view_page){
 	$submenu .= " config'>" . JText::_("COM_WIMTVPRO_CONFIG_SKIN") . "</a></li>";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&pack=1' class='";
 	if ($_GET["pack"]=="1") $submenu .= "active";
-	$submenu .= " pricing'>" . JText::_("COM_WIMTVPRO_CONFIG_PRICING") . "</a</li>>";
+	$submenu .= " pricing'>" . JText::_("COM_WIMTVPRO_CONFIG_PRICING") . "</a</li>";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=1' class='";
 	if ($_GET["update"]=="1") $submenu .= "active";
 	$submenu .= " payment'>" . JText::_("COM_WIMTVPRO_CONFIG_PAYMENT") . "</a></li>";
