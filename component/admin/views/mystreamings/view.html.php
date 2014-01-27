@@ -95,7 +95,7 @@ class WimtvproViewmystreamings extends JView
 		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/wimtvpro.js");
 		if (isset($_GET["inserInto"])) {
 			if ($skinName!="") {
-				$directorySkin  = JURI::base() . "administrator/components/com_wimtvpro/uploads/skin";
+				$directorySkin  = JURI::base() . "components/com_wimtvpro/uploads/skin";
 				$directorySkin = $directorySkin   . "/" . $skinName . ".zip";
 			}
 			
@@ -120,7 +120,7 @@ class WimtvproViewmystreamings extends JView
 									context: this,
 									url : "components/com_wimtvpro/includes/script.php",
 									type: "GET",
-									data: "namefunction=createIframe&basePath=' . $basePath . '&directory=' . $directorySkin .  '&credential=' . $credential . '&id=" +id + "&width=" + width + "&height=" + height , 
+									data: "namefunction=createIframe&basePath=' . $directorySkin . '&directory=' . $directorySkin .  '&credential=' . $credential . '&id=" +id + "&width=" + width + "&height=" + height , 
 					
 									success: function(response) {
 										window.parent.jInsertEditorText(response,"' .  $_GET["e_name"] . '");

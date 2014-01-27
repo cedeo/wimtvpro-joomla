@@ -128,6 +128,16 @@ $videos .= "</div>";
 		</legend>
 
 		<?php echo $videos;?>
+        
+        <?php 
+		
+		$embedded= str_replace('<?xml version="1.0" encoding="UTF-8"?>','',$response);
+
+		
+		if ($arrayST["showtimeIdentifier"]!="")
+			echo "<p>Embedded:</p><textarea style='resize: none; width:90%;height:70px;font-size:10px' readonly='readonly' onclick='this.focus(); this.select();'>" . htmlentities($embedded) . "</textarea>"; 
+		?>
+        
 	</fieldset>
 
 	<input type="hidden" name="task" value="<?php echo $page; ?>.edit" />

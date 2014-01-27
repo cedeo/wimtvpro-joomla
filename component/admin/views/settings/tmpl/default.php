@@ -46,27 +46,29 @@ if (is_dir($directory)) {
 }
 $submenu = "<div id='submenu-box'><div class='m'><ul id='submenu'>";
 if ($view_page){
-	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings' class='";
-	if (!isset($_GET["credential"]) AND !isset($_GET["update"]) AND !isset($_GET["pack"])) $submenu .= "active";
-	$submenu .= " config'>" . JText::_("COM_WIMTVPRO_CONFIG_SKIN") . "</a>";
-	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&pack=1' class='";
-	if ($_GET["pack"]=="1") $submenu .= "active";
-	$submenu .= " pricing'>" . JText::_("COM_WIMTVPRO_CONFIG_PRICING") . "</a>";
-	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=1' class='";
-	if ($_GET["update"]=="1") $submenu .= "active";
-	$submenu .= " payment'>" . JText::_("COM_WIMTVPRO_CONFIG_PAYMENT") . "</a>";
-	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=2' class='";
-	if ($_GET["update"]=="2") $submenu .= "active";
-	$submenu .= " live'>" . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE") . "</a>";
-	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=3' class='";
-	if ($_GET["update"]=="3") $submenu .= "active";
-	$submenu .= " user'>" . JText::_("COM_WIMTVPRO_CONFIG_USER") . "</a>";
-	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=4' class='";
-	if ($_GET["update"]=="4") $submenu .= "active";
-	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_FEATURES") . "</a> ";
 	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&credential=1' class='";
 	if ($_GET["credential"]=="1") $submenu .= "active";
-	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_CREDENTIALTAB") . "</a> ";
+	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_CREDENTIALTAB") . "</a></li> ";
+	
+	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings' class='";
+	if (!isset($_GET["credential"]) AND !isset($_GET["update"]) AND !isset($_GET["pack"])) $submenu .= "active";
+	$submenu .= " config'>" . JText::_("COM_WIMTVPRO_CONFIG_SKIN") . "</a></li>";
+	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&pack=1' class='";
+	if ($_GET["pack"]=="1") $submenu .= "active";
+	$submenu .= " pricing'>" . JText::_("COM_WIMTVPRO_CONFIG_PRICING") . "</a</li>";
+	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=1' class='";
+	if ($_GET["update"]=="1") $submenu .= "active";
+	$submenu .= " payment'>" . JText::_("COM_WIMTVPRO_CONFIG_PAYMENT") . "</a></li>";
+	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=2' class='";
+	if ($_GET["update"]=="2") $submenu .= "active";
+	$submenu .= " live'>" . JText::_("COM_WIMTVPRO_CONFIG_WIMLIVE") . "</a></li>";
+	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=3' class='";
+	if ($_GET["update"]=="3") $submenu .= "active";
+	$submenu .= " user'>" . JText::_("COM_WIMTVPRO_CONFIG_USER") . "</a></li>";
+	$submenu .= "<li><a href='index.php?option=com_wimtvpro&view=settings&update=4' class='";
+	if ($_GET["update"]=="4") $submenu .= "active";
+	$submenu .= " other'>" . JText::_("COM_WIMTVPRO_CONFIG_FEATURES") . "</a></li> ";
+	
 }
 $submenu .= "</ul><div class='clr'></div></div></div>";
 echo $submenu;
