@@ -77,6 +77,7 @@ class Api {
 
     function execute($request, $expectedMimeType='text/html', $defaultLanguage=null) {
         $request->expects($expectedMimeType);
+        $request->addHeader("X-Wimtv-Pro-Plugin-Name", "joomla");
         if (!$defaultLanguage) {
             $request->addHeader('Content-language', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
             $request->addHeader('Accept-Language', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
