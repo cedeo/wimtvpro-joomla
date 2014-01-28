@@ -69,9 +69,8 @@ foreach ($this->items as $row)
 		</td>
 		<td>
 			<a class="jgrid" href="javascript:void(0);" title="Download">
-				<span class="icon-32-download" id="<?php echo $row->contentidentifier . '|' . $status_array[1];?>" rel="<?php echo $basePath;?>">
-					<span class="text">Download</span>
-				</span>
+				<a class="icon-32-download" href="<?php echo JURI::root() . "administrator/components/com_wimtvpro/includes/download.php?host_id=" . $row->contentidentifier ?>" rel="<?php echo $basePath;?>">
+				</a>
 			</a>
 		</td>
 

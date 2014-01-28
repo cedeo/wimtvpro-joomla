@@ -9,7 +9,7 @@
 
 error_reporting(0);
 
-require_once ( "api/wimtv_api.php" );
+require_once("api/wimtv_api.php" );
 
 define('CHUNK_SIZE', 1024*1024); // Size (in bytes) of tiles chunk
 
@@ -47,10 +47,8 @@ function readfile_chunked($file, $size, $username, $password) {
     ob_end_clean();
 }
 
-function wimtvpro_download() {
-    $code = explode("download/", request_path());
-    if (count($code)>1) {
-        $host_id = $code[1];
+function wimtvpro_download($host_id) {
+    if ($host_id) {
         $info = apiDownload($host_id);
         $headers = $info->headers;
         $opts = getApi();
@@ -74,3 +72,6 @@ function wimtvpro_download() {
     }
     die();
 }
+
+$host_id = $_GET['host_id'];
+wimtvpro_download($host_id);

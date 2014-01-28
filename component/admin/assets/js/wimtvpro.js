@@ -1,19 +1,5 @@
 jQuery.noConflict();
-jQuery(document).ready(function(){ 
-	
-	jQuery(".icon-32-download").click(function(){
-		
-		var id = jQuery(this).attr("id").split("|");
-		var basePath = jQuery(this).attr("rel");
-		var uri =  basePath + "videos/" + id[0] + "/download";
-		if (id[1]!=""){
-			var file = id[1].split(".");
-			uri = uri + "?ext=" + file[1] + "&filename=" + file[0];
-		} 
-		jQuery("body").append("<iframe src=\"" + uri + "\" style=\"display:none;\" />");
-		
-	});
-	
+jQuery(document).ready(function() {
 	
 	jQuery(".cc_set").click(function(){
 		jQuery(".cc_set").removeClass("selected");

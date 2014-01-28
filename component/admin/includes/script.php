@@ -19,9 +19,7 @@ require_once ( "api/wimtv_api.php" );
     $stid = $_GET['showtimeId'];
   if (isset($_GET['ordina']))
     $ordina = $_GET['ordina'];
-if (isset($_GET['basePath']))
-    $directorySkin = $_GET['basePath'];
-	
+
   $username = $_GET['username'];
   $password = $_GET['password'];
   $basePath = $_GET['basePath'];
