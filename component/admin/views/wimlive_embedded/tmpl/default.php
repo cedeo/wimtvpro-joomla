@@ -7,39 +7,21 @@ JHtml::_('behavior.tooltip');
 
 $app = &JFactory::getApplication();
 $params = JComponentHelper::getParams('com_wimtvpro');
-$basePathWimtv = $params->get('wimtv_basepath');
 $username = $params->get('wimtv_username');
-$password = $params->get('wimtv_password');
+$profile = json_decode(apiGetProfile());
+$password = $profile->liveStreamPwd;
+
 $credential = $username . ":" . $password;
 
-$userpeer = $username;
 $id =  $_GET['id'];
 
-/*$url_live_embedded = $basePathWimtv . "liveStream/" . $userpeer . "/" . $userpeer . "/hosts/" . $id;
-
-$ch_embedded= curl_init();
-
-curl_setopt($ch_embedded, CURLOPT_URL, $url_live_embedded);
-curl_setopt($ch_embedded, CURLOPT_VERBOSE, 0);
-
-curl_setopt($ch_embedded, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($ch_embedded, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-curl_setopt($ch_embedded, CURLOPT_USERPWD, $credential);
-curl_setopt($ch_embedded, CURLOPT_SSL_VERIFYPEER, FALSE);*/
-$embedded = apiEmbeddedLive($id);// curl_exec($ch_embedded);
+$embedded = apiEmbeddedLive($id);
 $arrayjson_live = json_decode($embedded);
 $url =  $arrayjson_live->url;
 $title = $arrayjson_live->name;
 
-$stream_url = explode ("/",$url);
-$stream_name = $stream_url[count($stream_url)-1];
-$url = "";
-for ($i=1;$i<count($stream_url)-1;$i++){
-	$url .= $stream_url[$i] . "/";
-}
-$url = $stream_url[0] . "/" . $url;
+$url = substr($url, 0, strrpos( $url, '/'));
 
-$url = substr($url, 0, -1);
 ?>
 
 <div id="page">	<h1>Producer Live <?php echo $title;?></h1>
@@ -71,7 +53,7 @@ jQuery(document).ready(function(){
 	    
 	    producer.setCredentials('<?php echo $username ?>', '<?php echo $password; ?>');
     	producer.setUrl(decodeURIComponent('<?php echo $url;?>'));
-    	producer.setStreamName('<?php echo $stream_name;?>');
+    	producer.setStreamName('<?php echo $title;?>');
 	    producer.setStreamWidth(640);
 	    producer.setStreamHeight(480);
 	    producer.connect();
