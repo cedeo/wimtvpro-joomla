@@ -86,8 +86,14 @@ class Api {
             $request->addHeader('Accept-Language', $defaultLanguage);
         }
         $request->_curlPrep();
-        $result = $request->send();
-	    return $result;
+        try {
+            $result = $request->send();
+        } catch (\Exception $exception) {
+            var_dump($request);
+            trigger_error($exception->getMessage(), E_USER_NOTICE);
+            $result = "";
+        }
+        return $result;
     }
 
 }
