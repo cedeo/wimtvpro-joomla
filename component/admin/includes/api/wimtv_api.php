@@ -354,6 +354,14 @@ function apiDeleteItems($progId, $itemId) {
 }
 
 
+function apiUpdateItems($progId, $itemId, $params) {
+    $apiAccessor = getApi();
+    $request = $apiAccessor->postRequest('programming/' . $progId .'/item/' + $itemId);
+    $request->body($params);
+    $request = $apiAccessor->authenticate($request);
+    return $apiAccessor->execute($request);
+}
+
 
 $params = JComponentHelper::getParams('com_wimtvpro');
 $basePathWimtv = $params->get('wimtv_basepath');  //"http://192.168.31.198:8082/wimtv-webapp/rest/"; //
