@@ -7,7 +7,7 @@
 <div id="progform">
     <form>
         <label><?php echo "Give a name to this programming (not mandatory)"; ?></label>
-        <input type="text" value="<?php echo $this->nameProgramming;?>" id="progname" class="form-text"/>
+        <input type="text" value="" id="progname" class="form-text"/>
         <input type="submit" value="Send" class="button submitnow form-submit" />
         <input type="submit" value="Skip" class="button submitnow form-submit" />
     </form>

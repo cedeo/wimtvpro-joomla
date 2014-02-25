@@ -18,32 +18,20 @@ class WimtvproViewprogrammings extends JView
 	 */
 
     public $programmings;
-    public $nameProgramming = "";
 
     public function display($tpl = null)
     {
-        // get the Data
-        /*$item = $this->get('Item');
-        $script = $this->get('Script');
 
-        // Check for errors.
-        if (count($errors = $this->get('Errors')))
-        {
-                JError::raiseError(500, implode('<br />', $errors));
-                return false;
+        $task = isset($_GET['task']) ? $_GET['task'] : null;
+        $progId = isset($_GET['progId']) ? $_GET['progId'] : null;
+
+        if ($task == "delete" && $progId) {
+            apiDeleteProgramming($progId);
         }
-
-        JRequest::setVar('hidemainmenu', true);
-
-        // Assign the Data*/
-
-        // Set the toolbar
 
         if ($this->getLayout() == "default") {
             $model = $this->getModel();
             $this->programmings = $model->getProgrammings();
-        } else {
-            $this->nameProgramming = isset($_GET['nameProgramming']) ? $_GET["nameProgramming"] : "";
         }
         $this->addToolBar();
 
