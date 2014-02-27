@@ -403,13 +403,12 @@ jQuery(document).ready(function() {
 	jQuery(".icon_remove").click(function(){
 		callRemoveVideo(jQuery(this));
 	});
-	
+	*/
 	//Request new URL for create a wimlive Url
 	jQuery(".createUrl").click(function(){
-	  console.log("Click");
 	  jQuery.ajax({
 			context: this,
-			url:  url_pathPlugin + "scripts.php", 
+			url:  url_pathPlugin + "includes/script.php",
 			type: "GET",
 			dataType: "html",
 			data:{
@@ -417,11 +416,12 @@ jQuery(document).ready(function() {
 				titleLive: jQuery("#edit-name").val()	
 			},
 			success: function(response) {
+              console.log(jQuery("#edit-url"));
 			  var json =  jQuery.parseJSON(response);
 			  var result = json.result;
 			  if (result=="SUCCESS"){
 			  	jQuery("#edit-url").attr("readonly", "readonly");
-			  	jQuery("#edit-url").attr("value", json.liveUrl);
+			  	jQuery("#edit-url").val(json.liveUrl);
 			  	jQuery(this).hide();
 				jQuery(".removeUrl").show();
 			  } else {
@@ -431,7 +431,7 @@ jQuery(document).ready(function() {
 			    jQuery(".createPass").click(function(){
 			     jQuery.ajax({
 			     context: this,
-			     url:  url_pathPlugin + "scripts.php", 
+			     url:  url_pathPlugin + "includes/script.php",
 			     type: "GET",
 			     dataType: "html",
 			     data:{
@@ -458,7 +458,7 @@ jQuery(document).ready(function() {
      jQuery("#edit-url").removeAttr("disabled");
      jQuery("#edit-url").val("");	
    });
-      
+  /*
 });
 
 

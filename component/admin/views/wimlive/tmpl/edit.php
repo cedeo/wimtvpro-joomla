@@ -12,14 +12,15 @@ $session->set('timezone', $timezone);
 
 echo '
 <script>
-    
+var url_pathPlugin = "' . JURI::base() . 'components/com_wimtvpro/' . '";
+
 jQuery(document).ready(function(){
 	var timezone = -(new Date().getTimezoneOffset())*60*1000;
 	//console.log(timezone);
 	if (!"' . $timezone . '".length) {
         window.location.href = window.location.href + "&timezone=" + timezone;
     }
-	jQuery(".timelivejs").val(timezone);	
+	jQuery(".timelivejs").val(timezone);
 });
 </script>';
 
