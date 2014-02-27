@@ -48,7 +48,7 @@ class WimtvproViewprogrammings extends JView
 	 */
 	protected function addToolBar()
 	{
-		JToolBarHelper::title(JText::_('COM_WIMTVPRO_TITLE_PROGRAMMINGS'), 'wimtvpro');
+		JToolBarHelper::title(JText::_('COM_WIMTVPRO_TITLE_PROGRAMMINGS'), "wimtv");
         if ($this->getLayout() == "default") {
             JToolBarHelper::divider();
             JToolBarHelper::addNew('programmings.add','Add');

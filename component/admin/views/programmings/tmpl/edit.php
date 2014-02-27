@@ -19,7 +19,7 @@ $baseRoot = $params->get('wimtv_basepath');
 <!-- calendar -->
 <div id="calendar"></div>
 
-<div style="display:none">
+<div>
     <div class="embedded">
         <textarea id="progCode" onclick="this.focus(); this.select();"></textarea>
     </div>
