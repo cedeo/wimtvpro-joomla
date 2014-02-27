@@ -29,15 +29,15 @@ $baseRoot = $params->get('wimtv_basepath');
 </script>
 <script type="text/javascript">
     var programmingBase = "<?php echo JURI::base() . 'components/com_wimtvpro/includes/programmings.php' ?>";
-    var iamgeBase = "<?php echo substr($baseRoot, 0, -6) ?>";
+    var imageBase = "<?php echo substr($baseRoot, 0, -6) ?>";
 </script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo $baseRoot . 'script/jquery-ui.custom.min.js' ?>"></script>
-<script type="text/javascript" src="<?php echo $baseRoot . 'script/jquery.fancybox.min.js' ?>"></script>
-<script type="text/javascript" src="<?php echo $baseRoot . 'script/jquery.mousewheel.min.js' ?>"></script>
-<script type="text/javascript" src="<?php echo $baseRoot . 'script/fullcalendar/fullcalendar.min.js' ?>"></script>
-<script type="text/javascript" src="<?php echo $baseRoot . 'script/utils.js' ?>"></script>
-<script type="text/javascript" src="<?php echo $baseRoot . 'script/programming/programming.js' ?>"></script>
-<script type="text/javascript" src="<?php echo $baseRoot . 'script/programming/calendar.js' ?>"></script>
-<script type="text/javascript" src="<?php echo $baseRoot . 'script/jquery-ui.custom.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo substr($baseRoot, 0, -6) . '/script/jquery-ui.custom.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo substr($baseRoot, 0, -6) . '/script/jquery.fancybox.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo substr($baseRoot, 0, -6) . '/script/jquery.mousewheel.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo substr($baseRoot, 0, -6) . '/script/fullcalendar/fullcalendar.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo substr($baseRoot, 0, -6) . '/script/utils.js' ?>"></script>
+<script type="text/javascript" src="<?php echo substr($baseRoot, 0, -6) . '/script/programming/programming.js' ?>"></script>
+<script type="text/javascript" src="<?php echo substr($baseRoot, 0, -6) . '/script/programming/calendar.js' ?>"></script>
+<script type="text/javascript" src="<?php echo substr($baseRoot, 0, -6) . '/script/jquery-ui.custom.min.js' ?>"></script>
 <script type="text/javascript" src="<?php echo JURI::base() . 'components/com_wimtvpro/assets/js/programming-api.js' ?>"></script>
