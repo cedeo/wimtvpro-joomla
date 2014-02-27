@@ -9,7 +9,7 @@
 		<field name="wimtv_password" type="password" default="password"
 			label="COM_WIMTVPRO_CONFIG_PASSWORD" description="" />
 				
-		<field name="wimtv_basepath" type="hidden" default="https://www.wim.tv/wimtv-webapp/rest/" 
+		<field name="wimtv_basepath" type="hidden" default="http://peer.wim.tv/wimtv-webapp/rest/"
 		   label="wimtv_urlVideosDetailWimtv" description="Base path for wimtv api" />
 		<field name="wimtv_urlVideosDetailWimtv" type="hidden" default="videos?details=true&#38;#38;incomplete=true" 
 		   label="wimtv_urlVideosDetailWimtv" description="View videos wimtv" />
