@@ -19,8 +19,8 @@ $embedded = apiEmbeddedLive($id);
 $arrayjson_live = json_decode($embedded);
 $url =  $arrayjson_live->url;
 $title = $arrayjson_live->name;
-
-$url = substr($url, 0, strrpos( $url, '/'));
+$stream_url = substr($url, 0, strrpos( $url, '/'));
+$stream_name = substr($url, strrpos( $url, '/') + 1, strlen($url));
 
 ?>
 
@@ -28,7 +28,7 @@ $url = substr($url, 0, strrpos( $url, '/'));
   
 <p>On this page you can view the video you're broadcasting live. Keep it open during the whole transmission.</p>
 <div  class="pageproducer">
-<div id="producer" ></div>
+<div id="producer"></div>
 </div>
 
 
@@ -52,8 +52,8 @@ jQuery(document).ready(function(){
 	    console.log(producer);
 	    
 	    producer.setCredentials('<?php echo $username ?>', '<?php echo $password; ?>');
-    	producer.setUrl(decodeURIComponent('<?php echo $url;?>'));
-    	producer.setStreamName('<?php echo $title;?>');
+    	producer.setUrl(decodeURIComponent('<?php echo $stream_url;?>'));
+    	producer.setStreamName('<?php echo $stream_name;?>');
 	    producer.setStreamWidth(640);
 	    producer.setStreamHeight(480);
 	    producer.connect();
