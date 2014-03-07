@@ -47,7 +47,6 @@ if ($arrayPlay[0]->showtimeIdentifier==""){
 	//Video not streaming
 	$videos .= "<div id='container'></div>";
 	
-
 	$dimensions = "width: '" . $width . "px', height: '" . $height . "px',";
 
 	$urlPlay = explode("$$", $arrayPlay[0]->urlPlay);
@@ -65,16 +64,10 @@ if ($arrayPlay[0]->showtimeIdentifier==""){
 		$skin = "'skin':'" . $directory  . "/" . $skinName . ".zip',";
 	}
 
-
-
-
-	$videos .= $skin . $dimensions . $configFile . " image: '" . $thumbs[1] . "',
-});</script>";
+	$videos .= $skin . $dimensions . $configFile . " image: '" . $thumbs[1] . "', });</script>";
 
 } else
 {
-
-
 	//Video in Streaming
 
 	$contentItem = $coid ;

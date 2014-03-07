@@ -10,8 +10,8 @@ require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php
 
 
 /**
- * WIMTVPRO MEDIA Controller
-*/
+ * Questo controller gestisce la view che permette di mettere un video di Wimbox in showtime (WimVod)
+ */
 class WimtvproControllerputvideos extends JControllerForm
 {
 	public function __construct($config = array())

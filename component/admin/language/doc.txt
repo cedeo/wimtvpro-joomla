@@ -1,0 +1,3 @@
+Questa cartella contiene i file di traduzione del plugin.
+I file .sys.ini sono utilizzati durante l'installazione del plugin.
+I file .ini (senza .sys) sono utilizzati una volta che l'installazione del plugin è completata, per tradurre i testi.

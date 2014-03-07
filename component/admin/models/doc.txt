@@ -1,0 +1,2 @@
+I file presenti in questa cartella contengono una classe che deriva da JModel (il Model di Joomla) che è associata alla view con lo stesso nome.
+Attraverso il Controller, ogni View può accedere al suo Model, che contiene dati presi da wim.tv o dalle tabelle interne del plugin, utilizzando il metodo getModel();

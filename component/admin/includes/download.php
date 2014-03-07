@@ -7,6 +7,10 @@
  * To change this template use File | Settings | File Templates.
  */
 
+/**
+ * Questo file viene chiamato direttamente passando come parametro GET host_id, ovvero l'host id del video da scaricare.
+ * Si comporta come proxy, scaricando il file a pezzi di CHUNK_SIZE bytes e ritornando di volta in volta i chunk fino alla fine del download.
+ */
 error_reporting(0);
 
 require_once("api/wimtv_api.php" );

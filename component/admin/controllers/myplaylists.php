@@ -7,8 +7,8 @@ jimport('joomla.application.component.controllerform');
 jimport( 'joomla.application.component.controller' );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
 /**
- * WIMTVPRO MEDIA Controller
-*/
+ * Questo controller gestisce la view che permette la visualizzazione della tabella delle playlist
+ */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 

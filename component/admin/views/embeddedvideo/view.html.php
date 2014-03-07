@@ -6,8 +6,8 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.view');
 
 /**
- * HelloWorld View
-*/
+ * Questa view mostra l'anteprima di un video on demand.
+ */
 class wimtvproViewembeddedvideo extends JView
 {
 	/**
@@ -18,7 +18,7 @@ class wimtvproViewembeddedvideo extends JView
 	protected $form = null;
 
 	/**
-	 * @return void
+	 * Displays the view
 	 */
 	public function display($tpl = null)
 	{

@@ -3,11 +3,14 @@
 defined('_JEXEC') or die();
 jimport( 'joomla.application.component.view' );
 
+
+/**
+ * Questa view mostra
+ */
 class wimtvproViewmystreamingsinsert extends JView
 {
 	function display($tpl = null)
 	{
-		 
 		// Set the toolbar
 		$this->addToolBar();
 		 
@@ -16,7 +19,6 @@ class wimtvproViewmystreamingsinsert extends JView
 		 
 		// Set the document
 		$this->setDocument();
-
 
 	}
 
@@ -30,7 +32,6 @@ class wimtvproViewmystreamingsinsert extends JView
 	/**
 	 * Method to set up the document properties
 	 *
-	 * @return void
 	 */
 	protected function setDocument()
 	{

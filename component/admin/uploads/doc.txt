@@ -1,0 +1,2 @@
+Questa cartella contiene i file che vengono caricati sul server dal plugin.
+Di solito sono le skin di Jwplayer, i cookies e i file temporanei degli upload.

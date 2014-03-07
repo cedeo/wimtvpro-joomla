@@ -9,8 +9,8 @@ require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
 /**
- * WIMTVPRO setting Controller
-*/
+ * Questo controller gestisce la view che permette la visualizzazione e la modifica delle impostazioni del plugin
+ */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 

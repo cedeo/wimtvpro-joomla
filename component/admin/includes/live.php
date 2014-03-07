@@ -1,4 +1,7 @@
 <?php
+/**
+ * Questo file, che viene chiamato direttamente tramite richiesta HTTP, espone la tabella dei live generata a partire dai dati presi da wim.tv
+ */
 
 error_reporting(0);
 

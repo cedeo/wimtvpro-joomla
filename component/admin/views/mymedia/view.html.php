@@ -5,6 +5,9 @@ defined('_JEXEC') or die('Restricted access');
 // import Joomla view library
 jimport('joomla.application.component.view');
 
+/**
+ * Questa view mostra la pagina che permette l'upload di un video su WimBox
+ */
 class WimtvproViewmymedia extends JView
 {
 	/**
@@ -15,7 +18,7 @@ class WimtvproViewmymedia extends JView
 	protected $form = null;
 
 	/**
-	 * @return void
+	 * Displays the view
 	 */
 	public function display($tpl = null)
 	{

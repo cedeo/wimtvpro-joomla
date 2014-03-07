@@ -1,0 +1,1 @@
+I file presenti in questa cartella definiscono le tabelle a cui il Model del Controller corrispondente al nome del file deve avere accesso.

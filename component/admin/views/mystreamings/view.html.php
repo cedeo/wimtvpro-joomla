@@ -4,6 +4,10 @@ defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.application.component.view' );
 jimport( 'joomla.html.pagination' );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
+
+/**
+ * Questa view mostra la tabella WimVod, con la view delle playlist affiancata.
+ */
 class WimtvproViewmystreamings extends JView
 {
 	function display($tpl = null)

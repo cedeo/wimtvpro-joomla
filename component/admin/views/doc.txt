@@ -1,0 +1,4 @@
+Questa cartella contiene le Views del plugin.
+Ogni file .php dovrebbe contere la documentazione riguardo il suo funzionamento.
+Ogni View è formata da una cartella che contiene il file principale della view (view.html.php) e una cartella internta tmpl, che contiene i layout associati alla view.
+Il template di default è default.php, ma si possono definire templates a piacere.

@@ -6,7 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.view');
 
 /**
- * HelloWorld View
+ * Questa view serve per mettere un video in WimVod.
 */
 class WimtvproViewputvideos extends JView
 {

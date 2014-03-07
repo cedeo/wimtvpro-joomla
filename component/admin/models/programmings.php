@@ -16,8 +16,6 @@ class WimtvproModelprogrammings extends JModelList
     /**
      * Method to get the data that should be injected in the form.
      *
-     * @return	mixed	The data for the form.
-     * @since	1.6
      */
 
     public function getItem($pk = null){
@@ -38,20 +36,4 @@ class WimtvproModelprogrammings extends JModelList
         return $this->programmings = $programmings;
     }
 
-    public function edit()
-    {
-        $input = JFactory::getApplication()->input;
-        //var_dump ($input);
-        $pks = $input->post->get('cid', array(), 'array');
-
-        if (count($pks)>1){
-            JFactory::getApplication()->enqueueMessage("You can select only one event to edit");
-            $this->setRedirect('index.php?option=com_wimtvpro&view=wimlives');
-        } else {
-            $this->setRedirect('index.php?option=com_wimtvpro&view=wimlive&layout=edit&cid=' . $pks[0]);
-
-        }
-
-
-    }
 }

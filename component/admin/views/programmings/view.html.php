@@ -5,17 +5,16 @@ defined('_JEXEC') or die('Restricted access');
 // import Joomla view library
 jimport('joomla.application.component.view');
 jimport('joomla.application.component.controllerform');
+
+/**
+ * Questa view mostra la lista dei programmings, e ha due layout: edit e default.
+ * Attraverso il parametro GET layout, è possibile scegliere il layout da applicare alla view.
+ * TODO: Questa è la maniera corretta di utilizzare una view di Joomla.
+ * TODO: Le altre view sono divise in (view) e (view)s per permettere l'editing e il display.
+ * TODO: Andrebbe corretta questa cosa utilizzando una sola view e più layout.
+ */
 class WimtvproViewprogrammings extends JView
 {
-	/**
-	 * View form
-	 *
-	 * @var		form
-	 */
-
-	/**
-	 * @return void
-	 */
 
     public $programmings;
 
@@ -57,7 +56,6 @@ class WimtvproViewprogrammings extends JView
 	/**
 	 * Method to set up the document properties
 	 *
-	 * @return void
 	 */
 	protected function setDocument()
 	{

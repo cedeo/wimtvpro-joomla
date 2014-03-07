@@ -3,8 +3,6 @@
 defined('_JEXEC') or die('Restricted access');
 JHtml::_('behavior.tooltip');
 
-
-
 ?>
 <form enctype="multipart/form-data"
 	action="<?php echo JRoute::_('index.php?option=com_wimtvpro&layout=edit&id=' . $this->item->id); ?>"

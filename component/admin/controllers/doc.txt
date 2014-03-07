@@ -1,0 +1,3 @@
+In questa cartella ci sono i Controllers del plugin.
+Essi servono a gestire il routing delle view e a fornire i dati alle view che li devono mostrare.
+Servono inoltre a permettere alle View la modifica dei dati (Model).

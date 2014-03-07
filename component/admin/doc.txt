@@ -1,0 +1,23 @@
+La gestione del plugin, in Joomla, è diversa rispetto agli altri due plugin.
+Joomla infatti è modellato secondo il pattern M(odel) V(iew) C(ontroller), ed ogni suo plugin deve seguire questo modello.
+In breve, joomla fa routing delle View attraverso il parametro GET "view", che è sempre associato ad un parametro GET "component",
+che indica il componente a cui appartiene la View (nel caso del plugin wimtvpro il component è 'com_wimtvpro').
+Le View devono essere nella cartella views/, e devono essere associate ad un Controller, attraverso il quale recuperano
+il Model, ovvero il contenitore dei dati che devono mostrare o elaborare.
+Il Controller serve, oltre che a servire il Model alle View, anche a permettere la modifica dello stesso.
+
+I Controller devono essere nella cartella controllers/.
+
+I Model devono essere nella cartella models/.
+
+Nella cartella assets/ sono contenute le risorse necessarie al corretto funzionamento del plugin.
+
+Nella cartella includes/ sono presenti alcune funzioni che vengono servite direttamente, senza utilizzare il pattern MVC.
+
+Nella cartella sql/ sono presenti degli script SQL che vengono eseguiti all'installazione e alla disinstallazione del plugin, per inizializzare e resettare il database interno.
+
+Nella cartella tables/ sono definite le tabelle utilizzate dalle view corrispondenti.
+
+Nella cartella uploads/ vengono caricati i files dell'utente, come i cookie e i file temporanei durante l'upload di un file.
+
+Il file config.xml contiene il form di configurazione del plugin.

@@ -8,8 +8,8 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controllerform');
 
 /**
- * WIMTVPRO PLAYLIST Controller
-*/
+ * Questo controller gestisce la view che permette la creazione di una playlist
+ */
 class WimtvproControllermyplaylist extends JControllerForm
 {
 	public function __construct($config = array())

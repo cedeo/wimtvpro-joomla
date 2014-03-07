@@ -7,7 +7,7 @@ jimport('joomla.application.component.modeladmin');
 
 /**
  * HelloWorld Model
-*/
+ */
 class WimtvproModelMyMedia extends JModelAdmin
 {
 	/**

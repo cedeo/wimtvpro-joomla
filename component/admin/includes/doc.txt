@@ -1,0 +1,2 @@
+I file contenuti in questa cartella sono richiamabili direttamente attraverso richieste HTTP, violando il modello MVC di Joomla.
+Servono ad esporre funzionalità non implementabili (o difficilmente implementabili) diversamente.

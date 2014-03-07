@@ -6,25 +6,21 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.view');
 
 /**
- * HelloWorld View
-*/
+ * Questa view mostra l'anteprima di una playlist, con il codice di embedding associato.
+ */
 class wimtvproViewembeddedplaylist extends JView
 {
 	/**
 	 * View form
 	 *
-	 * @var		form
 	 */
 	protected $form = null;
 
 	/**
-	 * @return void
+	 * Displays the view
 	 */
 	public function display($tpl = null)
 	{
-		
-		
-
 		// Set the toolbar
 		$this->addToolBar();
 
@@ -49,7 +45,6 @@ class wimtvproViewembeddedplaylist extends JView
 	/**
 	 * Method to set up the document properties
 	 *
-	 * @return void
 	 */
 	protected function setDocument()
 	{

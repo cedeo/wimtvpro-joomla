@@ -8,8 +8,8 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controllerform');
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 /**
- * WIMTVPRO MEDIA Controller
-*/
+ * Questo controller gestisce la view mymedia (WimBox)
+ */
 class WimtvproControllermymedia extends JControllerForm
 {
 	public function __construct($config = array())

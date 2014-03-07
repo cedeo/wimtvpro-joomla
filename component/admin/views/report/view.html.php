@@ -1,5 +1,7 @@
 <?php
-// No direct access to this file
+/**
+ * Questa view mostra le statistiche prese da stats.wim.tv
+ */
 defined('_JEXEC') or die('Restricted access');
 
 jimport( 'joomla.application.component.view' );

@@ -5,6 +5,9 @@ defined('_JEXEC') or die('Restricted access');
 // import Joomla view library
 jimport('joomla.application.component.view');
 
+/**
+ * Questa view mostra la pagina di creazione di una nuova playlist
+ */
 class wimtvproViewmyplaylist extends JView
 {
 	/**

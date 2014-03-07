@@ -5,49 +5,45 @@ defined('_JEXEC') or die('Restricted access');
 // import Joomla view library
 jimport('joomla.application.component.view');
 jimport('joomla.application.component.controllerform');
+
+/**
+ * Questa view mostra la pagina di modifica di un evento live.
+ */
 class WimtvproViewwimlive extends JView
 {
-	/**
-	 * View form
-	 *
-	 * @var		form
-	 */
 	protected $form = null;
 
-	/**
-	 * @return void
-	 */
- public function display($tpl = null) 
-        {
-                // get the Data
-                $form = $this->get('Form');
-                $item = $this->get('Item');
-                $script = $this->get('Script');
- 
-                // Check for errors.
-                if (count($errors = $this->get('Errors'))) 
-                {
-                        JError::raiseError(500, implode('<br />', $errors));
-                        return false;
-                }
-                
-               
-                JRequest::setVar('hidemainmenu', true);
+    public function display($tpl = null)
+    {
+        // get the Data
+        $form = $this->get('Form');
+        $item = $this->get('Item');
+        $script = $this->get('Script');
 
-                // Assign the Data
-                $this->form = $form;
-                $this->item = $item;
-                $this->script = $script;
- 
-                // Set the toolbar
-                $this->addToolBar();
- 
-                // Display the template
-                parent::display($tpl);
- 
-                // Set the document
-                $this->setDocument();
+        // Check for errors.
+        if (count($errors = $this->get('Errors')))
+        {
+                JError::raiseError(500, implode('<br />', $errors));
+                return false;
         }
+
+
+        JRequest::setVar('hidemainmenu', true);
+
+        // Assign the Data
+        $this->form = $form;
+        $this->item = $item;
+        $this->script = $script;
+
+        // Set the toolbar
+        $this->addToolBar();
+
+        // Display the template
+        parent::display($tpl);
+
+        // Set the document
+        $this->setDocument();
+    }
 
 	/**
 	 * Setting the toolbar

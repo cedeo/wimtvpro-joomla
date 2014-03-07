@@ -1,0 +1,2 @@
+Questi file sql vengono eseguiti all'installazione (install.sql) e alla disinstallazione (uninstall.sql) del plugin.
+Servono a inizializzare le tabelle del plugin o a rimuoverle alla disinstallazione dello stesso.

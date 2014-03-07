@@ -5,7 +5,9 @@ jimport( 'joomla.application.component.view' );
 jimport( 'joomla.html.pagination' );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
 
-
+/**
+ * Questa view mostra le impostazioni del plugin.
+ */
 class wimtvproViewsettings extends JView
 {
 	function display($tpl = null)
@@ -15,15 +17,12 @@ class wimtvproViewsettings extends JView
 		$lang = JFactory::getLanguage();
 		$source = JPATH_ADMINISTRATOR . '/components/' . $extension;
 		$lang->load("$extension.sys", JPATH_ADMINISTRATOR, null, false, false)
-		||    $lang->load("$extension.sys", $source, null, false, false)
-		||    $lang->load("$extension.sys", JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
-		||    $lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
+		|| $lang->load("$extension.sys", $source, null, false, false)
+		|| $lang->load("$extension.sys", JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
+		|| $lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
+
 		// Set the toolbar
 		$this->addToolBar();
-
-		/*$input = JFactory::getApplication()->input;
-		 $view = $input->getCmd('view', '');
-		WimtvproHelper::addSubmenu($view);*/
 
 		// Display the template
 		parent::display($tpl);

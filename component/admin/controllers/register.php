@@ -8,8 +8,8 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controllerform');
 jimport( 'joomla.form.form' );
 /**
- * WIMTVPRO REGISTRATION Controller
-*/
+ * Questo controller gestisce la view che permette la registrazione di un utente su wim.tv
+ */
 class WimtvproControllerRegister extends JControllerForm
 {
 	public function __construct($config = array())

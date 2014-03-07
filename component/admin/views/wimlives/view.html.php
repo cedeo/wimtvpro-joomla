@@ -2,6 +2,10 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die();
 jimport( 'joomla.application.component.view' );
+
+/**
+ * Questa view mostra la tabella dei video live (WimLive)
+ */
 class WimtvproViewwimlives extends JView
 {
 	function display($tpl = null)

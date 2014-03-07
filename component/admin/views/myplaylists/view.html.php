@@ -4,6 +4,9 @@ defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.application.component.view' );
 jimport( 'joomla.html.pagination' );
 
+/**
+ * Questa view mostra la lista delle playlist. E' embeddata al fianco della tabella WimVod
+ */
 class WimtvproViewmyplaylists extends JView
 {
 	function display($tpl = null)

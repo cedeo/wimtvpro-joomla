@@ -1,0 +1,1 @@
+In questa cartella sono dichiarati i form relativi alle view che hanno lo stesso nome dei file .xml.

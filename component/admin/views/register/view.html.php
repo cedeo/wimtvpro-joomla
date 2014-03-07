@@ -6,6 +6,9 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.view');
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
 
+/**
+ * Questa view permette all'utente di registrarsi su wim.tv
+ */
 class WimtvproViewregister extends JView
 {
 	/**

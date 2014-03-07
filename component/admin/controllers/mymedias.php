@@ -11,8 +11,8 @@ require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
 /**
- * WIMTVPRO MEDIA Controller
-*/
+ * Questo controller gestisce la view che permette l'upload di un video su WimBox
+ */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 

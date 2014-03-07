@@ -5,6 +5,9 @@ defined('_JEXEC') or die('Restricted access');
 // import Joomla view library
 jimport('joomla.application.component.view');
 
+/**
+ * Questa view mostra un video live
+ */
 class wimtvproViewwimlive_embedded extends JView
 {
 	/**

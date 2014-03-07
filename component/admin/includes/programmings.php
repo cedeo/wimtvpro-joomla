@@ -6,6 +6,10 @@
  * Time: 14.43
  * To change this template use File | Settings | File Templates.
  */
+/**
+ * Le funzioni vengono chiamate dal js che si occupa di gestire le funzioni di creazione e modifica dei palinsesti.
+ * Il routing viene fatto in base al parametro GET 'api'.
+ */
 error_reporting(0);
 
 require_once ( "api/wimtv_api.php" );

@@ -6,6 +6,9 @@ jimport( 'joomla.html.pagination' );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
+/**
+ * Questa view mostra la tabella WimBox
+ */
 class wimtvproViewmymedias extends JView
 {
 	function display($tpl = null)
@@ -58,8 +61,8 @@ class wimtvproViewmymedias extends JView
         }
 	}
 
-
-	/* Setting the toolbar
+	/**
+     * Setting the toolbar
 	 */
 	protected function addToolBar()
 	{
@@ -85,6 +88,7 @@ class wimtvproViewmymedias extends JView
 			JToolBarHelper::preferences('com_wimtvpro');
         }
 	}
+
 	/**
 	 * Method to set up the document properties
 	 *

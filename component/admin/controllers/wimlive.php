@@ -9,8 +9,8 @@ jimport('joomla.application.component.controllerform');
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
 /**
- * WIMTVPRO MEDIA Controller
-*/
+ * Questo controller gestisce la view che permette la creazione e la modifica di un evento live.
+ */
 class WimtvproControllerwimlive extends JControllerForm
 {
 	public function __construct($config = array())
