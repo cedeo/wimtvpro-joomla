@@ -20,4 +20,4 @@ Nella cartella tables/ sono definite le tabelle utilizzate dalle view corrispond
 
 Nella cartella uploads/ vengono caricati i files dell'utente, come i cookie e i file temporanei durante l'upload di un file.
 
-Il file config.xml contiene il form di configurazione del plugin.
+Il file config.xml contiene il form di configurazione del plugin, tra cui il valore da modificare per cambiare il base path delle chiamate alle API di wim.tv.

@@ -280,7 +280,6 @@ function apiCommercialPacket() {
 }
 
 
-
 //PROGRAMMING
 function apiProgrammingPool() {
     $apiAccessor = getApi();
