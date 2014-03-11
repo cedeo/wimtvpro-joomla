@@ -361,6 +361,12 @@ function apiUpdateItems($progId, $itemId, $params) {
     return $apiAccessor->execute($request);
 }
 
+function apiMimicItem($progId) {
+    $apiAccessor = getApi();
+    $request = $apiAccessor->postRequest("programming/" . $progId . "/mimic");
+    $request = $apiAccessor->authenticate($request);
+    return $apiAccessor->execute($request);
+}
 
 $params = JComponentHelper::getParams('com_wimtvpro');
 $basePathWimtv = $params->get('wimtv_basepath');  //"http://192.168.31.198:8082/wimtv-webapp/rest/"; //

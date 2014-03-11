@@ -140,3 +140,14 @@ function updateItem() {
     echo $response;
     die();
 }
+
+function mimicItem() {
+    header('Content-type: application/json');
+    $qs=$_SERVER['QUERY_STRING'];
+    parse_str($qs, $qs_array);
+    $progId = $qs_array['progId'];
+
+    $response = apiMimicItem($progId);
+    echo $response;
+    die();
+}
