@@ -1,6 +1,5 @@
 <?php
 
-
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
@@ -8,81 +7,68 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controllerform');
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/api/wimtv_api.php" );
 
-
 /**
  * Questo controller gestisce la view che permette di mettere un video di Wimbox in showtime (WimVod)
  */
-class WimtvproControllerputvideos extends JControllerForm
-{
-	public function __construct($config = array())
-	{
-		$this->view_list = 'mymedias';
-		parent::__construct($config);
-	}
-	
-	public function getModel($name = 'putVideo', $prefix = 'wimtvproModel')
-	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
-		return $model;
-	}
-	
-	
-	public function save()
-	{
-		//Retrieve file details from uploaded file, sent from upload form
-		$file = JRequest::getVar('jform', null, 'files', 'array');	
-		//Import filesystem libraries. Perhaps not necessary, but does not hurt
-		jimport('joomla.filesystem.file');		
+class WimtvproControllerputvideos extends JControllerForm {
 
-		$type = $_POST['type'];
-		$coid = $_POST['coid'];
+    public function __construct($config = array()) {
+        $this->view_list = 'mymedias';
+        parent::__construct($config);
+    }
+
+    public function getModel($name = 'putVideo', $prefix = 'wimtvproModel') {
+        $model = parent::getModel($name, $prefix, array('ignore_request' => true));
+        return $model;
+    }
+
+    public function save() {
+        //Retrieve file details from uploaded file, sent from upload form
+        $file = JRequest::getVar('jform', null, 'files', 'array');
+        //Import filesystem libraries. Perhaps not necessary, but does not hurt
+        jimport('joomla.filesystem.file');
+
+        $type = $_POST['type'];
+        $coid = $_POST['coid'];
         $video = json_decode(apiGetDetailsVideo($coid));
         $status = $video->status;
 
-		
-		switch ($type) {
-		
-			case "cc":
-				$licenseType ="CREATIVE_COMMONS";
-				$ccType = $_POST['cc_type'];
-		
-			break;
-		
-			case "ppv":
-		
-				$licenseType ="TEMPLATE_LICENSE";
-				$paymentMode ="PAYPERVIEW";
-				$pricePerView = $_POST["amount"] . "." . $_POST['amount_cent'];
-				$pricePerViewCurrency = $_POST["currency"];
-		
-			break;
-		
-			case "free":
-				
-				$licenseType ="TEMPLATE_LICENSE";
-				$paymentMode ="FREEOFCHARGE";
-		
-			break;
-		
-		}
+        switch ($type) {
+            case "cc":
+                $licenseType = "CREATIVE_COMMONS";
+                $ccType = $_POST['cc_type'];
+                break;
+
+            case "ppv":
+                $licenseType = "TEMPLATE_LICENSE";
+                $paymentMode = "PAYPERVIEW";
+                $pricePerView = $_POST["amount"] . "," . $_POST['amount_cent'];
+                $pricePerViewCurrency = $_POST["currency"];
+                break;
+
+            case "free":
+                $licenseType = "TEMPLATE_LICENSE";
+                $paymentMode = "FREEOFCHARGE";
+                break;
+        }
 
         $post = array();
-		if ($licenseType!="")
-			$post["licenseType"] = $licenseType;
-		if ($paymentMode!="")
-			$post["paymentMode"] = $paymentMode;
-		if ($ccType!="")
-			$post["ccType"] = $ccType;
-		if ($pricePerView!="")
-			$post["pricePerView"]  = $pricePerView;
-		if ($pricePerViewCurrency!="")
-			$post["pricePerViewCurrency"] = $pricePerViewCurrency;
+        if ($licenseType != "")
+            $post["licenseType"] = $licenseType;
+        if ($paymentMode != "")
+            $post["paymentMode"] = $paymentMode;
+        if ($ccType != "")
+            $post["ccType"] = $ccType;
+        if ($pricePerView != "")
+            $post["pricePerView"] = $pricePerView;
+        if ($pricePerViewCurrency != "")
+            $post["pricePerViewCurrency"] = $pricePerViewCurrency;
 
         $post = array("licenseType" => $licenseType,
-                      "paymentMode" => $paymentMode,
-                      "ccType" => $ccType,
-                      "pricePerView" => $pricePerView,
-                      "pricePerViewCurrency" => $pricePerViewCurrency);
+            "paymentMode" => $paymentMode,
+            "ccType" => $ccType,
+            "pricePerView" => $pricePerView,
+            "pricePerViewCurrency" => $pricePerViewCurrency);
         if ($status != "OWNED") {
             $acquid = $video->relationId;
             $response = apiPublishAcquiredOnShowtime($coid, $acquid, $post);
@@ -90,22 +76,27 @@ class WimtvproControllerputvideos extends JControllerForm
             $response = apiPublishOnShowtime($coid, $post);
         }
 
-		
+
         $state = "showtime";
         $array_response = json_decode($response);
-
-        if ($array_response->result=="SUCCESS") {
+        if ($array_response->result == "SUCCESS") {
             $this->setRedirect('index.php?option=com_wimtvpro&view=mymedias&sync=true', false);
         } else {
             $error = "";
             foreach ($array_response->messages as $message) {
-                $error .= $message->field . ":" . $message->message . "<br/>";
+                $error .= $message->field . ":" . $message->message;
+                if ($message->field=="paymentMode")
+                {
+                    $error.="<a style='margin-left:30px;' target='_BLANK' href='index.php?option=com_wimtvpro&view=settings&update=1'>".JText::_('COM_WITVPRO_ERROR_WIMTVPRO_PAYMENTMODE')."</a><BR/>";
+                }
+                else
+                {
+                    $error.= "<br/>";
+                }
             }
-            JError::raiseWarning( 100, $error  );
-            $this->setRedirect('index.php?option=com_wimtvpro&view=putVideos&layout=edit&coid=' . $coid  . '&put=' . $type, false);
+            JError::raiseWarning(100, $error);
+            $this->setRedirect('index.php?option=com_wimtvpro&view=putVideos&layout=edit&coid=' . $coid . '&put=' . $type, false);
         }
-		
-	}
-	
+    }
 
 }

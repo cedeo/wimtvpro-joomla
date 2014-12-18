@@ -5,6 +5,7 @@
         <thead>
         <tr>
             <th>Title</th>
+            <th>Embed</th>
             <th>Edit</th>
             <th>Remove</th>
             <!--th>Shortcode</th-->
@@ -12,14 +13,18 @@
         </thead>
         <tbody>
         <?php foreach ($this->programmings as $prog){
-            if (!isset($prog->name) )
+            $calendar_js = apiGetCalendar($prog->identifier,"api=calendar&progId=".$prog->identifier."&month=1&year=1&startDatetime=1");
+            $calendar_js_arr = json_decode($calendar_js->body); 
+            
+            if (!isset($prog->name))
                 $titleProgramming = "No title";
             else
                 $titleProgramming = $prog->name;
             ?>
             <tr>
                 <td><?php echo $titleProgramming; ?></td>
-                <td>
+                <td width="10%"><textarea onclick="this.focus(); this.select();" readonly="readonly" style="font-family: courier;" cols="70" rows="3"><?php echo $calendar_js_arr->embedCode?></textarea></td>
+                <td width="10%">
                     <?php
                      //echo url('admin/config/wimtvpro/programmings/edit', array("query" => array("progId" => $prog->identifier, "title" => $titleProgramming)));
                      //echo url('admin/config/wimtvpro/programmings', array("query" => array("functionList" => "delete", "id" => $prog->identifier)));
@@ -28,7 +33,7 @@
                         Edit
                     </a>
                 </td>
-                <td>
+                <td width="10%">
                     <a href="<?php echo JRoute::_('index.php?option=com_wimtvpro&view=programmings&task=delete&progId=' . $prog->identifier) ?>" >
                         Remove
                     </a>

@@ -1,74 +1,68 @@
 <?php
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-jimport( 'joomla.application.component.view' );
-jimport( 'joomla.html.pagination' );
+jimport('joomla.application.component.view');
+jimport('joomla.html.pagination');
 require_once ( JPATH_BASE . "/components/com_wimtvpro/includes/function.php" );
 
 /**
  * Questa view mostra le impostazioni del plugin.
  */
-class wimtvproViewsettings extends JView
-{
-	function display($tpl = null)
-	{
-		
-		$extension = 'com_wimtvpro';
-		$lang = JFactory::getLanguage();
-		$source = JPATH_ADMINISTRATOR . '/components/' . $extension;
-		$lang->load("$extension.sys", JPATH_ADMINISTRATOR, null, false, false)
-		|| $lang->load("$extension.sys", $source, null, false, false)
-		|| $lang->load("$extension.sys", JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
-		|| $lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
+class wimtvproViewsettings extends JView {
 
-		// Set the toolbar
-		$this->addToolBar();
+    function display($tpl = null) {
 
-		// Display the template
-		parent::display($tpl);
+        $extension = 'com_wimtvpro';
+        $lang = JFactory::getLanguage();
+        $source = JPATH_ADMINISTRATOR . '/components/' . $extension;
+        $lang->load("$extension.sys", JPATH_ADMINISTRATOR, null, false, false) || $lang->load("$extension.sys", $source, null, false, false) || $lang->load("$extension.sys", JPATH_ADMINISTRATOR, $lang->getDefault(), false, false) || $lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
 
-		// Set the document
-		$this->setDocument();
-	}
+        // Set the toolbar
+        $this->addToolBar();
 
+        // Display the template
+        parent::display($tpl);
 
-	/* Setting the toolbar
-	 */
-	protected function addToolBar()
-	{
-		
-		// Toolbar
-		$params = JComponentHelper::getParams('com_wimtvpro');
-		$username = $params->get('wimtv_username');
-		$password = $params->get('wimtv_password');
-		
-		JToolBarHelper::title( JText::_('WimTVPro') . ": " .  JText::_( "COM_WIMTVPRO_TITLE_SETTING" ), 'wimtv' );
-		
-		if (($username!="username" && $password!="password") && ($username!="" && $password!="")){
-			
-			
-			JToolBarHelper::divider();
+        // Set the document
+        $this->setDocument();
+    }
 
-			JToolBarHelper::save('settings.save', JText::_("COM_WIMTVPRO_UPDATE"));
-			JToolBarHelper::divider();
-		
-		} else
-			JToolBarHelper::preferences('com_wimtvpro');
-	}
-	/**
-	 * Method to set up the document properties
-	 *
-	 * @return void
-	 */
-	protected function setDocument()
-	{
-		
-		$document = JFactory::getDocument();		
-		$document->setTitle(JText::_('COM_WIMTVPRO_ADMINISTRATION'));
-		$document->addStyleSheet(JURI::base() . "components/com_wimtvpro/assets/css/wimtvpro.css");
-		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/jquery-2.0.2.min.js");
-		$document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/wimtvpro.js");
-		JHTML::_('behavior.modal');
-	}
+    /* Setting the toolbar
+     */
+
+    protected function addToolBar() {
+
+        // Toolbar
+        $params = JComponentHelper::getParams('com_wimtvpro');
+        $username = $params->get('wimtv_username');
+        $password = $params->get('wimtv_password');
+
+        JToolBarHelper::title(JText::_('WimTVPro') . ": " . JText::_("COM_WIMTVPRO_TITLE_SETTING"), 'wimtv');
+
+        if (($username != "username" && $password != "password") && ($username != "" && $password != "")) {
+            JToolBarHelper::divider();
+            JToolBarHelper::save('settings.save', JText::_("COM_WIMTVPRO_UPDATE"));
+            JToolBarHelper::divider();
+            JToolBarHelper::custom('settings.wimtvlogout', 'wimtvlogout', 'assets/images/remove.png', JText::_("COM_WIMTVPRO_CONFIG_LOGOUT"), false);            
+        }
+        else
+            JToolBarHelper::preferences('com_wimtvpro');
+    }
+
+    /**
+     * Method to set up the document properties
+     *
+     * @return void
+     */
+    protected function setDocument() {
+
+        $document = JFactory::getDocument();
+        $document->setTitle(JText::_('COM_WIMTVPRO_ADMINISTRATION'));
+        $document->addStyleSheet(JURI::base() . "components/com_wimtvpro/assets/css/wimtvpro.css");
+        $document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/jquery-2.0.2.min.js");
+        $document->addScript(JURI::base() . "components/com_wimtvpro/assets/js/wimtvpro.js");
+        JHTML::_('behavior.modal');
+    }
 
 }

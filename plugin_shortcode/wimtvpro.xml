@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.0.0" type="plugin" method="upgrade" group="content">
+    <name>Shortcode - WimtvPro</name>
+    <creationDate>2014-12-10</creationDate>
+    <copyright>Copyright (C) 2013. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <author>WimLabs</author>
+    <authorEmail>riccardo@cedeo.net</authorEmail>
+    <authorUrl>http://www.wimtvpro.tv</authorUrl>
+    <version>1.0.0</version>
+    <description>Create shortcode functionality for WimtvPro Plugin</description>
+    <files>
+        <filename>index.html</filename>
+        <filename>wimtvpro.xml</filename>
+        <filename plugin="wimtvpro">wimtvpro.php</filename>
+    </files>
+    <config></config>
+</extension>

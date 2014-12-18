@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by JetBrains PhpStorm.
  * User: walter
@@ -10,10 +11,22 @@
  * Le funzioni vengono chiamate dal js che si occupa di gestire le funzioni di creazione e modifica dei palinsesti.
  * Il routing viene fatto in base al parametro GET 'api'.
  */
+// NS: As we need Joomla Framework to be bootstrapped
+// we check whether the constant JPATH_ROOT has been defined
+// and eventually we "require" base Joomla files
+// (ie: defines.php and framework.php)
+$jFrameworkBootstrapped = defined("JPATH_ROOT");
+if (!$jFrameworkBootstrapped) {
+    define('_JEXEC', 1); //  This will allow to access file outside of joomla.
+    //defined( '_JEXEC')  or die( 'Restricted access' );// Use this if you wanna access file only in Joomla.
+    define('DS', DIRECTORY_SEPARATOR);
+    define('JPATH_BASE', $_SERVER['DOCUMENT_ROOT']);
+    require_once ( JPATH_BASE . DS . 'includes' . DS . 'defines.php' );
+    require_once ( JPATH_BASE . DS . 'includes' . DS . 'framework.php' );
+}
+
 error_reporting(0);
-
-require_once ( "api/wimtv_api.php" );
-
+require_once ( realpath(".") . "/api/wimtv_api.php" );
 
 header('Access-Control-Allow-Origin: *');
 header('Response: HTTP/1.1 200 OK');
@@ -49,11 +62,10 @@ switch ($api) {
         echo "ERRORE";
 }
 
-
 function calendar() {
     header('Content-type: application/json');
 
-    $qs=$_SERVER['QUERY_STRING'];
+    $qs = $_SERVER['QUERY_STRING'];
     parse_str($qs, $qs_array);
     $progId = $qs_array['progId'];
 
@@ -65,7 +77,7 @@ function calendar() {
 function addItem() {
     header('Content-type: application/json');
 
-    $qs=$_SERVER['QUERY_STRING'];
+    $qs = $_SERVER['QUERY_STRING'];
     parse_str($qs, $qs_array);
     $progId = $qs_array['progId'];
 
@@ -77,18 +89,18 @@ function addItem() {
 function pool() {
     header('Content-type: text/html');
 
-    $qs=$_SERVER['QUERY_STRING'];
+    $qs = $_SERVER['QUERY_STRING'];
     parse_str($qs, $qs_array);
     $response = apiProgrammingPool();
     echo $response;
 
-    die ();
+    die();
 }
 
 function currentProgramming() {
     header('Content-type: text/html');
 
-    $qs=$_SERVER['QUERY_STRING'];
+    $qs = $_SERVER['QUERY_STRING'];
     parse_str($qs, $qs_array);
     $response = apiGetCurrentProgrammings($qs);
     echo $response;
@@ -106,19 +118,19 @@ function programmings() {
 function removeItem() {
     header('Content-type: application/json');
 
-    $qs=$_SERVER['QUERY_STRING'];
+    $qs = $_SERVER['QUERY_STRING'];
     parse_str($qs, $qs_array);
     $progId = $qs_array['progId'];
 
-    $response = apiRemoveItemProgramming($progId,$qs);
+    $response = apiRemoveItemProgramming($progId, $qs);
     echo $response;
-    die ();
+    die();
 }
 
 function deleteItems() {
     header('Content-type: application/json');
 
-    $qs=$_SERVER['QUERY_STRING'];
+    $qs = $_SERVER['QUERY_STRING'];
     parse_str($qs, $qs_array);
     $progId = $qs_array['progId'];
     $itemId = $qs_array['itemId'];
@@ -131,7 +143,7 @@ function deleteItems() {
 function updateItem() {
     header('Content-type: application/json');
 
-    $qs=$_SERVER['QUERY_STRING'];
+    $qs = $_SERVER['QUERY_STRING'];
     parse_str($qs, $qs_array);
     $progId = $qs_array['progId'];
     $itemId = $qs_array['itemId'];
@@ -143,7 +155,7 @@ function updateItem() {
 
 function mimicItem() {
     header('Content-type: application/json');
-    $qs=$_SERVER['QUERY_STRING'];
+    $qs = $_SERVER['QUERY_STRING'];
     parse_str($qs, $qs_array);
     $progId = $qs_array['progId'];
 

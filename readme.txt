@@ -12,13 +12,15 @@ Pre install:
 -----------
 1) Compress the folder 'component' in .zip file
 2) Compress the folder 'plugin' in .zip file
+3) Compress the folder 'plugin_shortcode' in .zip file
 
 Installation:
 ------------
 From the Joomla! backend go to "Exetension manager" --> "modules"
 1) Upload and install 'component.zip'
-2) Upload and install 'plugin.zip' 
-3) activate the plugin
+2) Upload and install 'plugin.zip'
+3) Upload and install 'plugin_shortcode.zip' 
+4) activate both plugins 2) and 3)
 
 Overview:
 --------
@@ -69,4 +71,4 @@ http://support.wim.tv
 
 Last updated:
 ------------
-10/02/2014
+18/12/2014
